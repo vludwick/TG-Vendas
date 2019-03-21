@@ -38,7 +38,7 @@
             <a class="nav-link" href="10Representante.html"><i class="fa d-inline fa-lg fa-o"></i> Funcionários</a>
           </li>
         </ul>
-        <a class="btn navbar-btn ml-2 text-white btn-secondary"><i class="fa d-inline fa-lg fa-user-circle-o"></i>Sair</a>
+        <a class="btn navbar-btn ml-2 text-white btn-secondary"><i class="fas fa-door-open"></i>Sair</a>
       </div>
     </div>
   </nav>
