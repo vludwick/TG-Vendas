@@ -1,3 +1,5 @@
+<?php require_once("../conexao/conexao.php"); ?>
+
 <!DOCTYPE html>
 <html>
 
@@ -14,9 +16,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <h1 class="text-center display-3 text-primary">Bem vindo ao sistema - CCMR</h1>
-          <p class="">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-            irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          <h1 class="text-center display-3 text-primary">Bem vindo ao sistema - CRV</h1>
         </div>
       </div>
     </div>
@@ -25,16 +25,16 @@
     <div class="container">
       <div class="row">
         <div class="p-4 col-md-3"> <i class="d-block fa fa-3x fa-shopping-cart"></i>
-          <h2 class="my-3">Produtos</h2>
+          <h2 class="my-3">Realizar Venda</h2>
         </div>
-        <div class="col-md-3 p-4"> <i class="d-block fa fa-3x fa-money"></i>
-          <h2 class="my-3">Vendas</h2>
+        <div class="col-md-3 p-4"> <i class="d-block fa fa-3x fa-users"></i>
+          <h2 class="my-3">Gerenciador de Clientes</h2>
         </div>
-        <div class="col-md-3 p-4"> <i class="d-block fa fa-3x fa-pie-chart"></i>
-          <h2 class="my-3">Relatório</h2>
+        <div class="col-md-3 p-4"> <i class="d-block fa fa-3x fa-bar-chart"></i>
+          <h2 class="my-3">Ranking de Produtos</h2>
         </div>
-        <div class="col-md-3 p-4"> <i class="d-block fa fa-3x fa-th"></i>
-          <h2 class="my-3">Estoque</h2>
+        <div class="col-md-3 p-4"> <i class="d-block fa fa-3x fa-file"></i>
+          <h2 class="my-3">Consultar Pedidos</h2>
         </div>
       </div>
     </div>
@@ -119,7 +119,7 @@
       </div>
       <div class="row">
         <div class="col-md-12 mt-3 text-center">
-          <p>© Copyright 2017 CCMR SPORTS <i class="fa d-inline fa-lg fa-empire"></i> - All rights reserved.</p>
+          <p>© Copyright 2019 CRV SPORTS <i class="fa d-inline fa-lg fa-empire"></i> - All rights reserved.</p>
         </div>
       </div>
     </div>
@@ -130,3 +130,7 @@
 </body>
 
 </html>
+
+<?php
+    mysqli_close($conecta);
+?>
