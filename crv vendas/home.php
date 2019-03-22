@@ -1,14 +1,11 @@
-<?php require_once("../conexao/conexao.php"); ?>
+<?php require_once("../funcoes/conexao.php"); ?>
+<?php require_once("../funcoes/sessao.php"); ?>
 
 <!DOCTYPE html>
 <html>
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="lib/font-awesome.min.css" type="text/css">
-  <link rel="stylesheet" href="lib/bootstrap-4.0.0-beta.1.css" type="text/css">
-  <?php include 'menu.php'; ?>
+  <?php include '../funcoes/menu.php'; ?>
 </head>
 
 <body>
@@ -97,36 +94,10 @@
     </div>
   </div>
   <div class="py-5 bg-dark text-white">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-9">
-          <p class="lead">Faça sua busca aqui</p>
-          <form class="form-inline">
-            <div class="form-group">
-              <input type="email" class="form-control" placeholder=""> </div>
-            <button type="submit" class="btn btn-primary ml-3">Buscar</button>
-          </form>
-        </div>
-        <div class="col-4 col-md-1 align-self-center">
-          <a href="https://www.facebook.com" target="_blank"><i class="fa fa-fw fa-facebook fa-3x text-white"></i></a>
-        </div>
-        <div class="col-4 col-md-1 align-self-center">
-          <a href="https://twitter.com" target="_blank"><i class="fa fa-fw fa-twitter fa-3x text-white"></i></a>
-        </div>
-        <div class="col-4 col-md-1 align-self-center">
-          <a href="https://www.instagram.com" target="_blank"><i class="fa fa-fw fa-instagram text-white fa-3x"></i></a>
-        </div>
-      </div>
-      <div class="row">
         <div class="col-md-12 mt-3 text-center">
-          <p>© Copyright 2019 CRV SPORTS <i class="fa d-inline fa-lg fa-empire"></i> - All rights reserved.</p>
+          <p>© Copyright 2019 CRV SPORTS <i class="fa d-inline fa-lg fa-empire"></i> - Todos os direitos reservados.</p>
         </div>
-      </div>
-    </div>
   </div>
-  <script src="lib/jquery.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-  <script src="lib/pooper.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-  <script src="lib/bootstrap.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
 </body>
 
 </html>

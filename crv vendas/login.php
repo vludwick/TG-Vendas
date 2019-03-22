@@ -1,19 +1,15 @@
-<?php require_once("../conexao/conexao.php"); ?>
-<?php require_once("../conexao/entrar.php"); ?>
+<?php require_once("../funcoes/conexao.php"); ?>
+<?php require_once("../funcoes/entrar.php"); ?>
 
 <!DOCTYPE html>
 <html>
    <head>
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link rel="stylesheet" href="lib/font-awesome.min.css" type="text/css">
-      <link rel="stylesheet" href="lib/bootstrap-4.0.0-beta.1.css" type="text/css">
-      <script src="lib/bootstrap.js"></script>
+      <?php include '../funcoes/head.php'; ?>
    </head>
    <body>
       <nav class="navbar navbar-expand-md bg-primary navbar-dark">
          <div class="container">
-            <a class="navbar-brand" href="#"><i class="fa d-inline fa-lg fa-empire"></i><b>CRV SPORTS</b></a>
+            <a class="navbar-brand" href="#"><i class="fa d-inline fa-lg fa-empire"></i><b> CRV SPORTS</b></a>
          </div>
       </nav>
       <div class="py-5">
@@ -34,13 +30,9 @@
                             <br>
                             <input type="submit" class="btn btn-secondary" value="Login">
 
-                            <?php
-                                if (isset($mensagem)){
-                            ?>
+                            <?php if (isset($mensagem)){ ?>
                                 <p><?php echo $mensagem ?></p>
-                            <?php
-                                }
-                            ?>
+                            <?php } ?>
 
                         </form>
                         
@@ -55,5 +47,8 @@
 </html>
 
 <?php
+    if ( isset($_SESSION["user_portal"])){
+        header("location:home.php");
+    }
     mysqli_close($conecta);
 ?>
