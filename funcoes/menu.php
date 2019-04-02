@@ -29,7 +29,7 @@
                 $nome = $saudacao_login["nome"];
                 $nome = explode(" ", $nome);
         ?>
-            <div id="header_saudacao"><a class="btn navbar-btn ml-2 text-white btn-secondary"> <?php echo $nome[0] ?> </a></div>
+            <div id="header_saudacao"><a class="btn navbar-btn ml-2 text-white btn-primary"> <?php echo $nome[0] ?> </a></div>
         <?php } ?>
       
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar2SupportedContent" aria-controls="navbar2SupportedContent" aria-expanded="false"
@@ -37,7 +37,7 @@
       <div class="collapse navbar-collapse text-center justify-content-end" id="navbar2SupportedContent">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="3Produto.html"><i class="fa d-inline fa-lg fa-shopping-"></i> Clientes</a>
+            <a class="nav-link" href="clientes.php"><i class="fa d-inline fa-lg fa-shopping-"></i> Clientes</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="4Clifor.html"><i class="fa d-inline fa-lg fa-o"></i>Orçamento</a>
@@ -58,7 +58,7 @@
             <a class="nav-link" href="10Representante.html"><i class="fa d-inline fa-lg fa-o"></i> Funcionários</a>
           </li>
         </ul>
-        <a class="btn navbar-btn ml-2 text-white btn-secondary" href="../funcoes/sair.php"><i class="fa d-inline fa-lg fa-sign-out"></i> Sair</a>
+        <a class="btn navbar-btn ml-2 text-white btn-primary" href="../funcoes/sair.php"><i class="fa d-inline fa-lg fa-sign-out"></i> Sair</a>
       </div>
     </div>
   </nav>
