@@ -4,6 +4,7 @@ include 'valida.php';
 
 $acao 			= $_POST['acao'];
 $select 		= $_POST['options'];
+<<<<<<< HEAD
 $nome	 		= $_POST['nome'];
 $cpf 			= $_POST['cpf'];
 $rg 			= $_POST['rg'];
@@ -17,6 +18,21 @@ $numero 		= $_POST['numero'];
 $bairro 		= $_POST['bairro'];
 $cidade 		= $_POST['cidade'];
 $estado			= $_POST['estado'];
+=======
+$nome	 		= utf8_decode($_POST['nome']);
+$cpf 			= $_POST['cpf'];
+$rg 			= $_POST['rg'];
+$datanasc 		= $_POST['datanasc'];
+$nomefantasia 	= utf8_decode($_POST['nomefantasia']);
+$cnpj 			= $_POST['cnpj'];
+$inscricao 		= $_POST['inscricao'];
+$email 			= $_POST['email'];
+$rua 			= utf8_decode($_POST['rua']);
+$numero 		= $_POST['numero'];
+$bairro 		= utf8_decode($_POST['bairro']);
+$cidade 		= utf8_decode($_POST['cidade']);
+$estado			= utf8_decode($_POST['estado']);
+>>>>>>> carlos
 $cep	 		= $_POST['cep'];
 $telefone 		= $_POST['telefone'];
 $celular 		= $_POST['celular'];

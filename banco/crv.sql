@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 27-Mar-2019 às 18:52
--- Versão do servidor: 10.1.37-MariaDB
--- versão do PHP: 7.3.0
+-- Generation Time: 04-Abr-2019 às 18:54
+-- Versão do servidor: 10.1.38-MariaDB
+-- versão do PHP: 7.3.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -200,9 +200,7 @@ INSERT INTO `produto` (`id_produto`, `nome`, `preco`, `descricao`, `codigo_barra
 --
 ALTER TABLE `cliente`
   ADD PRIMARY KEY (`id_cliente`),
-  ADD UNIQUE KEY `email` (`email`),
   ADD UNIQUE KEY `cpf` (`cpf`),
-  ADD UNIQUE KEY `rg` (`rg`),
   ADD UNIQUE KEY `cnpj` (`cnpj`);
 
 --
@@ -234,7 +232,8 @@ ALTER TABLE `pedido`
 -- Indexes for table `pedido_produto`
 --
 ALTER TABLE `pedido_produto`
-  ADD PRIMARY KEY (`id_pedido`,`id_produto`) USING BTREE;
+  ADD PRIMARY KEY (`id_pedido`,`id_produto`) USING BTREE,
+  ADD KEY `fk_produto_pedido_produto` (`id_produto`);
 
 --
 -- Indexes for table `produto`
@@ -251,7 +250,7 @@ ALTER TABLE `produto`
 -- AUTO_INCREMENT for table `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `id_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `funcionario`
@@ -269,7 +268,7 @@ ALTER TABLE `nota_fiscal`
 -- AUTO_INCREMENT for table `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `id_pedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_pedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `produto`
