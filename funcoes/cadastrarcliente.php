@@ -75,11 +75,11 @@
                             <input class="form-control" id="rua" name="rua" type="text" placeholder="Rua ou Logradouro">    </div>
                         <div class="form-group col-md-2">
                             <label for="inputEmail3" class="col-sm-2 col-form-label">Número:</label>
-                            <input class="form-control" id="numero" name="numero" type="text" placeholder="Número">
+                            <input class="form-control" id="numero" onkeypress="return somenteNumeros(event)" name="numero" type="text" placeholder="Número">
                         </div>
                         <div class="form-group col-md-4">
                             <label for="inputEmail3" class="col-sm-2 col-form-label">Cep:</label>
-                            <input class="form-control" id="cep" name="cep" type="text" placeholder="Cep - somente os números">
+                            <input class="form-control" id="cep" name="cep" onkeypress="return somenteNumeros(event)" type="text" placeholder="Cep - somente os números">
                        </div>
                   </div> 
 				   
@@ -174,5 +174,17 @@
 		}
 	};
    
+    function somenteNumeros(e) {
+        var charCode = e.charCode ? e.charCode : e.keyCode;
+        // charCode 8 = backspace   
+        // charCode 9 = tab
+        if (charCode != 8 && charCode != 9) {
+            // charCode 48 equivale a 0   
+            // charCode 57 equivale a 9
+            if (charCode < 48 || charCode > 57) {
+                return false;
+            }
+        }
+    };
    
 </script>
