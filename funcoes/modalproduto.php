@@ -26,29 +26,29 @@
                     <div class="form-row">
                         <div class="form-group col-md-7">
                           <label for="inputEmail3" class="col-sm-2 col-form-label">Nome:</label>
-                          <input class="form-control" id="nome" name="nome" type="text" placeholder="Nome Completo">
+                          <input class="form-control" id="nome" name="nome" type="text" placeholder="Nome Completo" required>
                         </div>
                         <div class="form-group col-md-3">
                             <label for="inputEmail3" id="dinheiro" class="col-sm-2 col-form-label">Preço:</label>
-                            <input type="text" id="preco" name="preco" class="dinheiro form-control"  placeholder="Preço do produto" style="display:inline-block">
+                            <input type="text" id="preco" name="preco" class="dinheiro form-control"  placeholder="Preço do produto" style="display:inline-block" required>
                         </div>
                     </div>
                     
 				   <div  class="form-row">
                         <div class="form-group col-md-4">
                             <label for="inputEmail3" class="col-sm-2 col-form-label">Descrição:</label>
-                            <input class="form-control" id="descricao" name="descricao" type="text" placeholder="Descrição do Produto">
+                            <input class="form-control" id="descricao" name="descricao" type="text" placeholder="Descrição do Produto" required>
                         </div>
                         <div class="form-group col-md-4">
                             <label for="inputEmail3" class="col-sm-10 col-form-label">Quantidade:</label>
-                            <input class="form-control" id="quantidade" name="quantidade" type="number" placeholder="Quantidade do Produto em Estoque">
+                            <input class="form-control" id="quantidade" name="quantidade" type="number" placeholder="Quantidade do Produto em Estoque" required>
                         </div>
 					</div>
 					
 					<div class="form-row">
 						<div class="col-sm-7">
 							<label for="inputEmail3">Foto</label>
-							<input class="form-control" type="file" name ="foto" id="foto">									
+							<input class="form-control" type="file" name ="foto" id="foto" required>									
 						</div>
                     </div>
 
@@ -67,6 +67,7 @@
 
 <script>
     $('#preco').mask('#.##0,00', {reverse: true});
+
 	$(function(){
         $('#addproduto').submit(function(event){
 		event.preventDefault();
@@ -82,10 +83,21 @@
 			success:function (data)
 				{
 				$("#res_server").html(data);
+                limparCampos();
 				},
 			dataType:'html'
 		});
+        Enviar1();
 		return false;
 	   });
 	});
+      
+    
+    function limparCampos() {       
+            document.getElementById("descricao").value = "";
+            document.getElementById("preco").value = "";
+            document.getElementById("quantidade").value = "";
+            document.getElementById("nome").value = "";
+            document.getElementById("foto").value = "";     
+    }
 </script>

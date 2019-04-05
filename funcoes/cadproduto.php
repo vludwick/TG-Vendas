@@ -13,23 +13,6 @@ $foto			= $_FILES['foto'];
 $codbarras = date('d/m/Y às H:i:s');
 $codbarras = md5($codbarras);
 
-if($nome == '')
-{
-	echo '<div class="alert alert-danger" role="alert">Digite o nome</div>';
-	exit;
-}
-
-if($preco == '')
-{
-	echo '<div class="alert alert-danger" role="alert">Digite o preço do produto</div>';
-	exit;
-}
-
-if($quantidade == '')
-{
-	echo '<div class="alert alert-danger" role="alert">Digite a Quantidade do Produto</div>';
-	exit;
-}
 
 
 if($acao == 'incluir')
@@ -40,10 +23,10 @@ if($acao == 'incluir')
 		$foto  = arruma_arquivo($foto,'foto');
 	}
 	$insert = mysqli_query($conecta, "INSERT INTO PRODUTO (nome, preco, descricao, quantidade, codigo_barras, foto) 
-	VALUES ('$nome', '$preco', '$descricao', '$quantidade', '$codbarras', '$foto')") or die (mysqli_error($conecta));	
-		
+	VALUES ('$nome', '$preco', '$descricao', '$quantidade', '$codbarras', '$foto')") or die (mysqli_error($conecta));
 	echo '<div class="alert alert-success" role="alert">Produto cadastrado com sucesso</div>';
 }
+
 
 mysqli_close($conecta);
 

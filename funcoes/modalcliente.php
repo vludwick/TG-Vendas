@@ -31,7 +31,7 @@
                     <div class="form-row">
                         <div class="form-group col-md-7">
                           <label for="inputEmail3" class="col-sm-2 col-form-label">*Nome:</label>
-                          <input class="form-control" id="nome" name="nome" type="text" placeholder="Nome Completo">
+                          <input class="form-control" id="nome" name="nome" type="text" placeholder="Nome Completo" required>
                         </div>
                         <div class="form-group col-md-5">
                             <label for="inputEmail3" class="col-sm-4 col-form-label">E-mail:</label>
@@ -42,7 +42,7 @@
 				   <div  class="form-row">
                         <div id="fisica" class="form-group col-md-4">
                             <label for="inputEmail3" class="col-sm-2 col-form-label">*CPF:</label>
-                            <input class="form-control" id="cpf" name="cpf" type="text" placeholder="CPF - somente os números">
+                            <input class="form-control" id="cpf" name="cpf" type="text" placeholder="CPF - somente os números" required>
                         </div>
                         <div id="fisica1" class="form-group col-md-4">
                             <label for="inputEmail3" class="col-sm-2 col-form-label">*RG:</label>
@@ -50,7 +50,7 @@
                         </div>
                         <div id="fisica2" class="form-group col-md-4">
                             <label for="inputEmail3" class="col-sm-10 col-form-label">Data de Nascimento:</label>
-                            <input class="form-control" id="datanasc" name="datanasc" type="date" placeholder="Data de Nascimento -somente os números">
+                            <input class="form-control" id="datanasc" name="datanasc" type="date" placeholder="Data de Nascimento -somente os números" required>
                         </div>
                   </div>
                     
@@ -72,14 +72,14 @@
 				  <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="inputEmail3" class="col-sm-2 col-form-label">Rua/Logradouro:</label>
-                            <input class="form-control" id="rua" name="rua" type="text" placeholder="Rua ou Logradouro">    </div>
+                            <input class="form-control" id="rua" name="rua" type="text" placeholder="Rua ou Logradouro" required>    </div>
                         <div class="form-group col-md-2">
                             <label for="inputEmail3" class="col-sm-2 col-form-label">Número:</label>
-                            <input class="form-control" id="numero" onkeypress="return somenteNumeros(event)" name="numero" type="text" placeholder="Número">
+                            <input class="form-control" id="numero" onkeypress="return somenteNumeros(event)" name="numero" type="text" placeholder="Número" required>
                         </div>
                         <div class="form-group col-md-4">
                             <label for="inputEmail3" class="col-sm-2 col-form-label">Cep:</label>
-                            <input class="form-control" id="cep" name="cep" onkeypress="return somenteNumeros(event)" type="text" placeholder="Cep - somente os números">
+                            <input class="form-control" id="cep" name="cep" onkeypress="return somenteNumeros(event)" type="text" placeholder="Cep - somente os números" required>
                        </div>
                   </div> 
 				   
@@ -87,15 +87,15 @@
                   <div class="form-row">
                         <div class="form-group col-md-4">
                             <label for="inputEmail3" class="col-sm-2 col-form-label">Bairro:</label>
-                            <input class="form-control" id="bairro" name="bairro" type="text" placeholder="Bairro">
+                            <input class="form-control" id="bairro" name="bairro" type="text" placeholder="Bairro" required>
                         </div>
                         <div class="form-group col-md-4">
                             <label for="inputEmail3" class="col-sm-2 col-form-label">Cidade:</label>
-                            <input class="form-control" id="cidade" name="cidade" type="text" placeholder="Cidade">
+                            <input class="form-control" id="cidade" name="cidade" type="text" placeholder="Cidade" required>
                         </div>
                         <div class="form-group col-md-4">
                             <label for="inputEmail3" class="col-sm-2 col-form-label">Estado:</label>
-                            <input class="form-control" id="estado" name="estado" type="text" placeholder="Estado">
+                            <input class="form-control" id="estado" name="estado" type="text" placeholder="Estado" required>
                         </div>
                   </div>
 
@@ -144,6 +144,7 @@
 			success:function (data)
 				{
 				$("#res_server").html(data);
+                limparCampos();
 				},
 			dataType:'html'
 		});
@@ -160,26 +161,49 @@
 		  document.getElementById("fisica").style.display = "block";
 		  document.getElementById("fisica1").style.display = "block";
 		  document.getElementById("fisica2").style.display = "block";
+          document.getElementById("cpf").required = true;
+          document.getElementById("datanasc").required = true;
 		  document.getElementById("juridica").style.display = "none";
 		  document.getElementById("juridica1").style.display = "none";
 		  document.getElementById("juridica2").style.display = "none";
+          document.getElementById("nomefantasia").required = false;
+          document.getElementById("cnpj").required = false;
 		}else if(value == 2){
 		  document.getElementById("fisica").style.display = "none";
 		  document.getElementById("fisica1").style.display = "none";
 		  document.getElementById("fisica2").style.display = "none";
+          document.getElementById("cpf").required = false;
+          document.getElementById("datanasc").required = false;
 		  document.getElementById("juridica").style.display = "block";
 		  document.getElementById("juridica1").style.display = "block";
 		  document.getElementById("juridica2").style.display = "block";
+          document.getElementById("nomefantasia").required = true;
+          document.getElementById("cnpj").required = true;
 		}
 	};
+    
+    function limparCampos() {       
+            document.getElementById("cpf").value = "";
+            document.getElementById("nome").value = "";
+            document.getElementById("rg").value = "";
+            document.getElementById("cnpj").value = "";
+            document.getElementById("cep").value = "";     
+            document.getElementById("estado").value = "";     
+            document.getElementById("bairro").value = "";     
+            document.getElementById("celular").value = "";     
+            document.getElementById("cidade").value = "";     
+            document.getElementById("telefone").value = "";     
+            document.getElementById("datanasc").value = "";     
+            document.getElementById("inscricao").value = "";     
+            document.getElementById("rua").value = "";     
+            document.getElementById("nomefantasia").value = "";     
+            document.getElementById("email").value = "";     
+            document.getElementById("numero").value = "";     
+    }
    
     function somenteNumeros(e) {
         var charCode = e.charCode ? e.charCode : e.keyCode;
-        // charCode 8 = backspace   
-        // charCode 9 = tab
         if (charCode != 8 && charCode != 9) {
-            // charCode 48 equivale a 0   
-            // charCode 57 equivale a 9
             if (charCode < 48 || charCode > 57) {
                 return false;
             }
