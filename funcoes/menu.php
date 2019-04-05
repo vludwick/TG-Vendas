@@ -46,7 +46,7 @@
             <a class="nav-link" href="5Vendas.html"><i class="fa d-inline fa-lg fa-o"></i>Venda</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="7Estoque.html"><i class="fa d-inline fa-lg fa-o"></i>Produtos</a>
+            <a class="nav-link" href="produtos.php"><i class="fa d-inline fa-lg fa-o"></i>Produtos</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="8Orcamento.html"><i class="fa d-inline fa-lg fa-o"></i>Pedidos</a>

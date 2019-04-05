@@ -6,7 +6,7 @@
 
 <head>
 	<script src="js/jquery-3.2.1.min.js" language="javascript"></script> 
-    <?php require_once("../funcoes/modalcliente.php"); ?>
+    <?php require_once("../funcoes/modalproduto.php"); ?>
     <?php include '../funcoes/menu.php'; ?>
 		
 </head>
@@ -15,7 +15,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <h1 class="pb-3 text-secondary">Gerenciador de Clientes</h1>
+          <h1 class="pb-3 text-secondary">Produtos</h1>
         </div>
       </div>
       <div class="row">
@@ -23,10 +23,10 @@
           <div class="row my-5">
             <div class="col-2 order-lg-2 col-2 text-center"><i class="d-block fa fa-columns fa-3x"></i></div>
             <div class="col-10 text-lg-right text-left order-lg-1">
-                <h4 class="text-primary">Cadastrar cliente</h4>
+                <h4 class="text-primary">Cadastrar Produto</h4>
                 
 				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#cadastroCliente">
-                  Novo cliente
+                  Novo Produto
                 </button>
                 
             </div>
