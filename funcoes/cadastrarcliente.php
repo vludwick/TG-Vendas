@@ -130,7 +130,6 @@
         $('#telefone').mask('(00) 0000-0000');
     
 	$(function(){
-
         $('#addcliente').submit(function(event){
 		event.preventDefault();
 		var formDados = new FormData($(this)[0]);
