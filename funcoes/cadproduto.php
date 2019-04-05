@@ -5,7 +5,7 @@ include 'sobearquivo.php';
 
 $acao 			= $_POST['acao'];
 $nome			= utf8_decode($_POST['nome']);
-$preco 			= $_POST['preco'];
+$preco 			= (double) str_replace(",", ".", $_POST['preco']);
 $descricao 		= utf8_decode($_POST['descricao']);
 $quantidade 	= $_POST['quantidade'];
 $foto			= $_FILES['foto'];

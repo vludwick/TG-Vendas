@@ -1,3 +1,6 @@
+<head>	
+<script src="../crv/js/jquery.mask.min.js"></script>
+</head>
 <body>
 	<?php
         error_reporting(0);
@@ -26,8 +29,8 @@
                           <input class="form-control" id="nome" name="nome" type="text" placeholder="Nome Completo">
                         </div>
                         <div class="form-group col-md-3">
-                            <label for="inputEmail3" class="col-sm-2 col-form-label">Preço:</label>
-                            <input type="text" id="preco" name="preco" class="form-control"  placeholder="Preço do produto">
+                            <label for="inputEmail3" id="dinheiro" class="col-sm-2 col-form-label">Preço:</label>
+                            <input type="text" id="preco" name="preco" class="dinheiro form-control"  placeholder="Preço do produto" style="display:inline-block">
                         </div>
                     </div>
                     
@@ -63,6 +66,7 @@
 </body>
 
 <script>
+    $('#preco').mask('#.##0,00', {reverse: true});
 	$(function(){
         $('#addproduto').submit(function(event){
 		event.preventDefault();
