@@ -20,6 +20,7 @@ $estado			= utf8_decode($_POST['estado']);
 $cep	 		= $_POST['cep'];
 $telefone 		= $_POST['telefone'];
 $celular 		= $_POST['celular'];
+$idCliente 		= $_POST['idcliente'];
 
 if($nome == '')
 {
@@ -65,6 +66,10 @@ if($acao == 'incluir' && $select == '2')
 	VALUES ('$nome', '$email', '$rua', '$numero', '$bairro', '$cidade', '$estado', '$cep', '$telefone', '$celular', '$cnpj', '$inscricao', '$nomefantasia')") or die (mysqli_error($conecta));	
 		
 	echo '<div class="alert alert-success" role="alert">Cliente Jurídico cadastrado com sucesso</div>';
+}
+
+if($acao == 'deletar'){
+	$query="delete from cliente where id_cliente = $_POST['idCliente']"	
 }
 
 mysqli_close($conecta);

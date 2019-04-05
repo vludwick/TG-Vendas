@@ -9,7 +9,7 @@
 <body>
   <nav class="navbar navbar-expand-md bg-primary navbar-dark">
     <div class="container">
-      <a class="navbar-brand" href="home.php"><i class="fa d-inline fa-lg fa-empire"></i><b> CRV SPORTS</b></a>
+      <a class="navbar-brand" href="home.php"><i class="fab d-inline fa-lg fa-empire"></i><b> CRV SPORTS</b></a>
         <?php
             if  (isset($_SESSION["user_portal"]) )   
             {
@@ -58,7 +58,7 @@
             <a class="nav-link" href="10Representante.html"><i class="fa d-inline fa-lg fa-o"></i> Funcionários</a>
           </li>
         </ul>
-        <a class="btn navbar-btn ml-2 text-white btn-primary" href="../funcoes/sair.php"><i class="fa d-inline fa-lg fa-sign-out"></i> Sair</a>
+        <a class="btn navbar-btn ml-2 text-white btn-primary" href="../funcoes/sair.php"><i class="fas d-inline fa-lg fa-sign-out-alt"></i> Sair</a>
       </div>
     </div>
   </nav>
