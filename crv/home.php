@@ -6,6 +6,7 @@
 
 <head>
   <?php include '../funcoes/menu.php'; ?>
+  <link rel="stylesheet" href="lib\fontawesome-free-5.8.1-web\css\all.css">
 </head>
 
 <body>
@@ -95,7 +96,7 @@
   </div>
   <div class="py-5 bg-dark text-white">
         <div class="col-md-12 mt-3 text-center">
-          <p>© Copyright 2019 CRV SPORTS <i class="fa d-inline fa-lg fa-empire"></i> - Todos os direitos reservados.</p>
+          <p>© Copyright 2019 CRV SPORTS <i class="fab d-inline fa-lg fa-empire"></i> - Todos os direitos reservados.</p>
         </div>
   </div>
 </body>

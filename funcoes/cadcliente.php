@@ -20,6 +20,7 @@ $estado			= utf8_decode($_POST['estado']);
 $cep	 		= $_POST['cep'];
 $telefone 		= $_POST['telefone'];
 $celular 		= $_POST['celular'];
+$idCliente 		= $_POST['idcliente'];
 
 
 if($acao == 'incluir' && $select == '1')
@@ -37,6 +38,10 @@ if($acao == 'incluir' && $select == '2')
 	
     
 	echo '<div class="alert alert-success" role="alert">Cliente Jurídico cadastrado com sucesso</div>';
+}
+
+if($acao == 'deletar'){
+	$query="delete from cliente where id_cliente = $_POST['idCliente']"	
 }
 
 mysqli_close($conecta);
