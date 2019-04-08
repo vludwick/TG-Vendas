@@ -46,7 +46,7 @@
             $resultado = mysqli_query($conecta, $query);
             while($linha = mysqli_fetch_array($resultado)){
                 echo '<tr class='.$tipo.'><td>'.$linha['id_cliente'].'</td>';
-                echo '<td>'.$linha['nome'].'</td>';
+                echo '<td>'.utf8_encode($linha['nome']).'</td>';
           ?>
             
                 <td><a href="#"><i class="fas fa-edit">
@@ -66,8 +66,34 @@
     <script type="text/javascript" src="lib\DataTables\datatables.js"></script>
 
     <script>
+    DATATABLE_PTBR = {
+    "sEmptyTable": "Nenhum registro encontrado",
+    "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+    "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
+    "sInfoFiltered": "(Filtrados de _MAX_ registros)",
+    "sInfoPostFix": "",
+    "sInfoThousands": ".",
+    "sLengthMenu": "_MENU_ resultados por página",
+    "sLoadingRecords": "Carregando...",
+    "sProcessing": "Processando...",
+    "sZeroRecords": "Nenhum registro encontrado",
+    "sSearch": "Pesquisar",
+    "oPaginate": {
+        "sNext": "Próximo",
+        "sPrevious": "Anterior",
+        "sFirst": "Primeiro",
+        "sLast": "Último"
+    },
+    "oAria": {
+        "sSortAscending": ": Ordenar colunas de forma ascendente",
+        "sSortDescending": ": Ordenar colunas de forma descendente"
+    }
+}
+ 
         $(document).ready( function (){
-            $('#cliente').DataTable();
+            $('#cliente').DataTable(
+              {"oLanguage": DATATABLE_PTBR}
+            );
 
         } );
     </script>
