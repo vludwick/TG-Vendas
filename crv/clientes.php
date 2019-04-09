@@ -49,7 +49,7 @@
                 echo '<td>'.utf8_encode($linha['nome']).'</td>';
           ?>
             
-                <td><a href="#edita" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-edit">
+                <td><a href="#edita" data-toggle="modal" data-target="#cadastroCliente"><i class="fas fa-edit">
             </a></td>
                 <td><a href="#"><i class="fas fa-trash-alt">
             </a></td></tr>
@@ -122,9 +122,7 @@
 
         $("[href='#edita']").click( function(){
             var id = $(this).parent().parent().attr('id')
-            $("#id").val(id);
-    
-            $("#enviar").trigger("submit");
+            $("#res_server").text(id);
         });
     </script>
 

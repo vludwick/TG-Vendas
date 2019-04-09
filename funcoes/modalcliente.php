@@ -117,7 +117,7 @@
 				   <button type="submit" class="btn btn-primary px-4">Enviar</button>
 				</div>
 			 </form>
-			 <div id="res_server" style="margin-top: 10px"></div>
+			 <div class="alert alert-danger" id="res_server" style="margin-top: 10px"></div>
 		  </div>
 	   </div>
 	</div>
