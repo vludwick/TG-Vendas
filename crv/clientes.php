@@ -45,11 +45,11 @@
             $query="select * from cliente;";
             $resultado = mysqli_query($conecta, $query);
             while($linha = mysqli_fetch_array($resultado)){
-                echo '<tr class='.$tipo.'><td>'.$linha['id_cliente'].'</td>';
+                echo '<tr id='.$linha['id_cliente'].'><td>'.$linha['id_cliente'].'</td>';
                 echo '<td>'.utf8_encode($linha['nome']).'</td>';
           ?>
             
-                <td><a href="#"><i class="fas fa-edit">
+                <td><a href="#edita" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-edit">
             </a></td>
                 <td><a href="#"><i class="fas fa-trash-alt">
             </a></td></tr>
@@ -59,6 +59,29 @@
             ?>
     </tbody>
 </table>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="corpomodal">
+
+        <input id="id" name="id" value="<?php echo $id;?>">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
     </div>
   </div>
 <?php include 'footer.php'; ?>
@@ -96,6 +119,13 @@
             );
 
         } );
+
+        $("[href='#edita']").click( function(){
+            var id = $(this).parent().parent().attr('id')
+            $("#id").val(id);
+    
+            $("#enviar").trigger("submit");
+        });
     </script>
 
 
