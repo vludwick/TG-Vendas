@@ -8,6 +8,10 @@
 		{
 			$acao = 'incluir';
 		}
+		
+		$id 	= $_POST['id'];
+		$acao 	= $_POST['acao'];
+		
 	?>
 
 	<div class="modal fade bd-example-modal-xl" id="cadastroCliente" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -26,8 +30,7 @@
 					  <option value="2">Pessoa Jurídica</option>
 				   </select>
 				   <br/><br/>
-				   <input type="hidden" id="acao" name="acao" value="<?php echo $acao ?>">
-                    
+
                     <div class="form-row">
                         <div class="form-group col-md-7">
                           <label for="inputEmail3" class="col-sm-2 col-form-label">*Nome:</label>
@@ -117,7 +120,14 @@
 				   <button type="submit" class="btn btn-primary px-4">Enviar</button>
 				</div>
 			 </form>
-			 <div class="alert alert-danger" id="res_server" style="margin-top: 10px"></div>
+			 <div class="alert alert-danger" id="res_server" style="margin-top: 10px">
+			 <?php
+			 echo $id;
+			 echo $acao;
+			 $id = '';
+			 $acao = '';
+			 ?>
+			 </div>
 		  </div>
 	   </div>
 	</div>
@@ -128,7 +138,7 @@
         $('#cnpj').mask('00.000.000/0000-00');
         $('#celular').mask('(00) 00000-0000');
         $('#telefone').mask('(00) 0000-0000');
-    
+	
 	$(function(){
         $('#addcliente').submit(function(event){
 		event.preventDefault();
@@ -151,7 +161,7 @@
 		return false;
 	   });
 	});
-    
+
 	document.getElementById("juridica").style.display = "none";
 	document.getElementById("juridica1").style.display = "none";
 	document.getElementById("juridica2").style.display = "none";
@@ -182,7 +192,9 @@
 		}
 	};
     
-    function limparCampos() {       
+    function limparCampos() { 
+            document.getElementById("id").value = "";     
+            document.getElementById("acao").value = "";  	
             document.getElementById("cpf").value = "";
             document.getElementById("nome").value = "";
             document.getElementById("rg").value = "";
@@ -199,6 +211,7 @@
             document.getElementById("nomefantasia").value = "";     
             document.getElementById("email").value = "";     
             document.getElementById("numero").value = "";     
+
     }
    
     function somenteNumeros(e) {
