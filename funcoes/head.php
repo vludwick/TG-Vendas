@@ -5,8 +5,8 @@
 <script src="lib/jquery.js"></script>
 <script src="lib/jquery.min.js"></script>
 <script src="lib/jquery.plugin.js"></script>
-<script src="lib/pooper.js"></script>
 <script src="lib/bootstrap.js"></script>
 <script src="js/bootstrap.bundle.min.js"></script>
 <script src="js/jquery-3.2.1.min.js" language="javascript"></script> 
+<script src="lib/pooper.js"></script>
 <link rel="stylesheet" href="lib/bootstrap.min.css" >

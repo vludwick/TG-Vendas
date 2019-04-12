@@ -49,9 +49,9 @@
                 echo '<td>'.utf8_encode($linha['nome']).'</td>';
           ?>
             
-                <td><a href="#edita" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-edit">
+                <td><i class="fas fa-edit" data-toggle="modal" data-target="#cadastroCliente" style="cursor: pointer; color:royalBlue">
             </a></td>
-                <td><a href="#"><i class="fas fa-trash-alt">
+                <td><i class="fas fa-trash-alt" style="cursor: pointer; color:royalBlue">
             </a></td></tr>
 
             <?php
@@ -59,28 +59,10 @@
             ?>
     </tbody>
 </table>
-
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body" id="corpomodal">
-
-        <input id="id" name="id" value="<?php echo $id;?>">
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
+<form id="teste">
+  <input type="hidden" id="id" name="id">
+</form>
+<div id="res_teste">
 </div>
     </div>
   </div>
@@ -117,15 +99,33 @@
             $('#cliente').DataTable(
               {"oLanguage": DATATABLE_PTBR}
             );
+        });
 
-        } );
-
-        $("[href='#edita']").click( function(){
+        $(".fa-edit").click( function(){
             var id = $(this).parent().parent().attr('id')
             $("#id").val(id);
-    
-            $("#enviar").trigger("submit");
+            $('#teste').trigger("submit");
         });
+
+          $('#teste').submit(function(event){
+            event.preventDefault();
+            var formDados = new FormData($(this)[0]);
+            var resultado;
+            $.ajax({
+              url:'../funcoes/teste.php',
+              type:'POST',
+              data:formDados,
+              cache:false,
+              contentType:false,
+              processData:false,
+              success:function (data)
+                {
+                $("#res_teste").html(data);
+                },
+              dataType:'html'
+            });
+            return false;
+            });
     </script>
 
 
