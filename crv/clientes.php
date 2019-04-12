@@ -26,7 +26,7 @@
             </div>
           </div>
           <table class="table table-hover table-striped table-bordered" id="cliente">
-      <thead>
+    <thead>
         <tr>
             <th>Id Cliente</th>
             <th>Nome</th>
@@ -52,6 +52,7 @@
             ?>
     </tbody>
 </table>
+</div>
 </div>
       
 <form id="teste">
