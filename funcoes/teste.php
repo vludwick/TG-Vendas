@@ -15,4 +15,4 @@ print_r(array("nome"=>utf8_encode($linha["nome"]), "email"=>utf8_encode($linha["
 
 
 
-exit;
+
