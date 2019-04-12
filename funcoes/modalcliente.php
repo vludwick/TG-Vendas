@@ -11,7 +11,7 @@
 		
 		$id 	= $_POST['id'];
 		$acao 	= $_POST['acao'];
-		
+        
 	?>
 
 	<div class="modal fade bd-example-modal-xl" id="cadastroCliente" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
