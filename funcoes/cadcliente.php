@@ -2,6 +2,7 @@
 include 'conexao.php';
 include 'valida.php';
 
+$id 			= $_POST['id'];
 $acao 			= $_POST['acao'];
 $select 		= $_POST['options'];
 $nome	 		= utf8_decode($_POST['nome']);
