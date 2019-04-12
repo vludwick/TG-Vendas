@@ -26,7 +26,7 @@
             </div>
           </div>
           <table class="table table-hover table-striped table-bordered" id="cliente">
-      <thead>
+    <thead>
         <tr>
             <th>Id Cliente</th>
             <th>Nome</th>
@@ -52,6 +52,7 @@
             ?>
     </tbody>
 </table>
+</div>
 </div>
       
 <form id="teste">
@@ -116,7 +117,7 @@
               success:function (data)
                 {
 
-                console.log(data);
+                $("#res_teste").html(data);
                 
                 },
               dataType:'text'
