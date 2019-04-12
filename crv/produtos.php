@@ -1,18 +1,14 @@
 <?php require_once("../funcoes/conexao.php"); ?>
 <?php require_once("../funcoes/sessao.php"); ?>
-
 <!DOCTYPE html>
 <html>
-
 <head>
 	<script src="js/jquery-3.2.1.min.js" language="javascript"></script> 
     <?php require_once("../funcoes/modalproduto.php"); ?>
     <?php include '../funcoes/menu.php'; ?>
   <link rel="stylesheet" href="lib\DataTables\DataTables-1.10.18\css\jquery.dataTables.min.css">
     <link rel="stylesheet" href="lib\fontawesome-free-5.8.1-web\css\all.css">
-		
 </head>
-
   <div class="py-5 text-center bg-light">
     <div class="container">
       <div class="row">
@@ -23,15 +19,13 @@
       <div class="row">
         <div class="col-md-4 offset-md-10">
           <div class="row my-5">
-
 				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#cadastroCliente">
                   Novo Produto
                 </button>
         </div>
       </div>
-
     </div>
-    <table class="table table-hover table-striped table-bordered" id="cliente">
+    <table class="table table-hover table-striped table-bordered" id="produto">
     <thead>
         <tr>
             <th>Nome</th>
@@ -39,6 +33,7 @@
             <th>Preço</th>
             <th>Quantidade vendida</th>
             <th>Valor vendido</th>
+            <th>Consultar</th>
             <th>Editar</th>
             <th>Excluir</th>
         </tr>
@@ -57,17 +52,16 @@
                 echo '<td>'.$linha['quantidade_vendida'].'</td>';
                 echo '<td>'.$linha['total_vendido'].'</td>';
           ?>
-            
-                <td><a href="#"><i class="fas fa-edit">
-            </a></td>
-                <td><a href="#"><i class="fas fa-trash-alt">
-            </a></td></tr>
+                <td><i class="fas fa-search" style="cursor: pointer; color:royalBlue"></td>
+                <td><i class="fas fa-edit" style="cursor: pointer; color:royalBlue"></td>
+                <td><i class="fas fa-trash-alt" style="cursor: pointer; color:royalBlue"></td></tr>
 
             <?php
             }
             ?>
     </tbody>
 </table>
+  </div>
   </div>
   <?php include 'footer.php'?>
 
@@ -99,7 +93,7 @@
 }
  
         $(document).ready( function (){
-            $('#cliente').DataTable(
+            $('#produto').DataTable(
               {"oLanguage": DATATABLE_PTBR}
             );
 

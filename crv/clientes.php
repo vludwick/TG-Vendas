@@ -25,13 +25,12 @@
                </div>
             </div>
           </div>
-          
-      </div>
-<table class="table table-hover table-striped table-bordered" id="cliente">
-    <thead>
+          <table class="table table-hover table-striped table-bordered" id="cliente">
+      <thead>
         <tr>
             <th>Id Cliente</th>
             <th>Nome</th>
+            <th>Consultar</th>
             <th>Editar</th>
             <th>Excluir</th>
         </tr>
@@ -44,17 +43,17 @@
                 echo '<tr id='.$linha['id_cliente'].'><td>'.$linha['id_cliente'].'</td>';
                 echo '<td>'.utf8_encode($linha['nome']).'</td>';
           ?>
-            
-                <td><i class="fas fa-edit" data-toggle="modal" data-target="#cadastroCliente" style="cursor: pointer; color:royalBlue">
-            </a></td>
-                <td><i class="fas fa-trash-alt" style="cursor: pointer; color:royalBlue">
-            </a></td></tr>
+                <td><i class="fas fa-search" style="cursor: pointer; color:royalBlue"></td>
+                <td><i class="fas fa-edit" data-toggle="modal" data-target="#cadastroCliente" style="cursor: pointer; color:royalBlue"></td>
+                <td><i class="fas fa-trash-alt" style="cursor: pointer; color:royalBlue"></td></tr>
 
             <?php
             }
             ?>
     </tbody>
 </table>
+</div>
+      
 <form id="teste">
   <input type="hidden" id="id" name="id">
 </form>
@@ -116,56 +115,15 @@
               processData:false,
               success:function (data)
                 {
-                $("#res_teste").html(data);
+
+                console.log(data);
+                
                 },
-              dataType:'html'
+              dataType:'text'
             });
             return false;
             });
     </script>
-   <?php include 'footer.php'; ?>
-   <script src="js/jquery.js"></script>
-   <script type="text/javascript" src="lib\DataTables\datatables.js"></script>
-   <script>
-	DATATABLE_PTBR = {
-		"sEmptyTable": "Nenhum registro encontrado",
-		"sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
-		"sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
-		"sInfoFiltered": "(Filtrados de _MAX_ registros)",
-		"sInfoPostFix": "",
-		"sInfoThousands": ".",
-		"sLengthMenu": "_MENU_ resultados por página",
-		"sLoadingRecords": "Carregando...",
-		"sProcessing": "Processando...",
-		"sZeroRecords": "Nenhum registro encontrado",
-		"sSearch": "Pesquisar",
-		"oPaginate": {
-		"sNext": "Próximo",
-		"sPrevious": "Anterior",
-		"sFirst": "Primeiro",
-		"sLast": "Último"
-		},
-		"oAria": {
-		"sSortAscending": ": Ordenar colunas de forma ascendente",
-		"sSortDescending": ": Ordenar colunas de forma descendente"
-		}
-	}
-      
-	$(document).ready( function (){
-		  $('#cliente').DataTable(
-			{"oLanguage": DATATABLE_PTBR
-		});
-	});
-      
-	$("[href='#edita']").click( function(){
-		var id = $(this).parent().parent().attr('id');
-		var acao = 'editar';
-		$("#id").val(id);
-		$("#acao").val(acao);
-
-		$("#submit").trigger("submit");
-    });
-   </script>
 </html>
 <?php
    mysqli_close($conecta);
