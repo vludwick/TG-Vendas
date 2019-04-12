@@ -181,7 +181,22 @@
                 var inscricao = data.slice(inicio_inscricao , fim_inscricao);
                 var fantasia = data.slice(inicio_fantasia, data.lenght - 1);
 
-
+                $("#cpf").attr("disabled", "true");
+                $("#nome").attr("disabled", "true");
+                $("#rg").attr("disabled", "true");
+                $("#cnpj").attr("disabled", "true");
+                $("#estado").attr("disabled", "true");
+                $("#bairro").attr("disabled", "true");
+                $("#cidade").attr("disabled", "true");
+                $("#telefone").attr("disabled", "true");
+                $("#datanasc").attr("disabled", "true");
+                $("#inscricao").attr("disabled", "true");
+                $("#rua").attr("disabled", "true");
+                $("#nomefantasia").attr("disabled", "true");
+                $("#email").attr("disabled", "true");
+                $("#numero").attr("disabled", "true");
+                $("#celular").attr("disabled", "true");
+                $("#cep").attr("disabled", "true");
                 $("#cpf").val(cpf);
                 $("#nome").val(nome);
                 $("#rg").val(rg);
@@ -196,8 +211,7 @@
                 $("#inscricao").val(inscricao);   
                 $("#rua").val(logradouro);   
                 $("#nomefantasia").val(fantasia); 
-                $("#email").val(email);  
-                $("#email").val(email);    
+                $("#email").val(email);   
                 $("#numero").val(numero);
                   
                 },
