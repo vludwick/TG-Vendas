@@ -11,4 +11,5 @@ $linha = mysqli_fetch_array($resultado);
 
 print_r(array("nome"=>$linha["nome"], "logradouro"=>$linha["logradouro"]));
 
+
 exit;
