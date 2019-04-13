@@ -56,8 +56,8 @@
 </div>
       
 <form id="teste">
-  <input type="hidden" id="acao" name="acao">
-  <input type="hidden" id="id" name="id">
+  <input type="text" id="acao" name="acao">
+  <input type="text" id="id" name="id">
 </form>
 
     </div>
@@ -98,14 +98,14 @@
         });
 
         $(".fa-edit").click( function(){
-            var id = $(this).parent().parent().attr('id')
+            var id = $(this).parent().parent().attr('id');
             $("#id").val(id);
             $("#acao").val("update");
             $('#teste').trigger("submit");
         });
 
         $(".fa-search").click( function(){
-            var id = $(this).parent().parent().attr('id')
+            var id = $(this).parent().parent().attr('id');
             $("#id").val(id);
             $("#acao").val("read");
             $('#teste').trigger("submit");
@@ -119,14 +119,17 @@
           return novaData;
         }
         $('.fa-trash-alt').click(function(event){
+          var id = $(this).parent().parent().attr('id');
           $("#id").val(id);
-          $("#acao1").val("delete");
+          $("#acao").val("delete").delay(1000);
+         
           if(confirm("Deseja mesmo excluir este cliente?")){
             $('#teste').trigger("submit");
           }
 
         });
         $('#cadastrar').click(function(event){
+                $("#operacao").val("cadastrar");
                 $("#options").removeAttr("disabled");
                 $("#cpf").removeAttr("disabled");
                 $("#nome").removeAttr("disabled");
@@ -178,8 +181,12 @@
                 processData:false,
                 success:function (data)
                 {
+                  console.log(data);
                   var inicio_acao = data.indexOf("[acao] => ") + "[acao] => ".length;
-                  var fim_acao = data.indexOf("[nome] => ");
+                  var fim_acao = data.indexOf("[id] => ");
+
+                  var inicio_id = data.indexOf("[id] => ") + "[id] => ".length;
+                  var fim_id = data.indexOf("[nome] => ");
 
                   var inicio_nome = data.indexOf("[nome] => ") + "[nome] => ".length;
                   var fim_nome = data.indexOf("[email] => ");
@@ -229,6 +236,7 @@
                   var inicio_fantasia = data.indexOf("[nomefantasia] => ") + "[nomefantasia] => ".length;
                   
                   var acao = data.slice(inicio_acao, fim_acao);
+                  var id = data.slice(inicio_id , fim_id);
                   var nome = data.slice(inicio_nome , fim_nome);
                   var email = data.slice(inicio_email , fim_email);
                   var logradouro = data.slice(inicio_logradouro , fim_logradouro);
@@ -244,9 +252,9 @@
                   var datanasc = data.slice(inicio_datanasc , fim_datanasc);
                   var cnpj = data.slice(inicio_cnpj , fim_cnpj);
                   var inscricao = data.slice(inicio_inscricao , fim_inscricao);
-                  var fantasia = data.slice(inicio_fantasia, data.length - 2);
+                  var fantasia = data.slice(inicio_fantasia, data.trim().length-1);
                   datanasc = trataData(datanasc);
-                  console.log(acao.trim());
+                  
                   if(acao.trim() == "read"){
                       if(cpf.length < 19){
                         $("#options").val("2");
@@ -267,6 +275,7 @@
                         document.getElementById("juridica2").style.display = "none";
       
                       }
+
                       $("#options").attr("disabled", true);
                       $("#cpf").attr("disabled", true);
                       $("#nome").attr("disabled", "true");
@@ -323,9 +332,10 @@
                         document.getElementById("juridica2").style.display = "none";
       
                       }
+                      $("#pk").val(id.trim());
+                      $("#operacao").val("editar");
                       $("#options").attr("disabled", "true");
                       $("#cpf").attr("disabled", "true");
-                      $("#nome").removeAttr("disabled");
                       $("#rg").removeAttr("disabled");
                       $("#cnpj").attr("disabled", "true");
                       $("#estado").removeAttr("disabled");
@@ -340,23 +350,23 @@
                       $("#numero").removeAttr("disabled");
                       $("#celular").removeAttr("disabled");
                       $("#cep").removeAttr("disabled");
-                      $("#cpf").val(cpf);
-                      $("#nome").val(nome);
-                      $("#rg").val(rg);
-                      $("#cnpj").val(cnpj);
-                      $("#cep").val(cep);
-                      $("#estado").val(estado);  
-                      $("#bairro").val(bairro);  
-                      $("#celular").val(celular);   
-                      $("#cidade").val(cidade);
-                      $("#telefone").val(telefone);  
+                      $("#cpf").val(cpf.trim());
+                      $("#nome").val(nome.trim());
+                      $("#rg").val(rg.trim());
+                      $("#cnpj").val(cnpj.trim());
+                      $("#cep").val(cep.trim());
+                      $("#estado").val(estado.trim());  
+                      $("#bairro").val(bairro.trim());  
+                      $("#celular").val(celular.trim());   
+                      $("#cidade").val(cidade.trim());
+                      $("#telefone").val(telefone.trim());  
                       $("#datanasc").attr("type", "text");
-                      $("#datanasc").val(datanasc);
-                      $("#inscricao").val(inscricao);   
-                      $("#rua").val(logradouro);   
-                      $("#nomefantasia").val(fantasia); 
-                      $("#email").val(email);   
-                      $("#numero").val(numero);
+                      $("#datanasc").val(datanasc.trim());
+                      $("#inscricao").val(inscricao.trim());   
+                      $("#rua").val(logradouro.trim());   
+                      $("#nomefantasia").val(fantasia.trim()); 
+                      $("#email").val(email.trim());   
+                      $("#numero").val(numero.trim());
                       $("#enviar").show();
                       $("#exampleModalLabel").text("Edição de cliente");
                   }

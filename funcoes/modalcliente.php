@@ -15,6 +15,7 @@
 				</div>
 				<div class="modal-body">
                 <input type="hidden" id="operacao" name="operacao">
+                <input type="hidden" id="pk" name="pk">
 				   <select id="options" name="options" onchange="verifica(this.value)" class="custom-select" style="width: 220px;">
 					  <option value="1" selected>Pessoa Física</option>
 					  <option value="2">Pessoa Jurídica</option>
@@ -135,8 +136,9 @@
 			processData:false,
 			success:function (data)
 				{
-				$("#res_server").html(data);
-                limparCampos();
+				//$("#res_server").html(data);
+                console.log(data);
+                //limparCampos();
 				},
 			dataType:'html'
 		});
