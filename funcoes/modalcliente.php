@@ -2,29 +2,19 @@
 <script src="../crv/js/jquery.mask.js"></script>
 </head>
 <body>
-	<?php
-        error_reporting(0);
-		if($acao == '')
-		{
-			$acao = 'incluir';
-		}
-		
-		$id 	= $_POST['id'];
-		$acao 	= $_POST['acao'];
-        
-	?>
 
 	<div class="modal fade bd-example-modal-xl" id="cadastroCliente" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	   <div class="modal-dialog modal-xl" role="document">
 		  <div class="modal-content">
 			 <form id="addcliente"  method="post" enctype="multipart/form-data">
 				<div class="modal-header">
-				   <h5 class="modal-title" id="exampleModalLabel">Cadastro de cliente</h5>
+				   <h5 class="modal-title" id="exampleModalLabel"></h5>
 				   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 				   <span aria-hidden="true">&times;</span>
 				   </button>
 				</div>
 				<div class="modal-body">
+                <input type="hidden" id="operacao" name="operacao">
 				   <select id="options" name="options" onchange="verifica(this.value)" class="custom-select" style="width: 220px;">
 					  <option value="1" selected>Pessoa Física</option>
 					  <option value="2">Pessoa Jurídica</option>
@@ -116,12 +106,10 @@
 				   
 				</div>
 				<div class="modal-footer">
-				   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-				   <button type="submit" class="btn btn-primary px-4">Enviar</button>
+				   <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+				   <button type="submit" id="enviar" class="btn btn-primary px-4">Enviar</button>
 				</div>
 			 </form>
-			 <div class="alert alert-danger" id="res_server" style="margin-top: 10px"></div>
-             <div class="alert alert-danger" id="res_teste" style="margin-top: 10px"></div>
 		  </div>
 	   </div>
 	</div>
