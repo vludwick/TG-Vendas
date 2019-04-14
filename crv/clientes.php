@@ -56,8 +56,8 @@
 </div>
       
 <form id="teste">
-  <input type="text" id="acao" name="acao">
-  <input type="text" id="id" name="id">
+  <input type="hidden" id="acao" name="acao">
+  <input type="hidden" id="id" name="id">
 </form>
 
     </div>
@@ -181,7 +181,6 @@
                 processData:false,
                 success:function (data)
                 {
-                  console.log(data);
                   var inicio_acao = data.indexOf("[acao] => ") + "[acao] => ".length;
                   var fim_acao = data.indexOf("[id] => ");
 

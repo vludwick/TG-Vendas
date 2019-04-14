@@ -109,7 +109,8 @@
 				<div class="modal-footer">
 				   <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
 				   <button type="submit" id="enviar" class="btn btn-primary px-4">Enviar</button>
-				</div>
+                    <div id="res_server"></div>
+                </div>
 			 </form>
 		  </div>
 	   </div>
@@ -121,6 +122,7 @@
         $('#cnpj').mask('00.000.000/0000-00');
         $('#celular').mask('(00) 00000-0000');
         $('#telefone').mask('(00) 0000-0000');
+        $('#rg').mask('00.000.000-0');
 	
 	$(function(){
         $('#addcliente').submit(function(event){
@@ -136,9 +138,8 @@
 			processData:false,
 			success:function (data)
 				{
-				//$("#res_server").html(data);
-                console.log(data);
-                //limparCampos();
+				$("#res_server").html(data);
+                limparCampos();
 				},
 			dataType:'html'
 		});
