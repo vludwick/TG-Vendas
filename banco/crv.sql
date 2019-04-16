@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 04-Abr-2019 às 18:54
+-- Generation Time: 17-Abr-2019 às 01:55
 -- Versão do servidor: 10.1.38-MariaDB
 -- versão do PHP: 7.3.2
 
@@ -42,7 +42,7 @@ CREATE TABLE `cliente` (
   `celular` varchar(20) DEFAULT NULL,
   `cpf` varchar(15) DEFAULT NULL,
   `rg` varchar(15) DEFAULT NULL,
-  `data_nascimento` date DEFAULT NULL,
+  `data_nascimento` datetime DEFAULT NULL,
   `cnpj` varchar(20) DEFAULT NULL,
   `inscricao_estadual` varchar(30) DEFAULT NULL,
   `nome_fantasia` varchar(50) DEFAULT NULL
@@ -53,9 +53,9 @@ CREATE TABLE `cliente` (
 --
 
 INSERT INTO `cliente` (`id_cliente`, `nome`, `email`, `logradouro`, `numero`, `bairro`, `cidade`, `estado`, `cep`, `telefone`, `celular`, `cpf`, `rg`, `data_nascimento`, `cnpj`, `inscricao_estadual`, `nome_fantasia`) VALUES
-(1, 'Maria José', 'maria.jose@gmail.com', 'Rua Dirce Migliorini', 326, 'Jardim Nápoli', 'Sorocaba', 'São Paulo', '18071-426', '1525866324', '15964521865', '764.881.100-63', '22.683.978-3', '1985-06-08', NULL, NULL, NULL),
+(1, 'Maria José', 'maria.jose@gmail.com', 'Rua Dirce Migliorini', 326, 'Jardim Nápoli', 'Sorocaba', 'São Paulo', '18071-426', '1525866324', '15964521865', '764.881.100-63', '22.683.978-3', '1985-06-08 00:00:00', NULL, NULL, NULL),
 (2, 'Clube de Futebol São Bento', 'sao.bento@gmail.com', 'Rua Rúbens Cleto', 253, 'Jardim Los Angeles', 'Sorocaba', 'São Paulo', '18074-050', '1563254114', '15987456521', NULL, NULL, NULL, '68.565.744/0001-97', '668.596.650.607', 'São Bento'),
-(3, 'José João', 'jose.joao@gmail.com.br', 'Rua Faustino Rodrigues Martins', 852, 'Vila Mineirão', 'Sorocaba', 'São Paulo', '18076-500', '1574258413', '15965124585', '682.964.310-41', '12.420.268-8', '1980-12-15', NULL, NULL, NULL);
+(3, 'José João', 'jose.joao@gmail.com.br', 'Rua Faustino Rodrigues Martins', 852, 'Vila Mineirão', 'Sorocaba', 'São Paulo', '18076-500', '1574258413', '15965124585', '682.964.310-41', '12.420.268-8', '1980-12-15 00:00:00', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -66,10 +66,10 @@ INSERT INTO `cliente` (`id_cliente`, `nome`, `email`, `logradouro`, `numero`, `b
 CREATE TABLE `funcionario` (
   `id_funcionario` int(11) NOT NULL,
   `nome` varchar(100) CHARACTER SET utf8 NOT NULL,
-  `data_nascimento` date NOT NULL,
+  `data_nascimento` datetime NOT NULL,
   `cpf` varchar(15) CHARACTER SET utf8 NOT NULL,
   `rg` varchar(15) CHARACTER SET utf8 NOT NULL,
-  `data_admissao` date NOT NULL,
+  `data_admissao` datetime NOT NULL,
   `logradouro` varchar(100) CHARACTER SET utf8 NOT NULL,
   `numero` int(11) NOT NULL,
   `bairro` varchar(100) CHARACTER SET utf8 NOT NULL,
@@ -88,9 +88,9 @@ CREATE TABLE `funcionario` (
 --
 
 INSERT INTO `funcionario` (`id_funcionario`, `nome`, `data_nascimento`, `cpf`, `rg`, `data_admissao`, `logradouro`, `numero`, `bairro`, `cidade`, `estado`, `cep`, `email`, `telefone`, `celular`, `senha`, `tipo`) VALUES
-(1, 'Victor Ludwick', '1998-10-21', '586.669.830-78', '27.283.244-3', '2018-09-10', 'Estrada Saladino Duarte de Oliveira', 754, 'Caputera', 'Sorocaba', 'São Paulo', '18017-362', 'victor.ludwick@gmail.com', '1532926548', '15981157644', '123', 1),
-(2, 'Rafael Martins', '1999-08-21', '727.388.730-73', '25.154.367-5', '2018-06-12', 'Rua Voluntário Altino', 164, 'Vila Hortência', 'Sorocaba', 'São Paulo', '18020-290', 'rafael.martins@gmail.com', '1546784965', '15985463254', '123', 1),
-(3, 'Carlos Rogério', '1992-02-11', '145.840.200-27', '46.348.918-4', '2017-07-17', 'Rua Mário Jonas', 245, 'Jardim Celeste', 'Sorocaba', 'São Paulo', '18066-075', 'carlos.rogerio@gmail.com', '1564585214', '15986565412', '123', 0);
+(1, 'Victor Ludwick', '1998-10-21 00:00:00', '586.669.830-78', '27.283.244-3', '2018-09-10 00:00:00', 'Estrada Saladino Duarte de Oliveira', 754, 'Caputera', 'Sorocaba', 'São Paulo', '18017-362', 'victor.ludwick@gmail.com', '1532926548', '15981157644', '123', 1),
+(2, 'Rafael Martins', '1999-08-21 00:00:00', '727.388.730-73', '25.154.367-5', '2018-06-12 00:00:00', 'Rua Voluntário Altino', 164, 'Vila Hortência', 'Sorocaba', 'São Paulo', '18020-290', 'rafael.martins@gmail.com', '1546784965', '15985463254', '123', 1),
+(3, 'Carlos Rogério', '1992-02-11 00:00:00', '145.840.200-27', '46.348.918-4', '2017-07-17 00:00:00', 'Rua Mário Jonas', 245, 'Jardim Celeste', 'Sorocaba', 'São Paulo', '18066-075', 'carlos.rogerio@gmail.com', '1564585214', '15986565412', '123', 0);
 
 -- --------------------------------------------------------
 
@@ -101,7 +101,7 @@ INSERT INTO `funcionario` (`id_funcionario`, `nome`, `data_nascimento`, `cpf`, `
 CREATE TABLE `nota_fiscal` (
   `id_nota` int(11) NOT NULL,
   `numero` varchar(30) NOT NULL,
-  `data_emissao` date NOT NULL,
+  `data_emissao` datetime NOT NULL,
   `id_pedido` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -110,8 +110,8 @@ CREATE TABLE `nota_fiscal` (
 --
 
 INSERT INTO `nota_fiscal` (`id_nota`, `numero`, `data_emissao`, `id_pedido`) VALUES
-(1, '13468525987463589426', '2019-03-11', 1),
-(2, '85369521647528565235', '2019-03-12', 2);
+(1, '13468525987463589426', '2019-03-11 00:00:00', 1),
+(2, '85369521647528565235', '2019-03-12 00:00:00', 2);
 
 -- --------------------------------------------------------
 
@@ -121,7 +121,7 @@ INSERT INTO `nota_fiscal` (`id_nota`, `numero`, `data_emissao`, `id_pedido`) VAL
 
 CREATE TABLE `pedido` (
   `id_pedido` int(11) NOT NULL,
-  `data_pedido` date NOT NULL,
+  `data_pedido` datetime NOT NULL,
   `total_pedido` double NOT NULL,
   `id_cliente` int(11) NOT NULL,
   `id_funcionario` int(11) NOT NULL,
@@ -133,10 +133,10 @@ CREATE TABLE `pedido` (
 --
 
 INSERT INTO `pedido` (`id_pedido`, `data_pedido`, `total_pedido`, `id_cliente`, `id_funcionario`, `tipo`) VALUES
-(1, '2019-03-11', 243.68, 1, 1, 1),
-(2, '2019-03-12', 236.89, 3, 2, 1),
-(3, '2019-03-20', 333.88, 3, 3, 0),
-(4, '2019-03-15', 179.39, 2, 2, 0);
+(1, '2019-03-11 00:00:00', 243.68, 1, 1, 1),
+(2, '2019-03-12 00:00:00', 236.89, 3, 2, 1),
+(3, '2019-03-20 00:00:00', 333.88, 3, 3, 0),
+(4, '2019-03-15 00:00:00', 179.39, 2, 2, 0);
 
 -- --------------------------------------------------------
 
@@ -148,6 +148,8 @@ CREATE TABLE `pedido_produto` (
   `id_pedido` int(11) NOT NULL,
   `id_produto` int(11) NOT NULL,
   `quantidade` int(11) NOT NULL,
+  `descricao` varchar(200) DEFAULT NULL,
+  `preco` double DEFAULT NULL,
   `valor_total` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -155,15 +157,15 @@ CREATE TABLE `pedido_produto` (
 -- Extraindo dados da tabela `pedido_produto`
 --
 
-INSERT INTO `pedido_produto` (`id_pedido`, `id_produto`, `quantidade`, `valor_total`) VALUES
-(1, 1, 2, 193.98),
-(1, 2, 1, 49.7),
-(2, 1, 1, 96.99),
-(2, 5, 1, 139.9),
-(3, 1, 2, 193.98),
-(3, 5, 1, 139.9),
-(4, 2, 2, 99.4),
-(4, 4, 1, 79.99);
+INSERT INTO `pedido_produto` (`id_pedido`, `id_produto`, `quantidade`, `descricao`, `preco`, `valor_total`) VALUES
+(1, 1, 2, NULL, NULL, 193.98),
+(1, 2, 1, NULL, NULL, 49.7),
+(2, 1, 1, NULL, NULL, 96.99),
+(2, 5, 1, NULL, NULL, 139.9),
+(3, 1, 2, NULL, NULL, 193.98),
+(3, 5, 1, NULL, NULL, 139.9),
+(4, 2, 2, NULL, NULL, 99.4),
+(4, 4, 1, NULL, NULL, 79.99);
 
 -- --------------------------------------------------------
 
@@ -177,19 +179,20 @@ CREATE TABLE `produto` (
   `preco` double NOT NULL,
   `descricao` varchar(120) DEFAULT NULL,
   `codigo_barras` varchar(50) NOT NULL,
-  `quantidade` int(11) NOT NULL
+  `quantidade` int(11) NOT NULL,
+  `foto` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Extraindo dados da tabela `produto`
 --
 
-INSERT INTO `produto` (`id_produto`, `nome`, `preco`, `descricao`, `codigo_barras`, `quantidade`) VALUES
-(1, 'Luvas Boxe', 96.99, 'Par de luvas de boxe.', '13467985213265874125', 15),
-(2, 'Luvas Para Goleiro', 49.7, 'Par de luvas de goleiro.', '15478745963265874125', 32),
-(3, 'Bola de Basquete', 76.49, 'Bola de basquete com medidas oficiais.', '36525269854712453698', 12),
-(4, 'Bola de Futebol', 79.99, 'Bola de Futebol com medidas oficiais.', '54147858472369563214', 6),
-(5, 'Saco de Areia', 139.9, 'Saco de areia para pratica de artes marciais.', '21453962795386425963', 26);
+INSERT INTO `produto` (`id_produto`, `nome`, `preco`, `descricao`, `codigo_barras`, `quantidade`, `foto`) VALUES
+(1, 'Luvas Boxe', 96.99, 'Par de luvas de boxe.', '13467985213265874125', 15, ''),
+(2, 'Luvas Para Goleiro', 49.7, 'Par de luvas de goleiro.', '15478745963265874125', 32, ''),
+(3, 'Bola de Basquete', 76.49, 'Bola de basquete com medidas oficiais.', '36525269854712453698', 12, ''),
+(4, 'Bola de Futebol', 79.99, 'Bola de Futebol com medidas oficiais.', '54147858472369563214', 6, ''),
+(5, 'Saco de Areia', 139.9, 'Saco de areia para pratica de artes marciais.', '21453962795386425963', 26, '');
 
 --
 -- Indexes for dumped tables
@@ -200,7 +203,9 @@ INSERT INTO `produto` (`id_produto`, `nome`, `preco`, `descricao`, `codigo_barra
 --
 ALTER TABLE `cliente`
   ADD PRIMARY KEY (`id_cliente`),
+  ADD UNIQUE KEY `email` (`email`),
   ADD UNIQUE KEY `cpf` (`cpf`),
+  ADD UNIQUE KEY `rg` (`rg`),
   ADD UNIQUE KEY `cnpj` (`cnpj`);
 
 --
@@ -250,7 +255,7 @@ ALTER TABLE `produto`
 -- AUTO_INCREMENT for table `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `id_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `funcionario`
@@ -268,7 +273,7 @@ ALTER TABLE `nota_fiscal`
 -- AUTO_INCREMENT for table `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `id_pedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_pedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `produto`
