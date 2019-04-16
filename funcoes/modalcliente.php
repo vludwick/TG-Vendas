@@ -15,6 +15,7 @@
 				</div>
 				<div class="modal-body">
                 <input type="hidden" id="operacao" name="operacao">
+                <input type="hidden" id="pk" name="pk">
 				   <select id="options" name="options" onchange="verifica(this.value)" class="custom-select" style="width: 220px;">
 					  <option value="1" selected>Pessoa Física</option>
 					  <option value="2">Pessoa Jurídica</option>
@@ -108,7 +109,8 @@
 				<div class="modal-footer">
 				   <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
 				   <button type="submit" id="enviar" class="btn btn-primary px-4">Enviar</button>
-				</div>
+                    <div id="res_server"></div>
+                </div>
 			 </form>
 		  </div>
 	   </div>
@@ -120,6 +122,7 @@
         $('#cnpj').mask('00.000.000/0000-00');
         $('#celular').mask('(00) 00000-0000');
         $('#telefone').mask('(00) 0000-0000');
+        $('#rg').mask('00.000.000-0');
 	
 	$(function(){
         $('#addcliente').submit(function(event){
