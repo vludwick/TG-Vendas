@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
    <head>
+   
       <script src="js/jquery-3.2.1.min.js" language="javascript"></script> 
       <link rel="stylesheet" href="lib\DataTables\DataTables-1.10.18\css\jquery.dataTables.min.css">
       <?php require_once("../funcoes/modalcliente.php"); ?>
@@ -32,7 +33,6 @@
             <th>Nome</th>
             <th>Consultar</th>
             <th>Editar</th>
-            <th>Excluir</th>
         </tr>
     </thead>
     <tbody>
@@ -44,8 +44,7 @@
                 echo '<td>'.utf8_encode($linha['nome']).'</td>';
           ?>
                 <td><i class="fas fa-search" data-toggle="modal" data-target="#cadastroCliente" style="cursor: pointer; color:royalBlue"></td>
-                <td><i class="fas fa-edit" data-toggle="modal" data-target="#cadastroCliente" style="cursor: pointer; color:royalBlue"></td>
-                <td><i class="fas fa-trash-alt"  style="cursor: pointer; color:royalBlue"></td></tr>
+                <td><i class="fas fa-edit" data-toggle="modal" data-target="#cadastroCliente" style="cursor: pointer; color:royalBlue"></td></tr>
 
             <?php
             }
@@ -97,14 +96,14 @@
             );
         });
 
-        $(".fa-edit").click( function(){
+        $(document).on('click', ".fa-edit", function(){
             var id = $(this).parent().parent().attr('id');
             $("#id").val(id);
             $("#acao").val("update");
             $('#teste').trigger("submit");
         });
 
-        $(".fa-search").click( function(){
+        $(document).on('click',".fa-search", function(){
             var id = $(this).parent().parent().attr('id');
             $("#id").val(id);
             $("#acao").val("read");
@@ -118,16 +117,7 @@
           var novaData = dia + "/" + mes + "/" + ano;
           return novaData;
         }
-        $('.fa-trash-alt').click(function(event){
-          var id = $(this).parent().parent().attr('id');
-          $("#id").val(id);
-          $("#acao").val("delete").delay(1000);
-         
-          if(confirm("Deseja mesmo excluir este cliente?")){
-            $('#teste').trigger("submit");
-          }
 
-        });
         $('#cadastrar').click(function(event){
                 $("#operacao").val("cadastrar");
                 $("#options").removeAttr("disabled");
@@ -369,6 +359,7 @@
                       $("#enviar").show();
                       $("#exampleModalLabel").text("Edição de cliente");
                   }
+
                   },
                 dataType:'text'
               });
