@@ -43,7 +43,7 @@
             <a class="nav-link" href="4Clifor.html"><i class="fa d-inline fa-lg fa-o"></i>Orçamento</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="5Vendas.html"><i class="fa d-inline fa-lg fa-o"></i>Venda</a>
+            <a class="nav-link" href="vendas.php"><i class="fa d-inline fa-lg fa-o"></i>Venda</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="produtos.php"><i class="fa d-inline fa-lg fa-o"></i>Produtos</a>
