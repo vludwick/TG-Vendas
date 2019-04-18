@@ -35,7 +35,7 @@
             <th>Valor vendido</th>
             <th>Consultar</th>
             <th>Editar</th>
-            <th>Excluir</th>
+
         </tr>
     </thead>
     <tbody>
@@ -54,7 +54,6 @@
           ?>
                 <td><i class="fas fa-search" style="cursor: pointer; color:royalBlue"></td>
                 <td><i class="fas fa-edit" style="cursor: pointer; color:royalBlue"></td>
-                <td><i class="fas fa-trash-alt" style="cursor: pointer; color:royalBlue"></td></tr>
 
             <?php
             }

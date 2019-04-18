@@ -328,6 +328,7 @@
                       $("#rg").removeAttr("disabled");
                       $("#cnpj").attr("disabled", "true");
                       $("#estado").removeAttr("disabled");
+                      $("#nome").removeAttr("disabled");
                       $("#bairro").removeAttr("disabled");
                       $("#cidade").removeAttr("disabled");
                       $("#telefone").removeAttr("disabled");
