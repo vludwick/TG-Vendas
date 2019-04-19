@@ -23,7 +23,7 @@
     <div class="row">
       <div class="col-md-12">
         <a class="btn btn-primary " href="#"><i class="fa d-inline fa-lg fa-barcode"></i></a>
-        <input type="text" class="form-control" id="email" placeholder="Código de barras"> </div>
+        <input type="text" class="form-control" id="" placeholder="Código de barras"> </div>
     </div>
   </div>
   <div class="container">
