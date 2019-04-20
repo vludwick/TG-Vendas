@@ -119,6 +119,7 @@
         }
 
         $('#cadastrar').click(function(event){
+                $("#res_server").html("");
                 $("#operacao").val("cadastrar");
                 $("#options").removeAttr("disabled");
                 $("#cpf").removeAttr("disabled");
@@ -264,7 +265,7 @@
                         document.getElementById("juridica2").style.display = "none";
       
                       }
-
+                      $("#res_server").html("");
                       $("#options").attr("disabled", true);
                       $("#cpf").attr("disabled", true);
                       $("#nome").attr("disabled", "true");
@@ -321,6 +322,7 @@
                         document.getElementById("juridica2").style.display = "none";
       
                       }
+                      $("#res_server").html("");
                       $("#pk").val(id.trim());
                       $("#operacao").val("editar");
                       $("#options").attr("disabled", "true");

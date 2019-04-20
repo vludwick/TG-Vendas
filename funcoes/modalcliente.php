@@ -140,6 +140,7 @@
 			processData:false,
 			success:function (data)
 				{
+                console.log(data);
                 var inicio_array = data.indexOf("Array");
                 var resphtml = data.slice(0, inicio_array);
                 var resptxt = data.slice(inicio_array);

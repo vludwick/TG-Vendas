@@ -137,7 +137,7 @@ if($operacao == "editar"){
 
 		echo '<div class="alert alert-success" role="alert">Cliente Físico editado com sucesso</div>';
 		
-		print_r(array("pk"=>$pk, "nome"=>$nome));
+		print_r(array("pk"=>$pk, "nome"=>utf8_encode($nome)));
 
 	}else if(isset($linha['cnpj'])){
 
@@ -149,7 +149,7 @@ if($operacao == "editar"){
 
 		echo '<div class="alert alert-success" role="alert">Cliente Jurídico editado com sucesso</div>';
 		
-		print_r(array("pk"=>$pk, "nome"=>$nome));
+		print_r(array("pk"=>$pk, "nome"=>utf8_encode($nome)));
 	}
 	
 	/*
