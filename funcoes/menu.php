@@ -43,7 +43,7 @@
             <a class="nav-link" href="4Clifor.html"><i class="fa d-inline fa-lg fa-o"></i>Orçamento</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="5Vendas.html"><i class="fa d-inline fa-lg fa-o"></i>Venda</a>
+            <a class="nav-link" href="vendas.php"><i class="fa d-inline fa-lg fa-o"></i>Venda</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="produtos.php"><i class="fa d-inline fa-lg fa-o"></i>Produtos</a>
@@ -55,7 +55,7 @@
             <a class="nav-link" href="10Representante.html"><i class="fa d-inline fa-lg fa-o"></i> Faturamento</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="10Representante.html"><i class="fa d-inline fa-lg fa-o"></i> Funcionários</a>
+            <a class="nav-link" href="funcionarios.php"><i class="fa d-inline fa-lg fa-o"></i> Funcionários</a>
           </li>
         </ul>
         <a class="btn navbar-btn ml-2 text-white btn-primary" href="../funcoes/sair.php"><i class="fas d-inline fa-lg fa-sign-out-alt"></i> Sair</a>
