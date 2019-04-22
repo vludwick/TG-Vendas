@@ -40,17 +40,24 @@
     </thead>
     <tbody>
         <?php
-            $query="select p.nome, p.descricao, p.preco, sum(pp.quantidade) as quantidade_vendida, sum(pp.valor_total) as total_vendido
-            from produto p, pedido_produto pp
-            where p.id_produto = pp.id_pedido
-            GROUP BY nome;";
+            $query="select p.id_produto, p.nome, p.descricao, p.preco, sum(pp.quantidade) as quantidade_vendida, sum(pp.valor_total) as total_vendido
+            from produto p 
+            left join 
+            pedido_produto pp
+            on p.id_produto = pp.id_pedido
+            GROUP BY nome";
             $resultado = mysqli_query($conecta, $query);
             while($linha = mysqli_fetch_array($resultado)){
-                echo '<tr><td>'.$linha['nome'].'</td>';
+                echo '<tr id='.$linha['id_produto'].'><td>'.$linha['nome'].'</td>';
                 echo '<td>'.$linha['descricao'].'</td>';
                 echo '<td>'.$linha['preco'].'</td>';
-                echo '<td>'.$linha['quantidade_vendida'].'</td>';
-                echo '<td>'.$linha['total_vendido'].'</td>';
+                if($linha['quantidade_vendida'] == null and $linha['total_vendido'] == null){
+                  echo '<td>0</td>';
+                  echo '<td>0</td>';
+                }else{
+                  echo '<td>'.$linha['quantidade_vendida'].'</td>';
+                  echo '<td>'.$linha['total_vendido'].'</td>';
+                }
           ?>
                 <td><i class="fas fa-search" style="cursor: pointer; color:royalBlue"></td>
                 <td><i class="fas fa-edit" style="cursor: pointer; color:royalBlue"></td>
