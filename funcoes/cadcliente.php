@@ -31,7 +31,6 @@ error_reporting(0);
 //}
 
 
-
 if($operacao == 'cadastrar' && validaCPF($cpf) == false && $cnpj == ''){
 	echo '<div class="alert alert-danger" role="alert">CPF Inválido</div>';
 	exit;
@@ -42,64 +41,77 @@ if($operacao == 'cadastrar' && validaCNPJ($cnpj) == false && $cpf == ''){
 	exit;
 }
 
-if($operacao == 'cadastrar' && $select == '1'){
-	$query = "INSERT INTO CLIENTE (nome, email, logradouro, numero, bairro, cidade, estado, cep, telefone, celular, cpf, rg, data_nascimento) 
-	VALUES ('$nome', '$email', '$rua', '$numero', '$bairro', '$cidade', '$estado', '$cep', '$telefone', '$celular', '$cpf', '$rg', '$datanasc')";
-	
-	mysqli_query($conecta, $query);	
-	
-	$query = "select max(id_cliente) as id from cliente";
-	
-	$consulta = mysqli_query($conecta, $query);	
-	
-	$resultado = mysqli_fetch_array($consulta);
+if($operacao == 'cadastrar' && $select == '1'){   
+        $buscaCliente = "SELECT * ";
+        $buscaCliente .= "FROM cliente ";
+        $buscaCliente .= "WHERE cpf = '{$cpf}'";
+                
+        $acesso1 = mysqli_query($conecta, $buscaCliente);
+        if ( !$acesso1 ){
+            die("Falha na consulta ao banco");
+        }
+    
+        $informacao1 = mysqli_fetch_assoc($acesso1);
 
-	$query = "select * from cliente where id_cliente = ".$resultado['id'];
+        if ( empty($informacao1)) {
+           $query = "INSERT INTO CLIENTE (nome, email, logradouro, numero, bairro, cidade, estado, cep, telefone, celular, cpf, rg, data_nascimento) 
+            VALUES ('$nome', '$email', '$rua', '$numero', '$bairro', '$cidade', '$estado', '$cep', '$telefone', '$celular', '$cpf', '$rg', '$datanasc')";
 
-	$consulta = mysqli_query($conecta, $query);	
+            mysqli_query($conecta, $query);	
+
+            $query = "select max(id_cliente) as id from cliente";
+
+            $consulta = mysqli_query($conecta, $query);	
+
+            $resultado = mysqli_fetch_array($consulta);
+
+            $query = "select * from cliente where id_cliente = ".$resultado['id'];
+
+            $consulta = mysqli_query($conecta, $query);	
+
+            $resultado = mysqli_fetch_array($consulta);
+
+            echo '<div class="alert alert-success" role="alert">Cliente Físico cadastrado com sucesso</div>';
+        } else{
+          
+            echo '<div class="alert alert-danger" role="alert">CPF já cadastrado</div>';
+        }
+        //print_r(array("id"=>$resultado['id_cliente'], "nome"=>$resultado['nome']));
 	
-	$resultado = mysqli_fetch_array($consulta);
-	
-	echo '<div class="alert alert-success" role="alert">Cliente Físico cadastrado com sucesso</div>';
-	
-	print_r(array("id"=>$resultado['id_cliente'], "nome"=>$resultado['nome']));
-	
-	/*
-	print_r(array("ordem"=>1, "operacao"=>$operacao, "options"=>$select,
-	"nome"=>$nome, "cpf"=>$cpf, "rg"=>$rg, "datanasc"=>$datanasc, 
-	"nomefantasia"=>$nomefantasia, "cnpj"=>$cnpj, "inscricao"=>$inscricao, 
-	"email"=>$email, "rua"=>$rua, "numero"=>$numero, "bairro"=>$bairro, 
-	"cidade"=>$cidade, "estado"=>$estado, "cep"=>$cep, "telefone"=>$telefone, 
-	"celular"=>$celular, "query"=>$query));
-	*/
-	
+
 	exit;
 }
 
 if($operacao == 'cadastrar' && $select == '2'){	
-	$query = "INSERT INTO CLIENTE (nome, email, logradouro, numero, bairro, cidade, estado, cep, telefone, celular, cnpj, inscricao_estadual, nome_fantasia) 
-	VALUES ('$nome', '$email', '$rua', '$numero', '$bairro', '$cidade', '$estado', '$cep', '$telefone', '$celular', '$cnpj', '$inscricao', '$nomefantasia')";
-	
-	mysqli_query($conecta, $query);	
-	
-	$query = "select * from cliente where cpf = $cpf";
+    $buscaCliente = "SELECT * ";
+    $buscaCliente .= "FROM cliente ";
+    $buscaCliente .= "WHERE cnpj = '{$cnpj}'";
 
-	$consulta = mysqli_query($conecta, $query);	
+    $acesso1 = mysqli_query($conecta, $buscaCliente);
+    if ( !$acesso1 ){
+        die("Falha na consulta ao banco");
+    }
 
-	$consulta = mysqli_fetch_array($consulta);
-    
-	echo '<div class="alert alert-success" role="alert">Cliente Jurídico cadastrado com sucesso</div>';
-	
-	print_r(array("id"=>$consulta['id'], "nome"=>consulta['nome']));
+    $informacao1 = mysqli_fetch_assoc($acesso1);
 
+    if ( empty($informacao1)) {   
+        $query = "INSERT INTO CLIENTE (nome, email, logradouro, numero, bairro, cidade, estado, cep, telefone, celular, cnpj, inscricao_estadual, nome_fantasia) 
+        VALUES ('$nome', '$email', '$rua', '$numero', '$bairro', '$cidade', '$estado', '$cep', '$telefone', '$celular', '$cnpj', '$inscricao', '$nomefantasia')";
 
-	/*print_r(array("ordem"=>2, "operacao"=>$operacao, "options"=>$select,
-	"nome"=>$nome, "cpf"=>$cpf, "rg"=>$rg, "datanasc"=>$datanasc, 
-	"nomefantasia"=>$nomefantasia, "cnpj"=>$cnpj, "inscricao"=>$inscricao, 
-	"email"=>$email, "rua"=>$rua, "numero"=>$numero, "bairro"=>$bairro, 
-	"cidade"=>$cidade, "estado"=>$estado, "cep"=>$cep, "telefone"=>$telefone, 
-	"celular"=>$celular, "query"=>$query));
-	*/
+        mysqli_query($conecta, $query);	
+
+        $query = "select * from cliente where cpf = $cpf";
+
+        $consulta = mysqli_query($conecta, $query);	
+
+        $consulta = mysqli_fetch_array($consulta);
+
+        echo '<div class="alert alert-success" role="alert">Cliente Jurídico cadastrado com sucesso</div>';
+
+        print_r(array("id"=>$consulta['id'], "nome"=>consulta['nome']));
+    } else{          
+        echo '<div class="alert alert-danger" role="alert">CNPJ já cadastrado</div>';
+    }
 	exit;
 }
 
@@ -152,14 +164,6 @@ if($operacao == "editar"){
 		print_r(array("pk"=>$pk, "nome"=>utf8_encode($nome)));
 	}
 	
-	/*
-	print_r(array("pk"=>$pk, "ordem"=>4, "operacao"=>$operacao, "options"=>$select,
-	"nome"=>$nome, "cpf"=>$cpf, "rg"=>$rg, "datanasc"=>$datanasc, 
-	"nomefantasia"=>$nomefantasia, "cnpj"=>$cnpj, "inscricao"=>$inscricao, 
-	"email"=>$email, "rua"=>$rua, "numero"=>$numero, "bairro"=>$bairro, 
-	"cidade"=>$cidade, "estado"=>$estado, "cep"=>$cep, "telefone"=>$telefone, 
-	"celular"=>$celular, "query"=>$query));
-	*/
 	exit;
 }
 

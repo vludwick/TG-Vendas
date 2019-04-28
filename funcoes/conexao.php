@@ -9,4 +9,5 @@
         die("Conexao falhou: " . mysqli_connect_errno());        
     }
 
+    $pdo = new PDO('mysql:host=localhost;dbname=crv', 'root', '');
 ?>
