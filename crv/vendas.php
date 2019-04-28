@@ -131,6 +131,8 @@
 							//echo $qtdProdutosPedidos;
 							
                             echo '<tr><td colspan="3">Total</td><td id="total">R$ '.number_format($total, 2, ',','.').'</td></tr>';
+							echo '<tr><td colspan="6"><button type="submit" id="enviarvenda" class="btn btn-primary px-4">Finalizar Pedido</button></td></tr>';
+
                             endif;
 							
 							// Input com o total do pedido e com a quantidade de produtos pedidos
@@ -140,7 +142,6 @@
 							session_start();
 							$_SESSION["ids"] = $idProdutos;
                         ?>
-						<button type="submit" id="enviarvenda" class="btn btn-primary px-4">Enviar</button>
 						<div id="res_server"></div>
                     </tbody>
                 </table>
