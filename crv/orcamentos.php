@@ -12,29 +12,25 @@
     <link href="css/style1.css" type="text/css" rel="stylesheet" />
     <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="js/functions1.js"></script>
-    <?php require_once("../funcoes/modalcliente.php"); ?>
-    
+    <?php require_once("../funcoes/modalcliente.php"); ?>    
 </head>
 
 <body>
-
     <div>
-           <div class="py-5 text-center bg-light">
+      <div class="py-5 text-center bg-light">
       <div class="container">
-         <div class="row">
-            <div class="col-md-12">
-               <h1 class="pb-3 text-secondary">Realizar Venda</h1>
-            </div>
-         </div>
-         <div class="row">
-            <div class="col-md-4 offset-md-10">
-               <div class="row my-1">
-                  <button type="button" id="cadastrar" class="btn btn-primary" data-toggle="modal" data-target="#cadastroCliente">
-                  Cadastrar cliente
-                  </button>
-               </div>
-            </div>
-          </div>
+			 <div class="row">
+				<div class="col-md-12">
+				   <h1 class="pb-3 text-secondary">Realizar Venda</h1>
+				</div>
+			 </div>
+			 <div class="row">
+				<div class="col-md-4 offset-md-10">
+				   <div class="row my-1">
+					  <button type="button" id="cadastrar" class="btn btn-primary" data-toggle="modal" data-target="#cadastroCliente">Cadastrar cliente</button>
+				   </div>
+				</div>
+			  </div>
         </div>
         </div>
         <div class="container">
@@ -93,7 +89,7 @@
 					<div class="col-md-3">
 						<label class="col-sm-10 col-form-label"></label>
 						<tr><td colspan="3"></td><td id="total"><button type="submit" id="enviarvenda" class="btn btn-primary px-4">Finalizar Pedido</button></td></tr>
-					</div>						
+					</div>					
 				</div>
 				<br/><br/><br/>
                 <table class="table table-hover table-striped table-bordered" >
@@ -141,7 +137,7 @@
 							echo '<input type="hidden" id="" name="qtdProdutosPedidos" value="'.$qtdProdutosPedidos.'">';
 							// Criando uma sessão com a array que tem os IDS dos produtos que estao nesse pedido
 							session_start();
-							$_SESSION["ids"] = $idProdutos;
+							$_SESSION["ids_orcamento"] = $idProdutos;
                         ?>
 						<div id="res_server"></div>
                     </tbody>
@@ -214,7 +210,7 @@
 			var formDados = new FormData($(this)[0]);
 			var resultado;
 			$.ajax({
-				url:'../funcoes/cadpedido.php',
+				url:'../funcoes/cadorcamento.php',
 				type:'POST',
 				data:formDados,
 				cache:false,
@@ -224,7 +220,7 @@
 				{
 					//$("#res_server").html(data);
 					//console.log(data);
-					alert("Pedido cadastrado com sucesso");
+					alert("Orçamento cadastrado com sucesso");
 				},
 				dataType:'html'
 			});
