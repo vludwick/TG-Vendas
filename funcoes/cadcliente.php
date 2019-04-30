@@ -71,12 +71,14 @@ if($operacao == 'cadastrar' && $select == '1'){
 
             $resultado = mysqli_fetch_array($consulta);
 
-            echo '<div class="alert alert-success" role="alert">Cliente Físico cadastrado com sucesso</div>';
+			echo '<div class="alert alert-success" role="alert">Cliente Físico cadastrado com sucesso</div>';
+			print_r(array("id"=>$resultado['id_cliente'], "nome"=>$resultado['nome']));
         } else{
           
-            echo '<div class="alert alert-danger" role="alert">CPF já cadastrado</div>';
+			echo '<div class="alert alert-danger" role="alert">CPF já cadastrado</div>';
+			print_r(array("erro"=>'erro'));
         }
-        //print_r(array("id"=>$resultado['id_cliente'], "nome"=>$resultado['nome']));
+        
 	
 
 	exit;
@@ -106,9 +108,7 @@ if($operacao == 'cadastrar' && $select == '2'){
 	
 	$resultado = mysqli_fetch_array($consulta);
     
-	echo '<div class="alert alert-success" role="alert">Cliente Jurídico cadastrado com sucesso</div>';
-	
-	print_r(array("id"=>$consulta['id'], "nome"=>consulta['nome']));
+
     $informacao1 = mysqli_fetch_assoc($acesso1);
 
     if ( empty($informacao1)) {   
@@ -127,7 +127,8 @@ if($operacao == 'cadastrar' && $select == '2'){
 
         print_r(array("id"=>$consulta['id'], "nome"=>consulta['nome']));
     } else{          
-        echo '<div class="alert alert-danger" role="alert">CNPJ já cadastrado</div>';
+		echo '<div class="alert alert-danger" role="alert">CNPJ já cadastrado</div>';
+		print_r(array("erro"=>'erro'));
     }
 	exit;
 }

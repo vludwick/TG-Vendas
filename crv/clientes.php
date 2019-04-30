@@ -89,7 +89,7 @@
         "sSortDescending": ": Ordenar colunas de forma descendente"
     }
 }
- 
+        var cadastro = "cadastro";
         $(document).ready( function (){
             $('#cliente').DataTable(
               {"oLanguage": DATATABLE_PTBR}

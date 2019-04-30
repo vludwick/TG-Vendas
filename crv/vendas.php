@@ -156,6 +156,7 @@
 
 </html>
 <script>    
+    
     $(document).keypress(function(e) {
         if(e.which == 13){
         $('[name=confirmar]').click();            
@@ -166,7 +167,7 @@
         }
     });
 
-    var cadvenda = "venda";
+    var cadastro = "venda";
     
     $('#cadastrar').click(function(event){
                 $("#operacao").val("cadastrar");
