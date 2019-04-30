@@ -82,11 +82,17 @@ if($operacao == 'cadastrar' && $select == '2'){
 	
 	mysqli_query($conecta, $query);	
 	
-	$query = "select * from cliente where cpf = $cpf";
+	$query = "select max(id_cliente) as id from cliente";
 
 	$consulta = mysqli_query($conecta, $query);	
 
 	$consulta = mysqli_fetch_array($consulta);
+
+	$query = "select * from cliente where id_cliente = ".$resultado['id'];
+
+	$consulta = mysqli_query($conecta, $query);	
+	
+	$resultado = mysqli_fetch_array($consulta);
     
 	echo '<div class="alert alert-success" role="alert">Cliente Jurídico cadastrado com sucesso</div>';
 	

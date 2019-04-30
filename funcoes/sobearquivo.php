@@ -1,12 +1,19 @@
 <?php
-function arruma_arquivo($arquivo,$identificacao)
+//function arruma_arquivo($arquivo,$identificacao,$id)
+function arruma_arquivo($arquivo, $identificacao, $nome)
 {
 	// Pasta onde o arquivo vai ser salvo
 	if($identificacao = 'foto')
 	{
 		$_UP['pasta'] = '../crv/images/fotos/';
 	}
-
+	/*
+	Referencias:
+	https://www.php.net/manual/pt_BR/function.file-exists.php
+	https://php.net/unlink
+	https://www.php.net/manual/en/function.ctype-upper.php
+	https://www.php.net/manual/pt_BR/function.strtoupper.php
+	*/
 
 	// Tamanho máximo do arquivo (em Bytes)
 	$_UP['tamanho'] = 75000000; // 45Mb
@@ -51,8 +58,32 @@ function arruma_arquivo($arquivo,$identificacao)
 		// Mantém o nome original do arquivo
 		$nome_final = $_FILES['arquivo']['name'];
 		}
-			
-		move_uploaded_file($arquivo['tmp_name'], $_UP['pasta'] . $nome_final);
+
+		
+		//Alternativa para criar nomes infinitos
+		if($nome == null){
+			move_uploaded_file($arquivo['tmp_name'], $_UP['pasta'].$nome_final);
+		}
+		else{
+			unlink($_UP['pasta'].$nome);
+			move_uploaded_file($arquivo['tmp_name'], $_UP['pasta'].$nome_final);
+			//rename($_UP['pasta'].$nome, $_UP['pasta'].$nome_final);
+		}
+		
+		/*
+		if(file_exists($_UP['pasta'].strtoupper($nome_final))){
+			unlink($_UP['pasta'].strtoupper($nome_final));
+			move_uploaded_file($arquivo['tmp_name'], $_UP['pasta'].strtolower($nome_final));
+			$nome_final = strtolower($_UP['pasta'].$nome_final);
+		}
+		if(file_exists($_UP['pasta'].strtolower($nome_final))){
+			unlink($_UP['pasta'].strtolower($nome_final));
+			move_uploaded_file($arquivo['tmp_name'], $_UP['pasta'].strtoupper($nome_final));
+			$nome_final = strtoupper($_UP['pasta'].$nome_final);
+		}
+			*/
+		
+		
 	}
 	else
 	{

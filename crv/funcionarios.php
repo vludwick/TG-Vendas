@@ -5,7 +5,7 @@
    <head>
       <script src="js/jquery-3.2.1.min.js" language="javascript"></script> 
       <link rel="stylesheet" href="lib\DataTables\DataTables-1.10.18\css\jquery.dataTables.min.css">
-      <?php require_once("../funcoes/modalcliente.php"); ?>
+      <?php require_once("../funcoes/modalfuncionario.php"); ?>
       <?php include '../funcoes/menu.php'; ?>
       <link rel="stylesheet" href="lib\fontawesome-free-5.8.1-web\css\all.css">
    </head>
@@ -45,7 +45,7 @@
                       echo '<td>'.utf8_encode($tipo).'</td>';
 
                   ?>
-               <td><i class="fas fa-search" data-toggle="modal" data-target="#cadastroCliente" style="cursor: pointer; color:royalBlue"></td>
+               <td><i class="fas fa-search" data-toggle="modal" data-target="#consultafuncionario" style="cursor: pointer; color:royalBlue"></td>
                </tr>
                <?php
                   }
@@ -112,7 +112,7 @@
               var formDados = new FormData($(this)[0]);
               var resultado;
               $.ajax({
-                url:'../funcoes/cadcliente.php',
+                url:'../funcoes/cadfuncionario.php',
                 type:'POST',
                 data:formDados,
                 cache:false,
@@ -120,7 +120,7 @@
                 processData:false,
                 success:function (data)
                 {
-
+                  console.log(data);
                   var inicio_nome = data.indexOf("[nome] => ") + "[nome] => ".length;
                   var fim_nome = data.indexOf("[datanasc] => ");
 
@@ -152,7 +152,7 @@
                   var fim_estado = data.indexOf("[cep] => ");
 
                   var inicio_cep = data.indexOf("[cep] => ") + "[cep] => ".length;
-                  var fim_cep = data.indexOf("[telefone] => ");
+                  var fim_cep = data.indexOf("[email] => ");
 
                   var inicio_email = data.indexOf("[email] => ") + "[email] => ".length;
                   var fim_email = data.indexOf("[telefone] => ");
@@ -179,8 +179,17 @@
                   var email = data.slice(inicio_email , fim_email);
                   var telefone = data.slice(inicio_telefone , fim_telefone);
                   var celular = data.slice(inicio_celular , fim_celular);
-                  var tipo = data.slice(inicio_tipo , data.trim(),length-1);
-
+                  var tipo = data.slice(inicio_tipo , data.trim().length-1);
+                  var cargo;
+                  console.log(tipo);
+                  if(tipo.trim() == 0){
+                     cargo = "Gerente Comercial"; 
+                  }
+                  if(tipo.trim() == 1){
+                     cargo = "Vendedor";
+                  }
+                  console.log(tipo);
+                  console.log(cargo);
                   datanasc = trataData(datanasc);
                   dataadm = trataData(dataadm);
                   
@@ -198,6 +207,7 @@
                       $("#numero").attr("disabled", "true");
                       $("#celular").attr("disabled", "true");
                       $("#cep").attr("disabled", "true");
+                      $("#cargo").attr("disabled", "true");
                       $("#cpf").val(cpf);
                       $("#nome").val(nome);
                       $("#rg").val(rg);
@@ -211,6 +221,8 @@
                       $("#rua").val(logradouro);   
                       $("#email").val(email);   
                       $("#numero").val(numero);
+                      $("#dataadm").val(dataadm);
+                      $("#cargo").val(cargo);
                   },
                 dataType:'text'
               });
