@@ -40,7 +40,7 @@
             <a class="nav-link" href="clientes.php"><i class="fa d-inline fa-lg fa-shopping-"></i> Clientes</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="4Clifor.html"><i class="fa d-inline fa-lg fa-o"></i>Orçamento</a>
+            <a class="nav-link" href="orcamentos.php"><i class="fa d-inline fa-lg fa-o"></i>Orçamento</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="vendas.php"><i class="fa d-inline fa-lg fa-o"></i>Venda</a>
@@ -49,7 +49,7 @@
             <a class="nav-link" href="produtos.php"><i class="fa d-inline fa-lg fa-o"></i>Produtos</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="8Orcamento.html"><i class="fa d-inline fa-lg fa-o"></i>Pedidos</a>
+            <a class="nav-link" href="pedidos.php"><i class="fa d-inline fa-lg fa-o"></i>Pedidos</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="10Representante.html"><i class="fa d-inline fa-lg fa-o"></i> Faturamento</a>
