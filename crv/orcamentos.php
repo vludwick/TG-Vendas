@@ -21,7 +21,7 @@
       <div class="container">
 			 <div class="row">
 				<div class="col-md-12">
-				   <h1 class="pb-3 text-secondary">Realizar Venda</h1>
+				   <h1 class="pb-3 text-secondary">Criar Orçamento</h1>
 				</div>
 			 </div>
 			 <div class="row">
@@ -206,6 +206,7 @@
 		
 	$(function(){
 		$('#vendas').submit(function(event){
+			//location.delay(3000).reload();
 			event.preventDefault();
 			var formDados = new FormData($(this)[0]);
 			var resultado;
@@ -219,8 +220,8 @@
 				success:function (data)
 				{
 					//$("#res_server").html(data);
-					//console.log(data);
-					alert("Orçamento cadastrado com sucesso");
+					console.log(data);
+					//alert("Orçamento cadastrado com sucesso");
 				},
 				dataType:'html'
 			});

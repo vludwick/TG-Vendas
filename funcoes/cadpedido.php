@@ -35,8 +35,8 @@ for($i = 1; $i <= $qtdProdutosPedidos; $i++){
 	$NameSubTotal = $idProduto.'subtotal';
 	$SubTotalProduto = $_POST[$NameSubTotal];		
 	
-	$insert2 = mysqli_query($conecta, "INSERT INTO PEDIDO_PRODUTO (ID_PEDIDO, ID_PRODUTO, QUANTIDADE, VALOR_TOTAL)
-	VALUES ('$idPedido', '$idProduto', '$QtdProduto', '$SubTotalProduto')");
+	$insert2 = mysqli_query($conecta, "INSERT INTO PEDIDO_PRODUTO (ID_PEDIDO, ID_PRODUTO, QUANTIDADE, PRECO, VALOR_TOTAL)
+	VALUES ('$idPedido', '$idProduto', '$QtdProduto', '$precoProduto', '$SubTotalProduto')");
 }
 echo '<div class="alert alert-success" role="alert">Pedido cadastrado com sucesso</div>';
 mysqli_close($conecta);
