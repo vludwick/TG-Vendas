@@ -29,7 +29,7 @@
                 $nome = $saudacao_login["nome"];
                 $nome = explode(" ", $nome);
         ?>
-            <div id="header_saudacao"><a class="btn navbar-btn ml-2 text-white btn-primary"> <?php echo $nome[0] ?> </a></div>
+            <div ><a class="btn navbar-btn ml-2 text-white btn-primary"> <?php echo $nome[0] ?> </a><input id="idcli" class="btn navbar-btn ml-2 text-white btn-primary" type="hidden" value="<?php echo $user ?>" ></div>
         <?php } ?>
       
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar2SupportedContent" aria-controls="navbar2SupportedContent" aria-expanded="false"

@@ -16,7 +16,7 @@ session_start();
 		if($retorno['qtd'] >= 0){
 			while($conteudo = $buscar->fetchObject()){
                 $total = $quantidade * $conteudo->preco;
-				$retorno['dados'] .= '<a type="form-control" class="form-control" style="width:60%;padding:6px;border:2px solid black;background:dodgerblue;font:16px;color:white;text-decoration:none;text-align: center;" name="confirmar" id="'.$conteudo->id_produto.':'.$conteudo->preco.'">'.utf8_encode($conteudo->nome).'</a>';
+				$retorno['dados'] .= '<a type="form-control" class="form-control" style="cursor: pointer;width:60%;padding:6px;border-color:#007bff;background:#007bff;font:16px;color:white;text-decoration:none;text-align: center;" name="confirmar" id="'.$conteudo->id_produto.':'.$conteudo->preco.'">'.utf8_encode($conteudo->nome).'</a>';
                 
                 $retorno['dados1'] .= '<input type="form-control" class="form-control" name="precoproduto" disabled id="'.$conteudo->id_produto.':'.$conteudo->preco.'" value=" '. utf8_encode($conteudo->preco) . '">';
                 
@@ -27,10 +27,30 @@ session_start();
 		echo json_encode($retorno);
 	}
 
-	if(isset($_POST['add_produto'])){
+    if(isset($_POST['buscaCliente']) && $_POST['buscaCliente'] == 'sim'){
+		include_once "../../funcoes/conexao.php";
+		$textoBusca = strip_tags($_POST['textoCliente']);
+		$buscar = $pdo->prepare("SELECT * FROM `cliente` WHERE `cpf` = '$textoBusca' or `cnpj` = '$textoBusca'");
+		$buscar->execute();
+
+		$retorno = array();
+		$retorno['dados'] = '';
+		$retorno['qtd'] = $buscar->rowCount();
+        
+		if($retorno['qtd'] >= 0){
+			while($conteudo = $buscar->fetchObject()){
+				$retorno['dados'] .= '<input id="'.$conteudo->id_cliente.'" name="idcliente" type="form-control" class="form-control" value="'.utf8_encode($conteudo->nome).'" disabled>';
+			}
+		}
+
+		echo json_encode($retorno);
+	}
+
+    if(isset($_POST['add_produto'])){
 		include_once "../../funcoes/conexao.php";
 		$retorno = array();
 		$retorno['dados'] = '';
+		
 
 		$produtoId = (int)$_POST['produto'];
 		$produtoQtd = (int)$_POST['qtdd'];
@@ -49,11 +69,14 @@ session_start();
                 $subTotal = ($dadosProduto->preco*$qtd);
                 $total += $subTotal;
 
-                $retorno['dados'] .= '<tr><td>'.utf8_encode($dadosProduto->nome).'</td><td>'.$dadosProduto->preco.'</td><td><input type="text" id="qtd" value="'.$qtd.'" size="1" /></td>';
-                $retorno['dados'] .= '<td>R$ '.number_format($subTotal, 2, ',', '.').'</td><td><div id="remover"><a type="form-control" class="form-control" style="width:50%;border:2px solid black;background:dodgerblue;font:16px;color:white;text-align: center; margin-left: 60px;" id="'.$idProd.'" >Delete</a></div></td></tr>';
+                $retorno['dados'] .= '<tr><td>'.utf8_encode($dadosProduto->nome).'</td><td>'.$dadosProduto->preco.'</td><td><input type="text" id="qtd" style="text-align: center;" disabled value="'.$qtd.'" size="3" /></td>';
+                $retorno['dados'] .= '<td>R$ '.number_format($subTotal, 2, ',', '.').'</td><td><div id="remover"><a type="form-control" class="form-control" style="cursor: pointer;width:50%;border-color:#007bff;background:#007bff;font:16px;color:white;text-align: center; margin-left: 60px;" id="'.$idProd.'" >Delete</a></div></td></tr>';
                 
             }
-            $retorno['dados'] .= '<tr><td colspan="3">Total</td><td id="total">R$ '.number_format($total, 2, ',','.').'</td></tr>';
+            $retorno['dados'] .= '<tr><td colspan="3">Total</td><td id="total">R$ '.number_format($total, 2, ',','.').'</td>';
+            $retorno['dados'] .= '<td id="total"><button type="submit" class="form-control" id="enviarvenda" style="width:60%;border-color:#007bff;background:#007bff;font:16px;color:white;text-align: center; margin-left: 45px;">Finalizar Pedido</button></td></tr>'; 
+            
+            
             echo json_encode($retorno);
 	   }
     }
@@ -62,6 +85,8 @@ session_start();
 		include_once "../../funcoes/conexao.php";
 		$retorno = array();
 		$retorno['dados'] = '';
+		$retorno['tot'] = '';
+		
 
 		$produtoId = (int)$_POST['ID'];
 
@@ -78,12 +103,21 @@ session_start();
                 $subTotal = ($dadosProduto->preco*$qtd);
                 $total += $subTotal;
 
-                $retorno['dados'] .= '<tr><td>'.utf8_encode($dadosProduto->nome).'</td><td>'.$dadosProduto->preco.'</td><td><input type="text" id="qtd" value="'.$qtd.'" size="1" /></td>';
-                $retorno['dados'] .= '<td>R$ '.number_format($subTotal, 2, ',', '.').'</td><td><div id="remover"><a type="form-control" class="form-control" style="width:50%;border:2px solid black;background:dodgerblue;font:16px;color:white;text-align: center; margin-left: 60px;" id="'.$idProd.'" >Delete</a></div></td></tr>';
+                $retorno['dados'] .= '<tr><td>'.utf8_encode($dadosProduto->nome).'</td><td>'.$dadosProduto->preco.'</td><td><input type="text" id="qtd" style="text-align: center;" disabled value="'.$qtd.'" size="3" /></td>';
+                $retorno['dados'] .= '<td>R$ '.number_format($subTotal, 2, ',', '.').'</td><td><div id="remover"><a type="form-control" class="form-control" style="cursor: pointer;width:50%;border-color:#007bff;background:#007bff;font:16px;color:white;text-align: center; margin-left: 60px;" id="'.$idProd.'" >Delete</a></div></td></tr>';
                 
             }
-            $retorno['dados'] .= '<tr><td colspan="3">Total</td><td id="total">R$ '.number_format($total, 2, ',','.').'</td></tr>';
+            if($total > 0){
+                $retorno['dados'] .= '<tr><td colspan="3">Total</td><td id="total">R$ '.number_format($total, 2, ',','.').'</td>';
+                $retorno['dados'] .= '<td id="total"><button type="submit" class="form-control" id="enviarvenda" style="cursor: pointer;width:60%;border-color:#007bff;background:#007bff;font:16px;color:white;text-align: center; margin-left: 45px;">Finalizar Pedido</button></td></tr>'; 
+                
+                
+            
+                
+            }
+            $retorno['tot'] = $total;
             echo json_encode($retorno);
 	   }
+        
     }
 ?>
