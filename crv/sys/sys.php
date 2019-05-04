@@ -35,12 +35,15 @@ session_start();
 
 		$retorno = array();
 		$retorno['dados'] = '';
+		$retorno['dados1'] = '';
 		$retorno['qtd'] = $buscar->rowCount();
         
 		if($retorno['qtd'] >= 0){
 			while($conteudo = $buscar->fetchObject()){
 				$retorno['dados'] .= '<input id="'.$conteudo->id_cliente.'" name="idcliente" type="form-control" class="form-control" value="'.utf8_encode($conteudo->nome).'" disabled>';
-			}
+				$retorno['dados1'] .= '<input  type="form-control" class="form-control" name="id_cliente" id="id_cliente" value="'.utf8_encode($conteudo->id_cliente).'" disabled>';
+			
+            }
 		}
 
 		echo json_encode($retorno);

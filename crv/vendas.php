@@ -94,8 +94,12 @@
                 <label class="sm-10 col-form-label">Nome do Cliente:</label>
                 
             </div>
-            <div style="margin-left: -30px" class="col-md-4">
+            <div style="margin-left: -70px" class="col-md-4">
                 <label class="col-sm-10 col-form-label">Código do Funcionário:</label>
+                
+            </div>
+            <div style="margin-left: -90px" class="col-md-4">
+                <label class="col-sm-10 col-form-label">Código do Cliente</label>
                 
             </div>
         </div>
@@ -106,6 +110,9 @@
             </div>
             <div  class="col-md-3">
                 <input  type="form-control" class="form-control" name="idfuncionario" id="idfuncionario" disabled>
+            </div> 
+            <div id="resultado_busca5" class="col-md-3">
+                <input  type="form-control" class="form-control" name="id_cliente" id="id_cliente" value="" disabled>
             </div>            
         </div>			
 
@@ -192,10 +199,16 @@
         $("#busca").val("");
         $("#precoproduto").val("");
         $("#totalproduto").val("");
+       
         }
+         
     });
 
     var cadastro = "venda";
+    
+    
+    
+    
     
     var options = {
     onKeyPress: function (cpf, ev, el, op) {
@@ -249,6 +262,7 @@
     $(document).ready(function(){
         var tt = $("#idcli").val();
         $("#idfuncionario").val(tt);
+        
     });
 		
 	$(function(){
@@ -276,6 +290,9 @@
 	});
    
 </script>
+
+
+
 <?php
     mysqli_close($conecta);
 ?>
