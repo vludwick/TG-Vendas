@@ -175,12 +175,12 @@
                 </tbody>
             </table>
            
-            <div class="col-md-12 offset-md-8">
-                <div id="cancela_pedido" style="margin-left: 35px" class="col-md-4"> 
+            
+                <div id="cancela_pedido"  class="col-md-4 offset-md-9" > 
             <?php if($total > 0){ ?>
                 <a   type="form-control" class="form-control" style="cursor: pointer;width:60%;padding:6px;border-color:#dc3545;background:#dc3545;;font:16px;color:white;text-decoration:none;text-align: center;" name="cancelar" id="cancelar"><i ></i>Cancelar</a>
                <?php } ?> </div>
-            </div>
+           
             
         </form> 
     </div>

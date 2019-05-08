@@ -102,6 +102,20 @@ $(function(){
                 }
 			}
 		});
+	});  
+    
+    $('body').on('click', '#cancela_pedido a', function(){
+        
+		$.ajax({
+			method: 'post',
+			url: 'sys/sys.php',
+			data: {remove_todos_produtos: 'sim'},
+			dataType: 'json',
+			success: function(retorno){                
+				$('tbody#content_retorno').html(retorno.dados);
+                $('div#cancela_pedido').html('<a ><i ></i></a>');
+			}
+		});
 	});
     
         

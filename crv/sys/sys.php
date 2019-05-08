@@ -123,4 +123,22 @@ session_start();
 	   }
         
     }
+
+    if(isset($_POST['remove_todos_produtos'])){
+		include_once "../../funcoes/conexao.php";
+		$retorno = array();
+		$retorno['dados'] = '';
+		
+		
+        
+        if(isset($_SESSION['carrinho'])){
+            unset($_SESSION['carrinho']);
+        }
+            
+
+
+            echo json_encode($retorno);
+	   }
+        
+    
 ?>
