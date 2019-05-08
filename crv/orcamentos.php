@@ -98,7 +98,7 @@
                 <label class="col-sm-10 col-form-label">Código do Funcionário:</label>
                 
             </div>
-            <div style="margin-left: -90px" class="col-md-4">
+            <div style="margin-left: -90px" class="col-md-3">
                 <label class="col-sm-10 col-form-label">Código do Cliente</label>
                 
             </div>
@@ -133,7 +133,11 @@
                     <?php
                         $total = 0;
                         $qtdProdutosPedidos = 0;
-                        $idProdutos = array(); // Array que armazena todos os IDs dos produtos que estão no Pedido (para conseguir referenciar o name do input pra pegar os dados)
+						$idProdutos = array(); // Array que armazena todos os IDs dos produtos que estão no Pedido (para conseguir referenciar o name do input pra pegar os dados)
+						session_start();
+                        $_SESSION["ids"] = $idProdutos;
+						$_SESSION["qtdProdutosPedidos"] = $qtdProdutosPedidos;
+						                    
                         if(count($_SESSION['carrinho']) > 0):
                         foreach($_SESSION['carrinho'] as $idProd => $qtd){
                         $pegaProduto = $pdo->prepare("SELECT * FROM `produto` WHERE `id_produto` = ?");
@@ -143,34 +147,27 @@
                         $total += $subTotal;
 
                         echo '<tr><td>'.utf8_encode($dadosProduto->nome).'</td><td>'.number_format($dadosProduto->preco, 2, ',', '.').'</td><td><input type="text" id="qtd" style="text-align: center;" disabled value="'.$qtd.'" size="3"  /></td>';
-                        echo '<td>R$ '.number_format($subTotal, 2, ',', '.').'</td><td><div id="remover"><a type="form-control" class="form-control" style="cursor: pointer;width:50%;border-color:#007bff;background:#007bff;font:16px;color:white;text-align: center; margin-left: 60px;" id="'.$idProd.'" >Delete</a></div></td></tr>';
-
-                        // Inputs que tem todos os dados do Produto que faz parte do Pedido	para conseguir obter esses dados no Jquery					
-                        echo '<input type="hidden" id="" name="'.$dadosProduto->id_produto.'id" value="'.$dadosProduto->id_produto.'">';
-                        echo '<input type="hidden" id="" name="'.$dadosProduto->id_produto.'preco" value="'.$dadosProduto->preco.'">';
-                        echo '<input type="hidden" id="" name="'.$dadosProduto->id_produto.'qtd" value="'.$qtd.'">';
-                        echo '<input type="hidden" id="" name="'.$dadosProduto->id_produto.'subtotal" value="'.$subTotal.'">';
-
-                        $qtdProdutosPedidos++;
-                        $idProdutos[$qtdProdutosPedidos] = $dadosProduto->id_produto;
+                        echo '<td>R$ '.number_format($subTotal, 2, ',', '.').'</td><td><div id="remover"><a type="form-control" class="form-control" style="cursor: pointer;width:50%;border-color:#007bff;background:#007bff;font:16px;color:white;text-align: center; margin-left: 60px;" id="'.$idProd.'" >Delete</a></div></td></tr>';			
+						echo '<tr><td><input type="hidden" id="" name="'.$dadosProduto->id_produto.'id" value="'.$dadosProduto->id_produto.'"></td>';
+						echo '<td><input type="hidden" id="" name="'.$dadosProduto->id_produto.'preco" value="'.$dadosProduto->preco.'"></td>';
+						echo '<td><input type="hidden" id="" name="'.$dadosProduto->id_produto.'qtd" value="'.$qtd.'"></td>';
+						echo '<td><input type="hidden" id="" name="'.$dadosProduto->id_produto.'subtotal" value="'.$subTotal.'"></td></tr>';	
                         }
-                            
-                    
-                            echo '<tr><td colspan="3">Total</td><td id="total">R$ '.number_format($total, 2, ',','.').'</td>';
-                            echo '<td id="total"><button type="submit" class="form-control" id="enviarvenda" style="width:60%;border-color:#007bff;background:#007bff;font:16px;color:white;text-align: center; margin-left: 45px;">Finalizar Pedido</button></td></tr>';
-                            
-                        
-                    
+                            			
+						echo '<tr><td colspan="3">Total</td><td id="total">R$ '.number_format($total, 2, ',','.').'</td>';
+						echo '<td id="total"><button type="submit" class="form-control" id="enviarvenda" style="width:60%;border-color:#007bff;background:#007bff;font:16px;color:white;text-align: center; margin-left: 45px;">Finalizar Pedido</button></td></tr>';
+						echo '<td><input type="hidden" id="" name="total" value="'.$total.'"></td>';
                         endif;
-                    
-                        
+
                         // Input com o total do pedido e com a quantidade de produtos pedidos
                         echo '<input type="hidden" id="" name="total" value="'.$total.'">';
                         echo '<input type="hidden" id="" name="qtdProdutosPedidos" value="'.$qtdProdutosPedidos.'">';
+						echo '<input type="hidden" id="" name="codcli" value="1">';
+						echo '<input type="hidden" id="" name="codfun" value="2">';
                         // Criando uma sessão com a array que tem os IDS dos produtos que estao nesse pedido
-                        session_start();
-                        $_SESSION["ids"] = $idProdutos;
+
                     ?>
+
                     <div id="res_server"></div>
                 </tbody>
             </table>
@@ -280,8 +277,8 @@
 				success:function (data)
 				{
 					//$("#res_server").html(data);
-					//console.log(data);
-					alert("Pedido cadastrado com sucesso");
+					console.log(data);
+					//alert("Pedido cadastrado com sucesso");
 				},
 				dataType:'html'
 			});

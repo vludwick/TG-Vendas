@@ -16,6 +16,7 @@ $idfuncionario = '1';
 //echo $idfuncionario;
 print_r($arrayIDS);
 echo $qtdProdutosPedidos;
+exit;
 
 // Inserindo os dados na tabela PEDIDO 
 $data = new DateTime();
