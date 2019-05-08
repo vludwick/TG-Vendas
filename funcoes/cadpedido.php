@@ -3,11 +3,19 @@ include 'conexao.php';
 session_start();
 
 $arrayIDS = array();
-$arrayIDS 			= $_SESSION["ids"];
-$qtdProdutosPedidos = $_POST['qtdProdutosPedidos'];
-$totalPedido  		= $_POST['total'];
-$idcliente 			= $_POST['idcliente'];
-$idfuncionario 		= $_POST["idfuncionario"];
+$arrayIDS 				= $_SESSION["ids"];
+$qtdProdutosPedidos 	= $_SESSION["qtdProdutosPedidos"];
+$totalPedido  			= $_POST['total'];
+//$idcliente 			= $_POST['id_cliente'];
+//$idfuncionario 		= $_POST["idfuncionario"];
+$idcliente 	= '1';
+$idfuncionario = '1';
+
+//$len = sizeof($_SESSION['ids']);
+//echo $len;
+//echo $idfuncionario;
+print_r($arrayIDS);
+echo $qtdProdutosPedidos;
 
 // Inserindo os dados na tabela PEDIDO 
 $data = new DateTime();
@@ -38,6 +46,7 @@ for($i = 1; $i <= $qtdProdutosPedidos; $i++){
 	$insert2 = mysqli_query($conecta, "INSERT INTO PEDIDO_PRODUTO (ID_PEDIDO, ID_PRODUTO, QUANTIDADE, PRECO, VALOR_TOTAL)
 	VALUES ('$idPedido', '$idProduto', '$QtdProduto', '$precoProduto', '$SubTotalProduto')");
 }
+
 echo '<div class="alert alert-success" role="alert">Pedido cadastrado com sucesso</div>';
 mysqli_close($conecta);
 ?>
