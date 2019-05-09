@@ -91,16 +91,7 @@
         
         <div style="margin-left: 20px" class="row">
             <div class="col-md-6">
-                <label class="sm-10 col-form-label">Nome do Cliente:</label>
-                
-            </div>
-            <div style="margin-left: -70px" class="col-md-4">
-                <label class="col-sm-10 col-form-label">Código do Funcionário:</label>
-                
-            </div>
-            <div style="margin-left: -90px" class="col-md-3">
-                <label class="col-sm-10 col-form-label">Código do Cliente</label>
-                
+                <label class="sm-10 col-form-label">Nome do Cliente:</label>                
             </div>
         </div>
         <form id="vendas" action="" method="post" enctype="multipart/form-data">
@@ -109,10 +100,10 @@
                 <input  type="form-control" class="form-control" name="idcliente" id="" disabled>
             </div>
             <div  class="col-md-3">
-                <input  type="form-control" class="form-control" name="idfuncionario" id="idfuncionario" disabled>
+                <input  type="hidden" class="form-control" name="idfuncionario" id="idfuncionario" >
             </div> 
             <div id="resultado_busca5" class="col-md-3">
-                <input  type="form-control" class="form-control" name="id_cliente" id="id_cliente" value="" disabled>
+                <input  type="hidden" class="form-control" name="id_cliente" id="id_cliente" value="" >
             </div>            
         </div>			
 
@@ -155,7 +146,7 @@
                         }
                             			
 						echo '<tr><td colspan="3">Total</td><td id="total">R$ '.number_format($total, 2, ',','.').'</td>';
-						echo '<td id="total"><button type="submit" class="form-control" id="enviarvenda" style="width:60%;border-color:#007bff;background:#007bff;font:16px;color:white;text-align: center; margin-left: 45px;">Finalizar Pedido</button></td></tr>';
+						echo '<td id="total"><button type="submit" class="form-control" id="enviarvenda" style="width:60%;border-color:#007bff;background:#007bff;font:16px;color:white;text-align: center; margin-left: 45px;">Finalizar</button></td></tr>';
 						echo '<td><input type="hidden" id="" name="total" value="'.$total.'"></td>';
                         endif;
 
@@ -283,6 +274,19 @@
 				dataType:'html'
 			});
 			return false;
+		});
+	});
+   
+	$(document).ready(function (){
+		$.ajax({
+		method: 'post',
+		url: 'sys/sys.php',
+		data: {remove_todos_produtos: 'sim'},
+		dataType: 'json',
+		success: function(retorno){                
+			$('tbody#content_retorno').html(retorno.dados);
+			$('div#cancela_pedido').html('<a ><i ></i></a>');
+		}
 		});
 	});
    

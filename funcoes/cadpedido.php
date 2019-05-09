@@ -6,17 +6,9 @@ $arrayIDS = array();
 $arrayIDS 				= $_SESSION["ids"];
 $qtdProdutosPedidos 	= $_SESSION["qtdProdutosPedidos"];
 $totalPedido  			= $_POST['total'];
-//$idcliente 			= $_POST['id_cliente'];
-//$idfuncionario 		= $_POST["idfuncionario"];
-$idcliente 	= '1';
-$idfuncionario = '1';
+$idcliente 				= $_POST['id_cliente'];
+$idfuncionario 			= $_POST["idfuncionario"];
 
-//$len = sizeof($_SESSION['ids']);
-//echo $len;
-//echo $idfuncionario;
-print_r($arrayIDS);
-echo $qtdProdutosPedidos;
-exit;
 
 // Inserindo os dados na tabela PEDIDO 
 $data = new DateTime();

@@ -132,7 +132,7 @@ $(function(){
 				success: function(retorno){
 					if(retorno.qtd == 0){
 						$('#resultado_busca4').html('<input  type="form-control" class="form-control" name="idcliente" id="" disabled>');
-						$('#resultado_busca5').html('<input  type="form-control" class="form-control" name="id_cliente" id="id_cliente" value="" disabled>');
+						$('#resultado_busca5').html('<input  type="hidden" class="form-control" name="id_cliente" id="id_cliente" value="" disabled>');
 								 		
 					}else{
 						$('#resultado_busca4').html(retorno.dados);

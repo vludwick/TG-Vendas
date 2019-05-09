@@ -23,7 +23,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1 class="pb-3 text-secondary">Realizar Venda</h1>
+                <h1 class="pb-3 text-secondary">Criar Orçamento</h1>
             </div>
         </div>
         <div class="row" id="clienteprocura" style="margin-top: 45px;">
@@ -91,16 +91,7 @@
         
         <div style="margin-left: 20px" class="row">
             <div class="col-md-6">
-                <label class="sm-10 col-form-label">Nome do Cliente:</label>
-                
-            </div>
-            <div style="margin-left: -70px" class="col-md-4">
-                <label class="col-sm-10 col-form-label">Código do Funcionário:</label>
-                
-            </div>
-            <div style="margin-left: -90px" class="col-md-3">
-                <label class="col-sm-10 col-form-label">Código do Cliente</label>
-                
+                <label class="sm-10 col-form-label">Nome do Cliente:</label>                
             </div>
         </div>
         <form id="vendas" action="" method="post" enctype="multipart/form-data">
@@ -109,14 +100,13 @@
                 <input  type="form-control" class="form-control" name="idcliente" id="" disabled>
             </div>
             <div  class="col-md-3">
-                <input  type="form-control" class="form-control" name="idfuncionario" id="idfuncionario" disabled>
+                <input  type="hidden" class="form-control" name="idfuncionario" id="idfuncionario" >
             </div> 
             <div id="resultado_busca5" class="col-md-3">
-                <input  type="form-control" class="form-control" name="id_cliente" id="id_cliente" value="" disabled>
+                <input  type="hidden" class="form-control" name="id_cliente" id="id_cliente" value="" >
             </div>            
         </div>			
-
-    
+		  
             <br/><br/><br/>
             <table class="table table-hover table-striped table-bordered" >
                 <thead>
@@ -155,7 +145,7 @@
                         }
                             			
 						echo '<tr><td colspan="3">Total</td><td id="total">R$ '.number_format($total, 2, ',','.').'</td>';
-						echo '<td id="total"><button type="submit" class="form-control" id="enviarvenda" style="width:60%;border-color:#007bff;background:#007bff;font:16px;color:white;text-align: center; margin-left: 45px;">Finalizar Pedido</button></td></tr>';
+						echo '<td id="total"><button type="submit" class="form-control" id="enviarvenda" style="width:60%;border-color:#007bff;background:#007bff;font:16px;color:white;text-align: center; margin-left: 45px;">Finalizar</button></td></tr>';
 						echo '<td><input type="hidden" id="" name="total" value="'.$total.'"></td>';
                         endif;
 
@@ -268,7 +258,7 @@
 			var formDados = new FormData($(this)[0]);
 			var resultado;
 			$.ajax({
-				url:'../funcoes/cadpedido.php',
+				url:'../funcoes/cadorcamento.php',
 				type:'POST',
 				data:formDados,
 				cache:false,
@@ -285,7 +275,20 @@
 			return false;
 		});
 	});
-   
+	
+	$(document).ready(function (){
+		$.ajax({
+		method: 'post',
+		url: 'sys/sys.php',
+		data: {remove_todos_produtos: 'sim'},
+		dataType: 'json',
+		success: function(retorno){                
+			$('tbody#content_retorno').html(retorno.dados);
+			$('div#cancela_pedido').html('<a ><i ></i></a>');
+		}
+		});
+	});   
+  
 </script>
 
 

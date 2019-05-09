@@ -41,7 +41,7 @@ session_start();
 		if($retorno['qtd'] >= 0){
 			while($conteudo = $buscar->fetchObject()){
 				$retorno['dados'] .= '<input id="'.$conteudo->id_cliente.'" name="idcliente" type="form-control" class="form-control" value="'.utf8_encode($conteudo->nome).'" disabled>';
-				$retorno['dados1'] .= '<input  type="form-control" class="form-control" name="id_cliente" id="id_cliente" value="'.utf8_encode($conteudo->id_cliente).'" disabled>';
+				$retorno['dados1'] .= '<input  type="hidden" class="form-control" name="id_cliente" id="id_cliente" value="'.utf8_encode($conteudo->id_cliente).'">';
 			
             }
 		}
@@ -86,7 +86,7 @@ session_start();
 					$_SESSION["ids"][$_SESSION["qtdProdutosPedidos"]] = $dadosProduto->id_produto;						
 				}
             $retorno['dados'] .= '<tr><td colspan="3">Total</td><td id="total">R$ '.number_format($total, 2, ',','.').'</td>';
-            $retorno['dados'] .= '<td id="total"><button type="submit" class="form-control" id="enviarvenda" style="width:60%;border-color:#007bff;background:#007bff;font:16px;color:white;text-align: center; margin-left: 45px;">Finalizar Pedido</button></td></tr>'; 
+            $retorno['dados'] .= '<td id="total"><button type="submit" class="form-control" id="enviarvenda" style="width:60%;border-color:#007bff;background:#007bff;font:16px;color:white;text-align: center; margin-left: 45px;">Finalizar</button></td></tr>'; 
 			$retorno['dados'] .= '<td><input type="hidden" id="" name="total" value="'.$total.'"></td>';
             
             
@@ -146,7 +146,7 @@ session_start();
             }
             if($total > 0){
                 $retorno['dados'] .= '<tr><td colspan="3">Total</td><td id="total">R$ '.number_format($total, 2, ',','.').'</td>';
-                $retorno['dados'] .= '<td id="total"><button type="submit" class="form-control" id="enviarvenda" style="cursor: pointer;width:60%;border-color:#007bff;background:#007bff;font:16px;color:white;text-align: center; margin-left: 45px;">Finalizar Pedido</button></td></tr>'; 
+                $retorno['dados'] .= '<td id="total"><button type="submit" class="form-control" id="enviarvenda" style="cursor: pointer;width:60%;border-color:#007bff;background:#007bff;font:16px;color:white;text-align: center; margin-left: 45px;">Finalizar</button></td></tr>'; 
                 $retorno['dados'] .= '<td><input type="hidden" id="" name="total" value="'.$total.'"></td>';
  
             }
