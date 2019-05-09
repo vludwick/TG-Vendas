@@ -6,7 +6,7 @@
 
 
 	<script src="js/jquery-3.2.1.min.js" language="javascript"></script> 
-    <?php require_once("../funcoes/modalproduto.php"); ?>
+    
     <?php include '../funcoes/menu.php'; ?>
   <link rel="stylesheet" href="lib\DataTables\DataTables-1.10.18\css\jquery.dataTables.min.css">
     <link rel="stylesheet" href="lib\fontawesome-free-5.8.1-web\css\all.css">
@@ -368,7 +368,7 @@
               return false;
               });
     </script>
-
+    <?php require_once("../funcoes/modalproduto.php"); ?>
 </html>
 
 <?php
