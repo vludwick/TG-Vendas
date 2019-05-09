@@ -168,7 +168,7 @@
             <?php if($total > 0){ ?>
                 <a   type="form-control" class="form-control" style="cursor: pointer;width:60%;padding:6px;border-color:#dc3545;background:#dc3545;;font:16px;color:white;text-decoration:none;text-align: center;" name="cancelar" id="cancelar"><i ></i>Cancelar</a>
                <?php } ?> </div>
-           
+
             
         </form> 
     </div>
@@ -269,6 +269,7 @@
 				{
 					//$("#res_server").html(data);
 					console.log(data);
+                    window.open("../funcoes/gera_pdf.php", '_blank');
 					//alert("Pedido cadastrado com sucesso");
 				},
 				dataType:'html'
