@@ -15,17 +15,121 @@
 			<html lang="pt-br">
 				<head>
 					<meta charset="utf-8">
-					<title>Celke</title>
+					<title>Nota Fiscal</title>
 					<link href="../crv/css/personalizado.css" rel="stylesheet">
 				</head>
-					<h1>Celke - Gerar PDF</h1>
-					<div class="subtitulo">
-						Exemplo com div
-					</div>
-					<p>PORRAAAA ollis sodales blandit.</p>
+                    <table  width=780>
+                        <thead>
+                            <tr><th colspan="9" rowspan="2" style="text-align: center;">NOTA FISCAL</th></tr>
+                        </thead>
+                        
+                        <tbody>
+                            <tr>                                           
+                            </tr>
+                            <tr>
+                                <td colspan="5"> Nome: </td>
+                                <td colspan="3"> CNPJ:</td>
+                                <td colspan="1"> Incrição Estadual:</td>
+                                
+                            </tr>
+                            <tr>
+                                <td colspan="5"> CRV Sports</td>
+                                <td colspan="3"> 00.456.569/0001-66 </td>
+                                <td colspan="1"> 669.554.190.113</td>
+                                
+                            </tr>
+                            <tr>
+                                <td colspan="9" rowspan="2" style="font-weight: bold;"> DESTINATÁRIO/REMETENTE</td>
+                                
+                            </tr>
+                            <tr>
+                                                                
+                            </tr>
+                            <tr>
+                                <td colspan="5"> Nome/Razão Social: </td>
+                                <td colspan="3"> CPF/CNPJ:</td>
+                                <td colspan="1"> Data Emissão:</td>
+                                
+                            </tr>
+                            <tr>
+                                <td colspan="5"> Coca-Cola do Brasil</td>
+                                <td colspan="3"> 00.555.666/0001-23 </td>
+                                <td colspan="1"> 10/05/2019</td>
+                                
+                            </tr>
+                            <tr>
+                                <td colspan="5"> Endereço: </td>
+                                <td colspan="3"> Bairro:</td>
+                                <td colspan="1"> CEP:</td>
+                                
+                            </tr>
+                            <tr>
+                                <td colspan="5"> Rua Antonio Vargas</td>
+                                <td colspan="3"> Jardim Fatecanos </td>
+                                <td colspan="1"> 18.116-390</td>
+                                
+                            </tr>
+                            <tr>
+                                <td colspan="6"> Cidade: </td>
+                                <td colspan="1"> Estado:</td>
+                                <td colspan="2"> RG/Inscrição Estadual:</td>
+                                
+                            </tr>
+                            <tr>
+                                <td colspan="6"> Sorocaba </td>
+                                <td colspan="1"> São Paulo </td>
+                                <td colspan="2"> 772.665.190.113 </td>
+                                
+                            </tr>
+                            <tr>
+                                <td colspan="1" rowspan="2" > Cod. Produto: </td>
+                                <td colspan="5" rowspan="2"> Descrição: </td>
+                                <td colspan="1" rowspan="2"> Quantidade: </td>
+                                <td colspan="1" rowspan="2"> Valor unitário: </td>
+                                <td colspan="1" rowspan="2"> Valor total: </td>
+                                
+                            </tr>
+                            <tr>
+                            </tr>
+                            <tr>                            
+                                <td colspan="1" style="text-align: center"> 2 </td>
+                                <td colspan="5"> Faixa elástica San Agostino </td>
+                                <td colspan="1" style="text-align: center"> 2 </td>
+                                <td colspan="1" style="text-align: center"> R$ 12,00 </td>
+                                <td colspan="1" style="text-align: center"> R$ 24,00 </td>             
+                            </tr>
+                            <tr>                            
+                                <td colspan="1" style="text-align: center"> 9 </td>
+                                <td colspan="5"> Protetor bucal transparente </td>
+                                <td colspan="1" style="text-align: center"> 2 </td>
+                                <td colspan="1" style="text-align: center"> R$ 21,50 </td>
+                                <td colspan="1" style="text-align: center"> R$ 43,00 </td>             
+                            </tr>
+                            <tr>                            
+                                <td colspan="1" style="text-align: center"> 15 </td>
+                                <td colspan="5"> Saco de areia 210kg Rudel </td> 
+                                <td colspan="1" style="text-align: center"> 1 </td>
+                                <td colspan="1" style="text-align: center"> R$ 620,00 </td>
+                                <td colspan="1" style="text-align: center"> R$ 620,00 </td>             
+                            </tr>
+                            <tr>                            
+                                <td colspan="1" style="text-align: center"> 25 </td>
+                                <td colspan="5"> Luva de Boxe Balboa </td>
+                                <td colspan="1" style="text-align: center"> 3 </td>
+                                <td colspan="1" style="text-align: center"> R$ 25,00 </td>
+                                <td colspan="1" style="text-align: center"> R$ 75,00 </td>                                
+                            </tr>
+                           
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="7" rowspan="2">Valor total da nota:</td>
+                                <td colspan="2" rowspan="2" style="text-align: center;font-weight: bold;">R$ 762,00</td>
+                            </tr>
+                        </tfoot>
+                    </table>
 
-					<p>Nulla at leo in risus varius sagittis. Aliquam ullamcorper lectus ultrices tempus mattis. Nunc dapibus lorem ut efficitur cursus. Duis ac sem sed diam pulvinar interdum at nec dolor. Proin nibh augue, efficitur ornare nibh lobortis, pretium fermentum erat. Aliquam in diam faucibus, consectetur orci non, ultrices ex. Mauris auctor urna in eleifend malesuada. Aenean sit amet laoreet turpis. Proin ac ante mi. Vivamus aliquam quis erat non porttitor. Sed efficitur turpis suscipit massa pretium, eget viverra erat luctus. Curabitur rutrum arcu at massa pretium, ac sodales mauris elementum. Curabitur id odio et velit accumsan interdum. Nulla facilisi.</p>
-					<p class="img"><img src="capa_exemplo.jpg" width="180" height="100"></p>
+					
 				<body>
 			</html>
 		');

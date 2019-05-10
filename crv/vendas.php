@@ -191,6 +191,7 @@
         }
          
     });
+    
 
     var cadastro = "venda";
     
