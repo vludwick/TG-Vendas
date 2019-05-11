@@ -23,7 +23,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1 class="pb-3 text-secondary">Realizar Venda</h1>
+                <h1 class="pb-3 text-secondary">Criar Orçamento</h1>
             </div>
         </div>
         <div class="row" id="clienteprocura" style="margin-top: 45px;">
@@ -91,16 +91,7 @@
         
         <div style="margin-left: 20px" class="row">
             <div class="col-md-6">
-                <label class="sm-10 col-form-label">Nome do Cliente:</label>
-                
-            </div>
-            <div style="margin-left: -70px" class="col-md-4">
-                <label class="col-sm-10 col-form-label">Código do Funcionário:</label>
-                
-            </div>
-            <div style="margin-left: -90px" class="col-md-4">
-                <label class="col-sm-10 col-form-label">Código do Cliente</label>
-                
+                <label class="sm-10 col-form-label">Nome do Cliente:</label>                
             </div>
         </div>
         <form id="vendas" action="" method="post" enctype="multipart/form-data">
@@ -109,14 +100,13 @@
                 <input  type="form-control" class="form-control" name="idcliente" id="" disabled>
             </div>
             <div  class="col-md-3">
-                <input  type="form-control" class="form-control" name="idfuncionario" id="idfuncionario" disabled>
+                <input  type="hidden" class="form-control" name="idfuncionario" id="idfuncionario" >
             </div> 
             <div id="resultado_busca5" class="col-md-3">
-                <input  type="form-control" class="form-control" name="id_cliente" id="id_cliente" value="" disabled>
+                <input  type="hidden" class="form-control" name="id_cliente" id="id_cliente" value="" >
             </div>            
         </div>			
-
-    
+		  
             <br/><br/><br/>
             <table class="table table-hover table-striped table-bordered" >
                 <thead>
@@ -133,7 +123,11 @@
                     <?php
                         $total = 0;
                         $qtdProdutosPedidos = 0;
-                        $idProdutos = array(); // Array que armazena todos os IDs dos produtos que estão no Pedido (para conseguir referenciar o name do input pra pegar os dados)
+						$idProdutos = array(); // Array que armazena todos os IDs dos produtos que estão no Pedido (para conseguir referenciar o name do input pra pegar os dados)
+						session_start();
+                        $_SESSION["ids"] = $idProdutos;
+						$_SESSION["qtdProdutosPedidos"] = $qtdProdutosPedidos;
+						                    
                         if(count($_SESSION['carrinho']) > 0):
                         foreach($_SESSION['carrinho'] as $idProd => $qtd){
                         $pegaProduto = $pdo->prepare("SELECT * FROM `produto` WHERE `id_produto` = ?");
@@ -143,44 +137,37 @@
                         $total += $subTotal;
 
                         echo '<tr><td>'.utf8_encode($dadosProduto->nome).'</td><td>'.number_format($dadosProduto->preco, 2, ',', '.').'</td><td><input type="text" id="qtd" style="text-align: center;" disabled value="'.$qtd.'" size="3"  /></td>';
-                        echo '<td>R$ '.number_format($subTotal, 2, ',', '.').'</td><td><div id="remover"><a type="form-control" class="form-control" style="cursor: pointer;width:50%;border-color:#007bff;background:#007bff;font:16px;color:white;text-align: center; margin-left: 60px;" id="'.$idProd.'" >Delete</a></div></td></tr>';
-
-                        // Inputs que tem todos os dados do Produto que faz parte do Pedido	para conseguir obter esses dados no Jquery					
-                        echo '<input type="hidden" id="" name="'.$dadosProduto->id_produto.'id" value="'.$dadosProduto->id_produto.'">';
-                        echo '<input type="hidden" id="" name="'.$dadosProduto->id_produto.'preco" value="'.$dadosProduto->preco.'">';
-                        echo '<input type="hidden" id="" name="'.$dadosProduto->id_produto.'qtd" value="'.$qtd.'">';
-                        echo '<input type="hidden" id="" name="'.$dadosProduto->id_produto.'subtotal" value="'.$subTotal.'">';
-
-                        $qtdProdutosPedidos++;
-                        $idProdutos[$qtdProdutosPedidos] = $dadosProduto->id_produto;
+                        echo '<td>R$ '.number_format($subTotal, 2, ',', '.').'</td><td><div id="remover"><a type="form-control" class="form-control" style="cursor: pointer;width:50%;border-color:#007bff;background:#007bff;font:16px;color:white;text-align: center; margin-left: 60px;" id="'.$idProd.'" >Delete</a></div></td></tr>';			
+						echo '<tr><td><input type="hidden" id="" name="'.$dadosProduto->id_produto.'id" value="'.$dadosProduto->id_produto.'"></td>';
+						echo '<td><input type="hidden" id="" name="'.$dadosProduto->id_produto.'preco" value="'.$dadosProduto->preco.'"></td>';
+						echo '<td><input type="hidden" id="" name="'.$dadosProduto->id_produto.'qtd" value="'.$qtd.'"></td>';
+						echo '<td><input type="hidden" id="" name="'.$dadosProduto->id_produto.'subtotal" value="'.$subTotal.'"></td></tr>';	
                         }
-                            
-                    
-                            echo '<tr><td colspan="3">Total</td><td id="total">R$ '.number_format($total, 2, ',','.').'</td>';
-                            echo '<td id="total"><button type="submit" class="form-control" id="enviarvenda" style="width:60%;border-color:#007bff;background:#007bff;font:16px;color:white;text-align: center; margin-left: 45px;">Finalizar Pedido</button></td></tr>';
-                            
-                        
-                    
+                            			
+						echo '<tr><td colspan="3">Total</td><td id="total">R$ '.number_format($total, 2, ',','.').'</td>';
+						echo '<td id="total"><button type="submit" class="form-control" id="enviarvenda" style="width:60%;border-color:#007bff;background:#007bff;font:16px;color:white;text-align: center; margin-left: 45px;">Finalizar</button></td></tr>';
+						echo '<td><input type="hidden" id="" name="total" value="'.$total.'"></td>';
                         endif;
-                    
-                        
+
                         // Input com o total do pedido e com a quantidade de produtos pedidos
                         echo '<input type="hidden" id="" name="total" value="'.$total.'">';
                         echo '<input type="hidden" id="" name="qtdProdutosPedidos" value="'.$qtdProdutosPedidos.'">';
+						echo '<input type="hidden" id="" name="codcli" value="1">';
+						echo '<input type="hidden" id="" name="codfun" value="2">';
                         // Criando uma sessão com a array que tem os IDS dos produtos que estao nesse pedido
-                        session_start();
-                        $_SESSION["ids"] = $idProdutos;
+
                     ?>
+
                     <div id="res_server"></div>
                 </tbody>
             </table>
            
-            <div class="col-md-12 offset-md-8">
-                <div id="cancela_pedido" style="margin-left: 35px" class="col-md-4"> 
+            
+                <div id="cancela_pedido"  class="col-md-4 offset-md-9" > 
             <?php if($total > 0){ ?>
                 <a   type="form-control" class="form-control" style="cursor: pointer;width:60%;padding:6px;border-color:#dc3545;background:#dc3545;;font:16px;color:white;text-decoration:none;text-align: center;" name="cancelar" id="cancelar"><i ></i>Cancelar</a>
                <?php } ?> </div>
-            </div>
+           
             
         </form> 
     </div>
@@ -271,7 +258,7 @@
 			var formDados = new FormData($(this)[0]);
 			var resultado;
 			$.ajax({
-				url:'../funcoes/cadpedido.php',
+				url:'../funcoes/cadorcamento.php',
 				type:'POST',
 				data:formDados,
 				cache:false,
@@ -280,15 +267,28 @@
 				success:function (data)
 				{
 					//$("#res_server").html(data);
-					//console.log(data);
-					alert("Pedido cadastrado com sucesso");
+					console.log(data);
+					//alert("Pedido cadastrado com sucesso");
 				},
 				dataType:'html'
 			});
 			return false;
 		});
 	});
-   
+	
+	$(document).ready(function (){
+		$.ajax({
+		method: 'post',
+		url: 'sys/sys.php',
+		data: {remove_todos_produtos: 'sim'},
+		dataType: 'json',
+		success: function(retorno){                
+			$('tbody#content_retorno').html(retorno.dados);
+			$('div#cancela_pedido').html('<a ><i ></i></a>');
+		}
+		});
+	});   
+  
 </script>
 
 

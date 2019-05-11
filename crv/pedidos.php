@@ -4,7 +4,7 @@
 <html>
    <head>
       <script src="js/jquery-3.2.1.min.js" language="javascript"></script> 
-      <?php require_once("../funcoes/modalpedido.php"); ?>
+      
       <?php include '../funcoes/menu.php'; ?>
       <link rel="stylesheet" href="lib\DataTables\DataTables-1.10.18\css\jquery.dataTables.min.css">
       <link rel="stylesheet" href="lib\fontawesome-free-5.8.1-web\css\all.css">
@@ -29,14 +29,19 @@
             </thead>
             <tbody>
                <?php
-                  $query="select * from pedido where tipo = '1';";
+                  $query="SELECT p.id_pedido, p.data_pedido, p.total_pedido, c.nome as nome_cliente, f.nome as nome_funcionario FROM
+                  pedido p inner join cliente c 
+                  inner join funcionario f 
+                  ON
+                  p.id_cliente = c.id_cliente and p.id_funcionario = f.id_funcionario 
+                  WHERE p.tipo = 1";
                   $resultado = mysqli_query($conecta, $query);
                   while($linha = mysqli_fetch_array($resultado)){
 					echo '<tr id='.$linha['id_pedido'].'><td>'.$linha['id_pedido'].'</td>';
 					echo '<td>'.$linha['data_pedido'].'</td>';
 					echo '<td>'.$linha['total_pedido'].'</td>';
-					echo '<td>'.$linha['id_cliente'].'</td>';
-					echo '<td>'.$linha['id_funcionario'].'</td>';
+					echo '<td>'.utf8_encode($linha['nome_cliente']).'</td>';
+					echo '<td>'.utf8_encode($linha['nome_funcionario']).'</td>';
                   ?>
                <td><i class="fas fa-search" data-toggle="modal" data-target="#consultapedido" style="cursor: pointer; color:royalBlue"></td>
                <?php
@@ -68,14 +73,21 @@
             </thead>
             <tbody>
                <?php
-                  $query="select * from pedido where tipo = '0';";
+                  $query="SELECT p.id_pedido, p.data_pedido, p.total_pedido, c.nome as nome_cliente, f.nome as nome_funcionario 
+                  FROM pedido p 
+                  inner join cliente c 
+                  inner join funcionario f 
+                  ON
+                  p.id_cliente = c.id_cliente and 
+                  p.id_funcionario = f.id_funcionario 
+                  WHERE p.tipo = 0";
                   $resultado = mysqli_query($conecta, $query);
                   while($linha = mysqli_fetch_array($resultado)){
 					echo '<tr id='.$linha['id_pedido'].'><td>'.$linha['id_pedido'].'</td>';
 					echo '<td>'.$linha['data_pedido'].'</td>';
 					echo '<td>'.$linha['total_pedido'].'</td>';
-					echo '<td>'.$linha['id_cliente'].'</td>';
-					echo '<td>'.$linha['id_funcionario'].'</td>';
+					echo '<td>'.utf8_encode($linha['nome_cliente']).'</td>';
+					echo '<td>'.utf8_encode($linha['nome_funcionario']).'</td>';
                   ?>
                <td><i class="fas fa-search" data-toggle="modal" data-target="#consultapedido" style="cursor: pointer; color:royalBlue"></td>
                <td><i class="fas fa-edit" style="cursor: pointer; color:royalBlue"></td>
@@ -181,6 +193,7 @@
               
               });
    </script>
+   <?php require_once("../funcoes/modalpedido.php"); ?>
 </html>
 <?php
    mysqli_close($conecta);
