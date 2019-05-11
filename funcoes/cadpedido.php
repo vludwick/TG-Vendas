@@ -2,12 +2,54 @@
 include 'conexao.php';
 session_start();
 
+error_reporting(0);
+
 $arrayIDS = array();
+$acao				= $_POST["acao"];
+$id			= $_POST["id"];
 $arrayIDS 			= $_SESSION["ids"];
 $qtdProdutosPedidos = $_POST['qtdProdutosPedidos'];
 $totalPedido  		= $_POST['total'];
 $idcliente 			= $_POST['idcliente'];
 $idfuncionario 		= $_POST["idfuncionario"];
+
+if($acao == "read"){
+	$query = "select * from Pedido where id_pedido = $id";
+	$consulta = mysqli_query($conecta, $query);
+	$resultado = mysqli_fetch_array($consulta);
+	$tabela = "<table class='table table-hover table-striped table-bordered' id='itens'>
+	<thead>
+		<tr>
+			<th>Id</th>
+			<th>Descricao</th>
+			<th>Preco</th>
+			<th>Quantidade</th>
+			<th>Total</th>
+		</tr>   
+	</thead>
+	<tbody>";
+
+
+	
+	
+
+	$query = "select * from pedido_produto where id_pedido = $id";
+	$consulta = mysqli_query($conecta, $query);
+	while($resultado = mysqli_fetch_array($consulta)){
+		$tabela = $tabela.'<tr id='.$resultado['id_produto'].'><td id="produto">'.$resultado['id_produto'].'</td>';
+		$tabela = $tabela.'<td id="descricao">'.$resultado['descricao'].'</td>';
+		$tabela = $tabela.'<td id="preco">'.$resultado['preco'].'</td>';
+		$tabela = $tabela.'<td id="quantidade">'.$resultado['quantidade'].'</td>';
+		$tabela = $tabela.'<td id="valor_total">'.$resultado['valor_total'].'</td></tr>';
+	}
+
+	$tabela = $tabela."</tbody>
+	</table>";
+
+	//print_r(array("select_produto"=>$query, "resultado"=>$resultado,"table"=>$tabela));
+	echo $tabela;
+	exit;
+}
 
 // Inserindo os dados na tabela PEDIDO 
 $data = new DateTime();

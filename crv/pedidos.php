@@ -4,7 +4,7 @@
 <html>
    <head>
       <script src="js/jquery-3.2.1.min.js" language="javascript"></script> 
-      <?php require_once("../funcoes/modalproduto.php"); ?>
+      <?php require_once("../funcoes/modalpedido.php"); ?>
       <?php include '../funcoes/menu.php'; ?>
       <link rel="stylesheet" href="lib\DataTables\DataTables-1.10.18\css\jquery.dataTables.min.css">
       <link rel="stylesheet" href="lib\fontawesome-free-5.8.1-web\css\all.css">
@@ -16,15 +16,15 @@
                <h1 class="pb-3 text-secondary">Pedidos</h1>
             </div>
          </div>
-         <table class="table table-hover table-striped table-bordered" id="produto">
+         <table class="table table-hover table-striped table-bordered" id="pedido">
             <thead>
                <tr>
                   <th>ID</th>
                   <th>Data</th>
                   <th>Total</th> 
-				  <th>Cliente</th>
+				      <th>Cliente</th>
                   <th>Vendedor</th>
-				  <th>Consultar</th>
+				      <th>Consultar</th>
                </tr>
             </thead>
             <tbody>
@@ -37,23 +37,8 @@
 					echo '<td>'.$linha['total_pedido'].'</td>';
 					echo '<td>'.$linha['id_cliente'].'</td>';
 					echo '<td>'.$linha['id_funcionario'].'</td>';
-					
-					/*
-					// Busca o Nome do cliente pelo ID
-					$idcliente = $linha['id_cliente'];
-					$consulta = mysqli_query($conecta, "SELECT nome FROM cliente WHERE id_cliente ='$idcliente'");
-					$resultado = mysqli_fetch_array($consulta);
-					$nomecliente = utf8_encode($resultado['nome']);					
-					echo '<td>'.$nomecliente.'</td>';
-					// Busca o nome do Funcionário pelo ID
-					$idfuncionario = $linha['id_funcionario'];
-					$consulta = mysqli_query($conecta, "SELECT nome FROM funcionario WHERE id_funcionario ='$idfuncionario'");
-					$resultado = mysqli_fetch_array($consulta);
-					$nomefuncionario = utf8_encode($resultado['nome']);					
-					echo '<td>'.$nomefuncionario.'</td>';	
-					*/
                   ?>
-               <td><i class="fas fa-search" style="cursor: pointer; color:royalBlue"></td>
+               <td><i class="fas fa-search" data-toggle="modal" data-target="#consultapedido" style="cursor: pointer; color:royalBlue"></td>
                <?php
                   }
 				?>
@@ -69,13 +54,13 @@
                <h1 class="pb-3 text-secondary">Orçamentos</h1>
             </div>
          </div>
-         <table class="table table-hover table-striped table-bordered" id="produto">
+         <table class="table table-hover table-striped table-bordered" id="orcamento">
             <thead>
                <tr>
                   <th>ID</th>
                   <th>Data</th>
                   <th>Total</th>
-                  <th>ID Cliente</th>
+                  <th>Cliente</th>
                   <th>Vendedor</th>
 				  <th>Consultar</th>
 				  <th>Editar</th>
@@ -91,22 +76,8 @@
 					echo '<td>'.$linha['total_pedido'].'</td>';
 					echo '<td>'.$linha['id_cliente'].'</td>';
 					echo '<td>'.$linha['id_funcionario'].'</td>';
-					/*
-					// Busca o Nome do cliente pelo ID
-					$idcliente = $linha['id_cliente'];
-					$consulta = mysqli_query($conecta, "SELECT nome FROM cliente WHERE id_cliente ='$idcliente'");
-					$resultado = mysqli_fetch_array($consulta);
-					$nomecliente = utf8_encode($resultado['nome']);					
-					echo '<td>'.$nomecliente.'</td>';
-					// Busca o nome do Funcionário pelo ID
-					$idfuncionario = $linha['id_funcionario'];
-					$consulta = mysqli_query($conecta, "SELECT nome FROM funcionario WHERE id_funcionario ='$idfuncionario'");
-					$resultado = mysqli_fetch_array($consulta);
-					$nomefuncionario = utf8_encode($resultado['nome']);					
-					echo '<td>'.$nomefuncionario.'</td>';
-					*/
                   ?>
-               <td><i class="fas fa-search" style="cursor: pointer; color:royalBlue"></td>
+               <td><i class="fas fa-search" data-toggle="modal" data-target="#consultapedido" style="cursor: pointer; color:royalBlue"></td>
                <td><i class="fas fa-edit" style="cursor: pointer; color:royalBlue"></td>
                <?php
                   }
@@ -114,6 +85,10 @@
             </tbody>
          </table>
       </div>
+      <form id="teste">
+         <input type="text" id="acao" name="acao">
+         <input type="text" id="id" name="id">
+      </form>
    </div>
    <?php include 'footer.php'?>
    <script src="js/jquery.js"></script>
@@ -144,10 +119,67 @@
 	}
       
 	$(document).ready( function (){
-	  $('#produto').DataTable(
+	  $('#pedido').DataTable(
+		{"oLanguage": DATATABLE_PTBR}
+	  );
+     $('#orcamento').DataTable(
 		{"oLanguage": DATATABLE_PTBR}
 	  );
 	});
+
+   $(document).on('click',".fa-search", function(){
+            var id = $(this).parent().parent().attr('id');
+            $("#id").val(id);
+            $("#acao").val("read");
+            $('#teste').trigger("submit");
+            
+ 
+            
+        });
+
+        $('#teste').submit(function(event){
+              event.preventDefault();
+              var formDados = new FormData($(this)[0]);
+              var resultado;
+              $.ajax({
+                url:'../funcoes/cadpedido.php',
+                type:'POST',
+                data:formDados,
+                cache:false,
+                contentType:false,
+                processData:false,
+                success:function (data)
+                {
+                  console.log(data);
+                  $("#tabela").html(data);
+                  $('#itens').DataTable().destroy();
+            $('#itens').DataTable(
+		         {"oLanguage": DATATABLE_PTBR}
+	         );
+                  /*
+                  var inicio_acao = data.indexOf("[acao] => ") + "[acao] => ".length;
+                  var fim_acao = data.indexOf("[id] => ");
+
+                  
+
+                  var inicio_fantasia = data.indexOf("[nomefantasia] => ") + "[nomefantasia] => ".length;
+                  
+                  
+                  var inscricao = data.slice(inicio_inscricao , fim_inscricao);
+                  var fantasia = data.slice(inicio_fantasia, data.trim().length-1);
+                  datanasc = trataData(datanasc);
+                  
+                  
+                      $("#cpf").val(cpf);
+
+                        */
+                  },
+                dataType:'text'
+              });
+              return false;
+              
+              
+              });
    </script>
 </html>
 <?php
