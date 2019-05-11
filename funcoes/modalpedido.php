@@ -19,22 +19,22 @@
 				   <div  class="form-row">
                         <div id="fisica" class="form-group col-md-4">
                             <label for="inputEmail3" class="col-sm-2 col-form-label">Data:</label>
-                            <input class="form-control" id="cpf" name="cpf" type="text" placeholder="Data do pedido" disabled=true>
+                            <input class="form-control" id="data" name="data" type="text" placeholder="Data do pedido" disabled=true>
                         </div>
                         <div id="fisica1" class="form-group col-md-4">
                             <label for="inputEmail3" class="col-sm-2 col-form-label">Cliente:</label>
-                            <input class="form-control" id="rg" name="rg" type="text" placeholder="Cliente que realizou" disabled=true>
+                            <input class="form-control" id="cliente" name="cliente" type="text" placeholder="Cliente que realizou" disabled=true>
                         </div>
                         <div id="fisica2" class="form-group col-md-4">
                             <label for="inputEmail3" class="col-sm-10 col-form-label">Funcionário:</label>
-                            <input class="form-control" id="datanasc" name="datanasc" type="text" placeholder="Funcionário que atendeu" disabled=true>
+                            <input class="form-control" id="funcionario" name="funcionario" type="text" placeholder="Funcionário que atendeu" disabled=true>
                         </div>
                   </div>
 
                   <div class="form-row">
                         <div class="form-group col-md-7">
                           <label for="inputEmail3" class="col-sm-2 col-form-label">Total:</label>
-                          <input class="form-control" id="nome" name="nome" type="text" placeholder="Valor total" disabled=true>
+                          <input class="form-control" id="total" name="total" type="text" placeholder="Valor total" disabled=true>
                         </div>
                     </div>
                     <div id="tabela">

@@ -67,8 +67,9 @@
                   <th>Total</th>
                   <th>Cliente</th>
                   <th>Vendedor</th>
-				  <th>Consultar</th>
-				  <th>Editar</th>
+                  <th>Consultar</th>
+                  <th>Editar</th>
+
                </tr>
             </thead>
             <tbody>
@@ -90,7 +91,8 @@
 					echo '<td>'.utf8_encode($linha['nome_funcionario']).'</td>';
                   ?>
                <td><i class="fas fa-search" data-toggle="modal" data-target="#consultapedido" style="cursor: pointer; color:royalBlue"></td>
-               <td><i class="fas fa-edit" style="cursor: pointer; color:royalBlue"></td>
+               <td><i class="fas fa-edit" style="cursor: pointer; color:royalBlue"></td></tr>
+               
                <?php
                   }
 				?>
@@ -98,8 +100,8 @@
          </table>
       </div>
       <form id="teste">
-         <input type="text" id="acao" name="acao">
-         <input type="text" id="id" name="id">
+         <input type="hidden" id="acao" name="acao">
+         <input type="hidden" id="id" name="id">
       </form>
    </div>
    <?php include 'footer.php'?>
@@ -163,28 +165,34 @@
                 success:function (data)
                 {
                   console.log(data);
-                  $("#tabela").html(data);
+                  var inicio_data = data.indexOf("[data] => ") + "[data] => ".length;
+                  var fim_data = data.indexOf("[total] => ");
+                  var inicio_total = data.indexOf("[total] => ") + "[total] => ".length;
+                  var fim_total = data.indexOf("[cliente] => ");
+                  var inicio_cliente = data.indexOf("[cliente] => ") + "[cliente] => ".length;
+                  var fim_cliente = data.indexOf("[funcionario] => ");
+                  var inicio_funcionario = data.indexOf("[funcionario] => ") + "[funcionario] => ".length;
+                  var fim_funcionario = data.indexOf("[table] => ");
+
+                  var inicio_table = data.indexOf("[table] => ") + "[table] => ".length;
+                  
+                  
+                  var data_ped = data.slice(inicio_data , fim_data);
+                  var total = data.slice(inicio_total , fim_total);
+                  var cliente = data.slice(inicio_cliente , fim_cliente);
+                  var funcionario = data.slice(inicio_funcionario , fim_funcionario);
+                  var table = data.slice(inicio_table, data.trim().length-1);
+
+                  $("#data").val(data_ped);
+                  $("#cliente").val(cliente);
+                  $("#funcionario").val(funcionario);
+                  $("#total").val(total);
+
+                  $("#tabela").html(table);
                   $('#itens').DataTable().destroy();
-            $('#itens').DataTable(
-		         {"oLanguage": DATATABLE_PTBR}
-	         );
-                  /*
-                  var inicio_acao = data.indexOf("[acao] => ") + "[acao] => ".length;
-                  var fim_acao = data.indexOf("[id] => ");
-
-                  
-
-                  var inicio_fantasia = data.indexOf("[nomefantasia] => ") + "[nomefantasia] => ".length;
-                  
-                  
-                  var inscricao = data.slice(inicio_inscricao , fim_inscricao);
-                  var fantasia = data.slice(inicio_fantasia, data.trim().length-1);
-                  datanasc = trataData(datanasc);
-                  
-                  
-                      $("#cpf").val(cpf);
-
-                        */
+                  $('#itens').DataTable(
+		               {"oLanguage": DATATABLE_PTBR
+                     });
                   },
                 dataType:'text'
               });
