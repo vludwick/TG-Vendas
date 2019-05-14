@@ -77,7 +77,6 @@ session_start();
                 $retorno['dados'] .= '<tr><td><input type="hidden" id="" name="'.$dadosProduto->id_produto.'id" value="'.$dadosProduto->id_produto.'"></td>';
 				$retorno['dados'] .= '<td><input type="hidden" id="" name="'.$dadosProduto->id_produto.'preco" value="'.$dadosProduto->preco.'"></td>';
 				$retorno['dados'] .= '<td><input type="hidden" id="" name="'.$dadosProduto->id_produto.'qtd" value="'.$qtd.'"></td>';
-				$retorno['dados'] .= '<td><input type="hidden" id="" name="'.$dadosProduto->id_produto.'descricao" value="'.$dadosProduto->descricao.'"></td>';
 				$retorno['dados'] .= '<td><input type="hidden" id="" name="'.$dadosProduto->id_produto.'subtotal" value="'.$subTotal.'"></td></tr>';	
 
 			}
@@ -142,7 +141,6 @@ session_start();
                 $retorno['dados'] .= '<tr><td><input type="hidden" id="" name="'.$dadosProduto->id_produto.'id" value="'.$dadosProduto->id_produto.'"></td>';
 				$retorno['dados'] .= '<td><input type="hidden" id="" name="'.$dadosProduto->id_produto.'preco" value="'.$dadosProduto->preco.'"></td>';
 				$retorno['dados'] .= '<td><input type="hidden" id="" name="'.$dadosProduto->id_produto.'qtd" value="'.$qtd.'"></td>';
-				$retorno['dados'] .= '<td><input type="hidden" id="" name="'.$dadosProduto->id_produto.'descricao" value="'.$dadosProduto->descricao.'"></td>';
 				$retorno['dados'] .= '<td><input type="hidden" id="" name="'.$dadosProduto->id_produto.'subtotal" value="'.$subTotal.'"></td></tr>';	
 				                
             }
