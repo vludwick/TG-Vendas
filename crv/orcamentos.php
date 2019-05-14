@@ -99,6 +99,15 @@
             <div id="resultado_busca4" class="col-md-6">
                 <input  type="form-control" class="form-control" name="idcliente" id="" disabled>
             </div>
+            <div  class="col-md-2">
+                <input  type="hidden" class="form-control"  >
+            </div>
+            <div id="cancela_pedido"  class="col-md-4 " > 
+                <?php if($total > 0){ ?>
+                <a   type="form-control" class="form-control" style="cursor: pointer;width:60%;padding:6px;border-color:#dc3545;background:#dc3545;;font:16px;color:white;text-decoration:none;text-align: center;" name="cancelar" id="cancelar"><i ></i>Cancelar pedido</a>
+               <?php } ?> 
+            </div>
+            
             <div  class="col-md-3">
                 <input  type="hidden" class="form-control" name="idfuncionario" id="idfuncionario" >
             </div> 
@@ -163,10 +172,7 @@
             </table>
            
             
-                <div id="cancela_pedido"  class="col-md-4 offset-md-9" > 
-            <?php if($total > 0){ ?>
-                <a   type="form-control" class="form-control" style="cursor: pointer;width:60%;padding:6px;border-color:#dc3545;background:#dc3545;;font:16px;color:white;text-decoration:none;text-align: center;" name="cancelar" id="cancelar"><i ></i>Cancelar</a>
-               <?php } ?> </div>
+                
            
             
         </form> 
@@ -269,6 +275,18 @@
 					//$("#res_server").html(data);
 					console.log(data);
 					//alert("Pedido cadastrado com sucesso");
+                    $(document).ready(function (){
+                    $.ajax({
+                    method: 'post',
+                    url: 'sys/sys.php',
+                    data: {remove_todos_produtos: 'sim'},
+                    dataType: 'json',
+                    success: function(retorno){                
+                        $('tbody#content_retorno').html(retorno.dados);
+                        $('div#cancela_pedido').html('<a ><i ></i></a>');
+                    }
+                    });
+	}); 
 				},
 				dataType:'html'
 			});

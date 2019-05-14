@@ -1,4 +1,4 @@
-h1{
+/*h1{
 	text-align: center;
 	color: #FF0000;
 	font-size: 35px;
@@ -11,4 +11,11 @@ h1{
 
 .img{
 	text-align: center;
-}
+}*/
+
+table, td, th{border:solid 1px #000; padding:5px; }
+th {background-color:#999;}
+colgroup {background:#F60;}
+.coluna1 {background:#F66;}
+.coluna2  {background:#F33;}
+.coluna3  {background:#F99;}

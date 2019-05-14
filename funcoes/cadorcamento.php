@@ -34,13 +34,17 @@ for($i = 1; $i <= $qtdProdutosPedidos; $i++){
 	$precoProduto = $_POST[$NamePreco];
 	// Buscando a quantidade deste produto no input.
 	$NameQtd = $idProduto.'qtd';
-	$QtdProduto = $_POST[$NameQtd];	
+	$QtdProduto = $_POST[$NameQtd];
+    // Buscando a descrição deste produto no input.
+	$NameDescricao = $idProduto.'descricao';
+	$DescricaoProduto = $_POST[$NameDescricao];
 	// Buscando o subtotal deste produto no input.
 	$NameSubTotal = $idProduto.'subtotal';
 	$SubTotalProduto = $_POST[$NameSubTotal];		
 	
-	$insert2 = mysqli_query($conecta, "INSERT INTO PEDIDO_PRODUTO (ID_PEDIDO, ID_PRODUTO, QUANTIDADE, PRECO, VALOR_TOTAL)
-	VALUES ('$idPedido', '$idProduto', '$QtdProduto', '$precoProduto', '$SubTotalProduto')");
+    $insert2 = mysqli_query($conecta, "INSERT INTO PEDIDO_PRODUTO (ID_PEDIDO, ID_PRODUTO, QUANTIDADE, DESCRICAO, PRECO, VALOR_TOTAL)
+	VALUES ('$idPedido', '$idProduto', '$QtdProduto', '$DescricaoProduto', '$precoProduto', '$SubTotalProduto')");
+    
 }
 
 mysqli_close($conecta);

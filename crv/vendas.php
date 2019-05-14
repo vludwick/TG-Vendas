@@ -28,7 +28,7 @@
         </div>
         <div class="row" id="clienteprocura" style="margin-top: 45px;">
              
-
+            
             <div class="col-md-3 offset-md-10">
                 <div class="row my-0">
                     <button style="" type="button" id="cadastrar" class="btn btn-primary" data-toggle="modal" data-target="#cadastroCliente">
@@ -41,6 +41,8 @@
                     <input  style="margin-left: 50px; margin-top: -40px" class="form-control cpfOuCnpj" type="form-control" id="buscacliente" name="buscacliente" placeholder="CPF ou CNPJ" autocomplete="off">
                 </div>
             </div> 
+            
+            
         </div>
     </div>
 </div>
@@ -49,7 +51,7 @@
         <form action="" method="post" enctype="multipart/form-data" id="form_busca">
             <div  class="row">
                 <div class="col-md-8">
-                    <label style="margin-left: -10px" class="col-sm-10 col-form-label">Código do Produto:</label>
+                    <label style="margin-left: -15px" class="col-sm-10 col-form-label">Código do Produto:</label>
                     <input  class="form-control" type="form-control" id="busca" name="buscar" placeholder="Código de barras" autocomplete="off">
                 </div>
 
@@ -99,16 +101,26 @@
             <div id="resultado_busca4" class="col-md-6">
                 <input  type="form-control" class="form-control" name="idcliente" id="" disabled>
             </div>
+            <div  class="col-md-2">
+                <input  type="hidden" class="form-control"  >
+            </div> 
+            <div id="cancela_pedido"  class="col-md-4 " > 
+                <?php if($total > 0){ ?>
+                <a   type="form-control" class="form-control" style="cursor: pointer;width:60%;padding:6px;border-color:#dc3545;background:#dc3545;;font:16px;color:white;text-decoration:none;text-align: center; margin-left: 35px" name="cancelar" id="cancelar"><i ></i>Cancelar pedido</a>
+               <?php } ?> 
+            </div> 
             <div  class="col-md-3">
                 <input  type="hidden" class="form-control" name="idfuncionario" id="idfuncionario" >
             </div> 
             <div id="resultado_busca5" class="col-md-3">
                 <input  type="hidden" class="form-control" name="id_cliente" id="id_cliente" value="" >
-            </div>            
+            </div>  
+            
         </div>			
 
     
-            <br/><br/><br/>
+            <br/><br/>
+
             <table class="table table-hover table-striped table-bordered" >
                 <thead>
                     <tr>
@@ -138,11 +150,14 @@
                         $total += $subTotal;
 
                         echo '<tr><td>'.utf8_encode($dadosProduto->nome).'</td><td>'.number_format($dadosProduto->preco, 2, ',', '.').'</td><td><input type="text" id="qtd" style="text-align: center;" disabled value="'.$qtd.'" size="3"  /></td>';
-                        echo '<td>R$ '.number_format($subTotal, 2, ',', '.').'</td><td><div id="remover"><a type="form-control" class="form-control" style="cursor: pointer;width:50%;border-color:#007bff;background:#007bff;font:16px;color:white;text-align: center; margin-left: 60px;" id="'.$idProd.'" >Delete</a></div></td></tr>';			
+                        echo '<td>R$ '.number_format($subTotal, 2, ',', '.').'</td><td><div id="remover"><a type="form-control" class="form-control" style="cursor: pointer;width:50%;border-color:#007bff;background:#007bff;font:16px;color:white;text-align: center; margin-left: 60px;" id="'.$idProd.'" >Delete</a></div></td></tr>';
+                            
 						echo '<tr><td><input type="hidden" id="" name="'.$dadosProduto->id_produto.'id" value="'.$dadosProduto->id_produto.'"></td>';
 						echo '<td><input type="hidden" id="" name="'.$dadosProduto->id_produto.'preco" value="'.$dadosProduto->preco.'"></td>';
 						echo '<td><input type="hidden" id="" name="'.$dadosProduto->id_produto.'qtd" value="'.$qtd.'"></td>';
-						echo '<td><input type="hidden" id="" name="'.$dadosProduto->id_produto.'subtotal" value="'.$subTotal.'"></td></tr>';	
+                        echo '<td><input type="hidden" id="" name="'.$dadosProduto->id_produto.'descricao" value="'.$dadosProduto->descricao.'"></td>';
+						echo '<td><input type="hidden" id="" name="'.$dadosProduto->id_produto.'subtotal" value="'.$subTotal.'"></td>';
+						                            
                         }
                             			
 						echo '<tr><td colspan="3">Total</td><td id="total">R$ '.number_format($total, 2, ',','.').'</td>';
@@ -164,10 +179,7 @@
             </table>
            
             
-                <div id="cancela_pedido"  class="col-md-4 offset-md-9" > 
-            <?php if($total > 0){ ?>
-                <a   type="form-control" class="form-control" style="cursor: pointer;width:60%;padding:6px;border-color:#dc3545;background:#dc3545;;font:16px;color:white;text-decoration:none;text-align: center;" name="cancelar" id="cancelar"><i ></i>Cancelar</a>
-               <?php } ?> </div>
+                
 
             
         </form> 
@@ -191,6 +203,7 @@
         }
          
     });
+    
 
     var cadastro = "venda";
     
@@ -271,6 +284,18 @@
 					console.log(data);
                     window.open("../funcoes/gera_pdf.php", '_blank');
 					//alert("Pedido cadastrado com sucesso");
+                    $(document).ready(function (){
+                        $.ajax({
+                        method: 'post',
+                        url: 'sys/sys.php',
+                        data: {remove_todos_produtos: 'sim'},
+                        dataType: 'json',
+                        success: function(retorno){                
+                            $('tbody#content_retorno').html(retorno.dados);
+                            $('div#cancela_pedido').html('<a ><i ></i></a>');
+                        }
+                        });
+                    });
 				},
 				dataType:'html'
 			});

@@ -43,7 +43,7 @@ session_start();
 				$retorno['dados'] .= '<input id="'.$conteudo->id_cliente.'" name="idcliente" type="form-control" class="form-control" value="'.utf8_encode($conteudo->nome).'" disabled>';
 				$retorno['dados1'] .= '<input  type="hidden" class="form-control" name="id_cliente" id="id_cliente" value="'.utf8_encode($conteudo->id_cliente).'">';
 			
-            }
+            } 
 		}
 
 		echo json_encode($retorno);
@@ -77,6 +77,7 @@ session_start();
                 $retorno['dados'] .= '<tr><td><input type="hidden" id="" name="'.$dadosProduto->id_produto.'id" value="'.$dadosProduto->id_produto.'"></td>';
 				$retorno['dados'] .= '<td><input type="hidden" id="" name="'.$dadosProduto->id_produto.'preco" value="'.$dadosProduto->preco.'"></td>';
 				$retorno['dados'] .= '<td><input type="hidden" id="" name="'.$dadosProduto->id_produto.'qtd" value="'.$qtd.'"></td>';
+				$retorno['dados'] .= '<td><input type="hidden" id="" name="'.$dadosProduto->id_produto.'descricao" value="'.$dadosProduto->descricao.'"></td>';
 				$retorno['dados'] .= '<td><input type="hidden" id="" name="'.$dadosProduto->id_produto.'subtotal" value="'.$subTotal.'"></td></tr>';	
 
 			}
@@ -141,6 +142,7 @@ session_start();
                 $retorno['dados'] .= '<tr><td><input type="hidden" id="" name="'.$dadosProduto->id_produto.'id" value="'.$dadosProduto->id_produto.'"></td>';
 				$retorno['dados'] .= '<td><input type="hidden" id="" name="'.$dadosProduto->id_produto.'preco" value="'.$dadosProduto->preco.'"></td>';
 				$retorno['dados'] .= '<td><input type="hidden" id="" name="'.$dadosProduto->id_produto.'qtd" value="'.$qtd.'"></td>';
+				$retorno['dados'] .= '<td><input type="hidden" id="" name="'.$dadosProduto->id_produto.'descricao" value="'.$dadosProduto->descricao.'"></td>';
 				$retorno['dados'] .= '<td><input type="hidden" id="" name="'.$dadosProduto->id_produto.'subtotal" value="'.$subTotal.'"></td></tr>';	
 				                
             }

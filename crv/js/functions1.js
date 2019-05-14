@@ -80,7 +80,7 @@ $(function(){
 			success: function(retorno){                
 				$('tbody#content_retorno').html(retorno.dados);
                 
-				$('div#cancela_pedido').html('<a type="form-control" class="form-control" style="cursor: pointer;width:60%;padding:6px;border-color:#dc3545;background:#dc3545;;font:16px;color:white;text-decoration:none;text-align: center;" name="cancelar" id="cancelar"><i ></i>Cancelar</a>');
+				$('div#cancela_pedido').html('<a type="form-control" class="form-control" style="cursor: pointer;width:60%;padding:6px;border-color:#dc3545;background:#dc3545;;font:16px;color:white;text-decoration:none;text-align: center;margin-left: 25px;" name="cancelar" id="cancelar"><i ></i>Cancelar Pedido</a>');
 			}
 		});
 	});
@@ -96,7 +96,7 @@ $(function(){
 			success: function(retorno){                
 				$('tbody#content_retorno').html(retorno.dados);
                 if(retorno.tot > 0){
-                    $('div#cancela_pedido').html('<a type="form-control" class="form-control" style="cursor: pointer;width:60%;padding:6px;border-color:#dc3545;background:#dc3545;;font:16px;color:white;text-decoration:none;text-align: center;" name="cancelar" id="cancelar"><i ></i>Cancelar</a>');
+                    $('div#cancela_pedido').html('<a type="form-control" class="form-control" style="cursor: pointer;width:60%;padding:6px;border-color:#dc3545;background:#dc3545;;font:16px;color:white;text-decoration:none;text-align: center; margin-left: 25px;" name="cancelar" id="cancelar"><i ></i>Cancelar Pedido</a>');
                 }else { $('div#cancela_pedido').html('<a ><i ></i></a>');
                     
                 }
