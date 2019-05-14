@@ -142,6 +142,7 @@
 						echo '<tr><td><input type="hidden" id="" name="'.$dadosProduto->id_produto.'id" value="'.$dadosProduto->id_produto.'"></td>';
 						echo '<td><input type="hidden" id="" name="'.$dadosProduto->id_produto.'preco" value="'.$dadosProduto->preco.'"></td>';
 						echo '<td><input type="hidden" id="" name="'.$dadosProduto->id_produto.'qtd" value="'.$qtd.'"></td>';
+						echo '<td><input type="hidden" id="" name="'.$dadosProduto->id_produto.'descricao" value="'.$dadosProduto->descricao.'"></td>';
 						echo '<td><input type="hidden" id="" name="'.$dadosProduto->id_produto.'subtotal" value="'.$subTotal.'"></td></tr>';	
                         }
                             			
