@@ -192,6 +192,7 @@
         }
          
     });
+    
 
     var cadastro = "venda";
     
