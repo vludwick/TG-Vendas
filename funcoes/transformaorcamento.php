@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 include 'conexao.php';
 session_start();
 error_reporting(E_ALL & ~E_NOTICE & ~E_WARNING);
@@ -12,9 +12,3 @@ $resultado = mysqli_query($conecta, $update);
 echo "<script>setTimeout(function(){ window.location = '../crv/pedidos.php'; }, 200);</script>";
 mysqli_close($conecta);
 ?>
-
-
-
-
-
-

@@ -70,7 +70,8 @@
                   <th>Consultar</th>
                   <th>Editar</th>
                   <th>Excluir</th>
-				  <th>Ação</th>					
+                  <th>Ação</th>	
+
                </tr>
             </thead>
             <tbody>
@@ -95,7 +96,7 @@
                <td><i class="fas fa-search" data-toggle="modal" data-target="#consultapedido" style="cursor: pointer; color:royalBlue"></td>
                <td><a href="editaorcamentos.php?id=<?php echo $linha['id_pedido'] ?>"> <i class="fas fa-edit" style="cursor: pointer; color:royalBlue"></a></td>
                <td><i class="fas fa-trash-alt" style="cursor: pointer; color:royalBlue" onclick="deletapedido(<?php echo $idpedido; ?>)"></td>
-			   <td><i class="fas fa-hand-holding-usd" style="cursor: pointer; color:royalBlue" onclick="virouvenda(<?php echo $idpedido; ?>)"></td>
+                   <td><i class="fas fa-hand-holding-usd" style="cursor: pointer; color:royalBlue" onclick="virouvenda(<?php echo $idpedido; ?>)"></td>
                </tr>
                
                <?php
@@ -166,22 +167,32 @@
 		success:function (data)
 		{
 		  console.log(data);
+		  var inicio_tipoconsulta = data.indexOf("[tipoconsulta] => ") + "[tipoconsulta] => ".length;
+		  var fim_tipoconsulta = data.indexOf("[btncupom] => ");
+            var inicio_btncupom = data.indexOf("[btncupom] => ") + "[btncupom] => ".length;
+		  var fim_btncupom = data.indexOf("[data] => ");
 		  var inicio_data = data.indexOf("[data] => ") + "[data] => ".length;
 		  var fim_data = data.indexOf("[total] => ");
 		  var inicio_total = data.indexOf("[total] => ") + "[total] => ".length;
 		  var fim_total = data.indexOf("[cliente] => ");
 		  var inicio_cliente = data.indexOf("[cliente] => ") + "[cliente] => ".length;
 		  var fim_cliente = data.indexOf("[funcionario] => ");
-		  var inicio_funcionario = data.indexOf("[funcionario] => ") + "[funcionario] => ".length;
+          var inicio_funcionario = data.indexOf("[funcionario] => ") + "[funcionario] => ".length;
 		  var fim_funcionario = data.indexOf("[table] => ");
 		  var inicio_table = data.indexOf("[table] => ") + "[table] => ".length;
 		  
-		  
+		  var tipoconsulta = data.slice(inicio_tipoconsulta , fim_tipoconsulta);
+		  var btncupom = data.slice(inicio_btncupom , fim_btncupom);
 		  var data_ped = data.slice(inicio_data , fim_data);
 		  var total = data.slice(inicio_total , fim_total);
-		  var cliente = data.slice(inicio_cliente , fim_cliente);
+		  var cliente = data.slice(inicio_cliente , fim_cliente);		  
 		  var funcionario = data.slice(inicio_funcionario , fim_funcionario);
 		  var table = data.slice(inicio_table, data.trim().length-1);
+		  $('#tipo').html('<h5 class="modal-title" id="tipoconsulta" name="tipoconsulta" >'+tipoconsulta+'</h5>');
+          $('#btncupom').html(btncupom);
+          
+
+            
 		  $("#data").val(data_ped);
 		  $("#cliente").val(cliente);
 		  $("#funcionario").val(funcionario);
@@ -199,26 +210,27 @@
 	
 	function deletapedido(id) {		
 		var idpedido = id;
-		decisao = confirm("Realmente deseja excluir o pedido " + idpedido + "?");
+		  decisao = confirm("Realmente deseja excluir o pedido " + idpedido + "?");
 
 		if (decisao == true){
 			$.post("../funcoes/deletaorcamento.php", {idpedido:idpedido}, function(retorno){
 				$("#res_server").html(retorno);
 			});	
 		}	
+			  
 	}
 	
-	function virouvenda(id) {		
+    function virouvenda(id) {		
 		var idpedido = id;
-		decisao = confirm("Deseja transformar o orçamento " + idpedido + " em venda?");
+			decisao = confirm("Deseja transformar o orçamento " + idpedido + " em venda?");
 
 		if (decisao == true){		
 			$.post("../funcoes/transformaorcamento.php", {idpedido:idpedido}, function(retorno){
 				$("#res_server").html(retorno);
 			});	  
-		}
+		}  
 	}	
-	
+       
    </script>
    <?php require_once("../funcoes/modalpedido.php"); ?>
 </html>

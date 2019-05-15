@@ -23,12 +23,18 @@ $_SESSION["idfuncionario"] = $_POST['idfuncionario'];
 
 
 if($acao == "read"){
+    $query1 = "select tipo from pedido where id_pedido = $id";
+	$consulta1 = mysqli_query($conecta, $query1);
+    $_SESSION["idpedido"] = $consulta1;
+
+    
 	$query =	"SELECT p.data_pedido, p.total_pedido, c.nome as nome_cliente, f.nome as nome_funcionario FROM
                   pedido p inner join cliente c 
                   inner join funcionario f 
                   ON
                   p.id_cliente = c.id_cliente and p.id_funcionario = f.id_funcionario 
                   WHERE p.id_pedido = $id";
+    
 	$consulta = mysqli_query($conecta, $query);
 	$resultado = mysqli_fetch_array($consulta);
 	$data = $resultado['data_pedido'];
@@ -47,9 +53,23 @@ if($acao == "read"){
 	</thead>
 	<tbody>";
 	
-	
+	$query1 = "select * from pedido where id_pedido = $id";
+	$consulta1 = mysqli_query($conecta, $query1);
+    //$tipo = $consulta1['tipo'];
+    while($resultado1 = mysqli_fetch_array($consulta1)){
+		$tipo = $resultado1['tipo'];
+	}
+    if($tipo == 1){
+        $tipoconsulta = 'Consulta de pedido';
+        $btncupom = '<a class="btn btn-primary" style="cursor: pointer; color:white" href="../funcoes/cupom2.php?id1='.$id.'" target="_blank"> Cupom fiscal</a>';
+    }else
+    {
+        $tipoconsulta = 'Consulta de orçamento';
+        $btncupom = " ";
+    }
+    
 	$query = "select * from pedido_produto where id_pedido = $id";
-	$consulta = mysqli_query($conecta, $query);
+	$consulta = mysqli_query($conecta, $query);    
 	while($resultado = mysqli_fetch_array($consulta)){
 		$tabela = $tabela.'<tr id='.$resultado['id_produto'].'><td id="produto">'.$resultado['id_produto'].'</td>';
 		$tabela = $tabela.'<td id="descricao">'.$resultado['descricao'].'</td>';
@@ -59,7 +79,7 @@ if($acao == "read"){
 	}
 	$tabela = $tabela."</tbody>
 	</table>";
-	print_r(array("data"=>$data, "total"=>$total_pedido, "cliente"=>$cliente, "funcionario"=>$funcionario, "table"=>$tabela));
+	print_r(array("tipoconsulta"=>$tipoconsulta, "btncupom"=>$btncupom, "data"=>$data, "total"=>$total_pedido, "cliente"=>$cliente, "funcionario"=>$funcionario, "table"=>$tabela));
 	
 	exit;
 }

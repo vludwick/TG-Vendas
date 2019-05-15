@@ -22,49 +22,68 @@ session_start();
     $estado = ' ';
     $rginscricao = ' ';
     $totalnota = '';
-    $produtos = '<tr><td colspan="1" style="text-align: center"> </td><td colspan="5"> </td><td colspan="1" style="text-align: center"> </td><td colspan="1" style="text-align: center">  </td><td colspan="1" style="text-align: center">  </td></tr>';
+    $produtos = '';
+    
+    if(isset($_GET["id1"])){
+        $idpedido = $_GET["id1"];
+    }
+
+    $total = 0;
+    $qtdProdutosPedidos = 0;
+    $idProdutos = array(); // Array que armazena todos os IDs dos produtos que estão no Pedido (para conseguir referenciar o name do input pra pegar os dados)
+    
+
+    $query="SELECT * FROM `pedido_produto` WHERE `id_pedido` = $idpedido";
+    $resultado = mysqli_query($conecta, $query);
+    while($linha = mysqli_fetch_array($resultado)){
+
+        $idproduto =    $linha['id_produto'];
+        $qtd =          $linha['quantidade'];
+        $descricao =    $linha['descricao'];
+        $preco =        $linha['preco'];
+        $subTotal =     $linha['valor_total'];
+        $total +=       $subTotal;
+        //print_r($linha);
+
+        $produtos .= '<tr><td colspan="1" style="text-align: center">'.$idproduto.'</td><td colspan="5">'.$descricao.' </td><td colspan="1" style="text-align: center"> '.$qtd.'</td><td colspan="1" style="text-align: center"> '.$preco.' </td><td colspan="1" style="text-align: center"> '.$subTotal.' </td></tr>';
+    }
+    $totalnota = $total;
     
     
-    if ( isset($_SESSION["totalnota"])){
-        $totalnota = $_SESSION["totalnota"];
+    $query = "select * from pedido where id_pedido = $idpedido";
+    $resultado = mysqli_query($conecta, $query);
+    $linha = mysqli_fetch_array($resultado);    
+    $idcli = $linha['id_cliente'];
+    $krr = $linha['data_pedido'];
+    $krr    = explode(' ', $krr);
+    $data = $krr[0];
+    $data = explode('-', $data);
+    $dataemissao = $data[2] . '-' . $data[1] . '-' . $data[0];
+
+
+    $query = "select * from cliente where id_cliente = $idcli";
+    $resultado = mysqli_query($conecta, $query);
+    $linha = mysqli_fetch_array($resultado);    
+    
+
+    $nome = utf8_encode($linha["nome"]);
+    $endereco = utf8_encode($linha["logradouro"]);
+    $bairro = utf8_encode($linha["bairro"]);
+    $cidade = utf8_encode($linha["cidade"]);
+    $estado = utf8_encode($linha["estado"]);
+    $cep = $linha["cep"];
+
+    if($linha["cpf"] != ''  && $linha["cpf"] != NULL){       
+    $cpfcnpj = $linha["cpf"];
+    }else {
+    $cpfcnpj = $linha["cnpj"];
     }
+    if($linha["inscricao_estadual"] != ''  && $linha["inscricao_estadual"] != NULL){       
+    $rginscricao = $linha["inscricao_estadual"];
+    }else {
+    $rginscricao = $linha["rg"];}
 
-    if ( isset($_SESSION['nfprods']) && $_SESSION['nfprods'] != ''){
-        $produtos = $_SESSION['nfprods'];
-    }
-
-    if ( isset($_SESSION["datanf"])){
-        $dataemissao = $_SESSION["datanf"];
-    }
-
-    if ( isset($_SESSION["idcliente"]) && $_SESSION["idcliente"] != ''){
-        $id = $_SESSION["idcliente"];
-        $query = "select * from cliente where id_cliente = $id";
-
-	   $resultado = mysqli_query($conecta, $query);
-
-	   $linha = mysqli_fetch_array($resultado);
-        
-        $nome = utf8_encode($linha["nome"]);
-        $endereco = utf8_encode($linha["logradouro"]);
-        $bairro = utf8_encode($linha["bairro"]);
-        $cidade = utf8_encode($linha["cidade"]);
-        $estado = utf8_encode($linha["estado"]);
-        $cep = $linha["cep"];
-        
-        if($linha["cpf"] != ''  && $linha["cpf"] != NULL){       
-           $cpfcnpj = $linha["cpf"];
-        }else {
-            $cpfcnpj = $linha["cnpj"];
-        }
-        
-        if($linha["inscricao_estadual"] != ''  && $linha["inscricao_estadual"] != NULL){       
-           $rginscricao = $linha["inscricao_estadual"];
-        }else {
-            $rginscricao = $linha["rg"];
-        }
-        
-    }
+    
     
 
 
