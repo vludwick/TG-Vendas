@@ -8,11 +8,13 @@ $arrayIDS 				= $_SESSION["ids"];
 $qtdProdutosPedidos 	= $_SESSION["qtdProdutosPedidos"];
 $idpedido 				= $_SESSION["idpedido"];
 $totalPedido  			= $_POST['total'];
-$idcliente 				= $_POST['id_cliente'];
-$idfuncionario 			= $_POST["idfuncionario"];
 
-if($_POST['id_cliente'] == '' || $_POST['id_cliente'] == NULL){
-	$idcliente = "1";
+// Busca pelos Dados do Pedido através do ID recebido
+$busca="SELECT * FROM `pedido` WHERE `id_pedido` = '$idpedido'";
+$resultado = mysqli_query($conecta, $busca);
+while($linha = mysqli_fetch_array($resultado)){
+	$idcliente 		=  $linha['id_cliente'];
+	$idfuncionario 	=  $linha['id_funcionario'];
 }
 
 // Excluindo os Itens da tabela Pedido_Produto, antes de cadastrar os novos itens.

@@ -1,6 +1,19 @@
 <?php 
     require_once("../funcoes/conexao.php"); require_once("../funcoes/sessao.php"); 
     error_reporting(E_ALL & ~E_NOTICE & ~E_WARNING);
+	
+	if(isset($_GET["id"])){
+		$idpedido = $_GET["id"];
+	}	
+	
+	//Buscar id do cliente que fez esse orçamento
+	$consulta = mysqli_query($conecta, "SELECT id_cliente FROM PEDIDO WHERE id_pedido ='$idpedido'");
+	$resposta = mysqli_fetch_array($consulta);
+	$idcliente = $resposta['id_cliente']; 	
+	// Usa o id do cliente para buscar o nome do cliente
+	$consulta = mysqli_query($conecta, "SELECT nome FROM cliente WHERE id_cliente ='$idcliente'");
+	$resposta = mysqli_fetch_array($consulta);
+	$nomecliente = $resposta['nome'];	
 ?>
 <!DOCTYPE html>
 <html>
@@ -79,7 +92,7 @@
         <form id="vendas" action="" method="post" enctype="multipart/form-data">
 			<div style="" class="row">                    
 				<div id="resultado_busca4" class="col-md-6">
-					<input  type="form-control" class="form-control" name="idcliente" id=""  required disabled>
+					<input  type="form-control" class="form-control" name="idcliente" id=""  value="<?php echo utf8_encode($nomecliente); ?>" required disabled>
 				</div>
 				<div  class="col-md-2">
 					<input  type="hidden" class="form-control"  >
@@ -112,10 +125,6 @@
 
                 <tbody id="content_retorno">
                     <?php
-                        if(isset($_GET["id"])){
-                            $idpedido = $_GET["id"];
-                        }
-
                         $total = 0;
                         $qtdProdutosPedidos = 0;
 						$idProdutos = array(); // Array que armazena todos os IDs dos produtos que estão no Pedido (para conseguir referenciar o name do input pra pegar os dados)
@@ -124,22 +133,20 @@
 						$_SESSION["idpedido"] = $idpedido;
 						$_SESSION["qtdProdutosPedidos"] = $qtdProdutosPedidos;
 
-
                         if(isset($_SESSION['carrinho'])){
                             unset($_SESSION['carrinho']);
                         }
 
+						// Buscar os produtos daquele orçamento
                         $query="SELECT * FROM `pedido_produto` WHERE `id_pedido` = $idpedido";
                         $resultado = mysqli_query($conecta, $query);
                         while($linha = mysqli_fetch_array($resultado)){
-
                             $idproduto =    $linha['id_produto'];
                             $qtd =          $linha['quantidade'];
                             $descricao =    $linha['descricao'];
                             $preco =        $linha['preco'];
                             $subTotal =     $linha['valor_total'];
                             $total +=       $subTotal;
-                            //print_r($linha);
                         
                             $consulta = mysqli_query($conecta, "SELECT nome FROM PRODUTO WHERE ID_PRODUTO ='$idproduto'");
                             $resultado1 = mysqli_fetch_array($consulta);
@@ -258,7 +265,6 @@
 				success:function (data)
 				{
 					//console.log(data);
-					//alert("Pedido cadastrado com sucesso");
                     $(document).ready(function (){	
                     $.ajax({
                     method: 'post',
@@ -280,8 +286,6 @@
 	});
 
 </script>
-
-
 
 <?php
     mysqli_close($conecta);

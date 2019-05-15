@@ -198,10 +198,8 @@
 	
 	function deletapedido(id) {		
 		var idpedido = id;
-		  
 		$.post("../funcoes/deletaorcamento.php", {idpedido:idpedido}, function(retorno){
-			console.log(retorno);
-			//$("#res_server").html(retorno);
+			$("#res_server").html(retorno);
 		});	  
 	}
 	
