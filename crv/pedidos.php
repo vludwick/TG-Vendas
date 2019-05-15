@@ -22,9 +22,9 @@
                   <th>ID</th>
                   <th>Data</th>
                   <th>Total</th> 
-				      <th>Cliente</th>
+				  <th>Cliente</th>
                   <th>Vendedor</th>
-				      <th>Consultar</th>
+				  <th>Consultar</th>
                </tr>
             </thead>
             <tbody>
@@ -90,10 +90,11 @@
 					echo '<td>'.$linha['total_pedido'].'</td>';
 					echo '<td>'.utf8_encode($linha['nome_cliente']).'</td>';
 					echo '<td>'.utf8_encode($linha['nome_funcionario']).'</td>';
+					$idpedido = $linha['id_pedido'];
                   ?>
                <td><i class="fas fa-search" data-toggle="modal" data-target="#consultapedido" style="cursor: pointer; color:royalBlue"></td>
                <td><a href="editaorcamentos.php?id=<?php echo $linha['id_pedido'] ?>"> <i class="fas fa-edit" style="cursor: pointer; color:royalBlue"></a></td>
-               <td><i class="fas fa-trash-alt" style="cursor: pointer; color:royalBlue"></td>
+               <td><i class="fas fa-trash-alt" style="cursor: pointer; color:royalBlue" onclick="deletapedido(<?php echo $idpedido; ?>)"></td>
                </tr>
                
                <?php
@@ -101,6 +102,7 @@
 				?>
             </tbody>
          </table>
+		 <div id="res_server"></div>
       </div>
       <form id="teste">
          <input type="hidden" id="acao" name="acao">
@@ -136,68 +138,73 @@
 	}
       
 	$(document).ready( function (){
-	  $('#pedido').DataTable(
-		{"oLanguage": DATATABLE_PTBR}
-	  );
-     $('#orcamento').DataTable(
-		{"oLanguage": DATATABLE_PTBR}
-	  );
+		$('#pedido').DataTable(
+		{"oLanguage": DATATABLE_PTBR});
+		$('#orcamento').DataTable(
+		{"oLanguage": DATATABLE_PTBR});
 	});
+	
    $(document).on('click',".fa-search", function(){
             var id = $(this).parent().parent().attr('id');
             $("#id").val(id);
             $("#acao").val("read");
             $('#teste').trigger("submit");
-            
- 
-            
-        });
-        $('#teste').submit(function(event){
-              event.preventDefault();
-              var formDados = new FormData($(this)[0]);
-              var resultado;
-              $.ajax({
-                url:'../funcoes/cadpedido.php',
-                type:'POST',
-                data:formDados,
-                cache:false,
-                contentType:false,
-                processData:false,
-                success:function (data)
-                {
-                  console.log(data);
-                  var inicio_data = data.indexOf("[data] => ") + "[data] => ".length;
-                  var fim_data = data.indexOf("[total] => ");
-                  var inicio_total = data.indexOf("[total] => ") + "[total] => ".length;
-                  var fim_total = data.indexOf("[cliente] => ");
-                  var inicio_cliente = data.indexOf("[cliente] => ") + "[cliente] => ".length;
-                  var fim_cliente = data.indexOf("[funcionario] => ");
-                  var inicio_funcionario = data.indexOf("[funcionario] => ") + "[funcionario] => ".length;
-                  var fim_funcionario = data.indexOf("[table] => ");
-                  var inicio_table = data.indexOf("[table] => ") + "[table] => ".length;
-                  
-                  
-                  var data_ped = data.slice(inicio_data , fim_data);
-                  var total = data.slice(inicio_total , fim_total);
-                  var cliente = data.slice(inicio_cliente , fim_cliente);
-                  var funcionario = data.slice(inicio_funcionario , fim_funcionario);
-                  var table = data.slice(inicio_table, data.trim().length-1);
-                  $("#data").val(data_ped);
-                  $("#cliente").val(cliente);
-                  $("#funcionario").val(funcionario);
-                  $("#total").val(total);
-                  $("#tabela").html(table);
-                  $('#itens').DataTable().destroy();
-                  $('#itens').DataTable(
-		               {"oLanguage": DATATABLE_PTBR
-                     });
-                  },
-                dataType:'text'
-              });
-              return false;
-              
-              
-              });
+    });
+	
+	$('#teste').submit(function(event){
+	  event.preventDefault();
+	  var formDados = new FormData($(this)[0]);
+	  var resultado;
+	  $.ajax({
+		url:'../funcoes/cadpedido.php',
+		type:'POST',
+		data:formDados,
+		cache:false,
+		contentType:false,
+		processData:false,
+		success:function (data)
+		{
+		  console.log(data);
+		  var inicio_data = data.indexOf("[data] => ") + "[data] => ".length;
+		  var fim_data = data.indexOf("[total] => ");
+		  var inicio_total = data.indexOf("[total] => ") + "[total] => ".length;
+		  var fim_total = data.indexOf("[cliente] => ");
+		  var inicio_cliente = data.indexOf("[cliente] => ") + "[cliente] => ".length;
+		  var fim_cliente = data.indexOf("[funcionario] => ");
+		  var inicio_funcionario = data.indexOf("[funcionario] => ") + "[funcionario] => ".length;
+		  var fim_funcionario = data.indexOf("[table] => ");
+		  var inicio_table = data.indexOf("[table] => ") + "[table] => ".length;
+		  
+		  
+		  var data_ped = data.slice(inicio_data , fim_data);
+		  var total = data.slice(inicio_total , fim_total);
+		  var cliente = data.slice(inicio_cliente , fim_cliente);
+		  var funcionario = data.slice(inicio_funcionario , fim_funcionario);
+		  var table = data.slice(inicio_table, data.trim().length-1);
+		  $("#data").val(data_ped);
+		  $("#cliente").val(cliente);
+		  $("#funcionario").val(funcionario);
+		  $("#total").val(total);
+		  $("#tabela").html(table);
+		  $('#itens').DataTable().destroy();
+		  $('#itens').DataTable(
+			   {"oLanguage": DATATABLE_PTBR
+			 });
+		  },
+		dataType:'text'
+	  });
+	  return false;
+	});
+	
+	function deletapedido(id) {		
+		var idpedido = id;
+		  
+		$.post("../funcoes/deletaorcamento.php", {idpedido:idpedido}, function(retorno){
+			console.log(retorno);
+			//$("#res_server").html(retorno);
+		});	  
+	}
+	
    </script>
    <?php require_once("../funcoes/modalpedido.php"); ?>
 </html>

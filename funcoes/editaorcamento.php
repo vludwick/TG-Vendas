@@ -1,10 +1,12 @@
 ﻿<?php
 include 'conexao.php';
 session_start();
+error_reporting(E_ALL & ~E_NOTICE & ~E_WARNING);
 
 $arrayIDS = array();
 $arrayIDS 				= $_SESSION["ids"];
 $qtdProdutosPedidos 	= $_SESSION["qtdProdutosPedidos"];
+$idpedido 				= $_SESSION["idpedido"];
 $totalPedido  			= $_POST['total'];
 $idcliente 				= $_POST['id_cliente'];
 $idfuncionario 			= $_POST["idfuncionario"];
@@ -13,9 +15,13 @@ if($_POST['id_cliente'] == '' || $_POST['id_cliente'] == NULL){
 	$idcliente = "1";
 }
 
-print_r($arrayIDS);
-//echo $qtdProdutosPedidos;
-exit;
+// Excluindo os Itens da tabela Pedido_Produto, antes de cadastrar os novos itens.
+$delete="DELETE FROM `pedido_produto` WHERE id_pedido = '$idpedido'";
+$resultado = mysqli_query($conecta, $delete);
+// Excluindo os Itens da tabela Pedido, antes de cadastrar os novos itens.
+$delete2="DELETE FROM `pedido` WHERE id_pedido = '$idpedido'";
+$resultado = mysqli_query($conecta, $delete2);
+
 
 // Inserindo os dados na tabela PEDIDO 
 $data = new DateTime();
@@ -48,9 +54,8 @@ for($i = 1; $i <= $qtdProdutosPedidos; $i++){
 	
     $insert2 = mysqli_query($conecta, "INSERT INTO PEDIDO_PRODUTO (ID_PEDIDO, ID_PRODUTO, QUANTIDADE, DESCRICAO, PRECO, VALOR_TOTAL)
 	VALUES ('$idPedido', '$idProduto', '$QtdProduto', '$DescricaoProduto', '$precoProduto', '$SubTotalProduto')");
-    
 }
-
+echo "<script>setTimeout(function(){ window.location = '../crv/pedidos.php'; }, 1000);</script>";
 mysqli_close($conecta);
 ?>
 
