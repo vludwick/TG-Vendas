@@ -97,7 +97,7 @@
         <form id="vendas" action="" method="post" enctype="multipart/form-data">
         <div style="" class="row">                    
             <div id="resultado_busca4" class="col-md-6">
-                <input  type="form-control" class="form-control" name="idcliente" id="" disabled>
+                <input  type="form-control" class="form-control" name="idcliente" id=""  required disabled>
             </div>
             <div  class="col-md-2">
                 <input  type="hidden" class="form-control"  >

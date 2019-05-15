@@ -13,9 +13,9 @@ if($_POST['id_cliente'] == '' || $_POST['id_cliente'] == NULL){
 	$idcliente = "1";
 }
 
-//print_r($arrayIDS);
+print_r($arrayIDS);
 //echo $qtdProdutosPedidos;
-//exit;
+exit;
 
 // Inserindo os dados na tabela PEDIDO 
 $data = new DateTime();
