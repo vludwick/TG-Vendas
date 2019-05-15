@@ -70,7 +70,7 @@
                   <th>Consultar</th>
                   <th>Editar</th>
                   <th>Excluir</th>
-
+				  <th>Ação</th>					
                </tr>
             </thead>
             <tbody>
@@ -95,6 +95,7 @@
                <td><i class="fas fa-search" data-toggle="modal" data-target="#consultapedido" style="cursor: pointer; color:royalBlue"></td>
                <td><a href="editaorcamentos.php?id=<?php echo $linha['id_pedido'] ?>"> <i class="fas fa-edit" style="cursor: pointer; color:royalBlue"></a></td>
                <td><i class="fas fa-trash-alt" style="cursor: pointer; color:royalBlue" onclick="deletapedido(<?php echo $idpedido; ?>)"></td>
+			   <td><i class="fas fa-hand-holding-usd" style="cursor: pointer; color:royalBlue" onclick="virouvenda(<?php echo $idpedido; ?>)"></td>
                </tr>
                
                <?php
@@ -202,6 +203,13 @@
 			$("#res_server").html(retorno);
 		});	  
 	}
+	
+	function virouvenda(id) {		
+		var idpedido = id;
+		$.post("../funcoes/transformaorcamento.php", {idpedido:idpedido}, function(retorno){
+			$("#res_server").html(retorno);
+		});	  
+	}	
 	
    </script>
    <?php require_once("../funcoes/modalpedido.php"); ?>
