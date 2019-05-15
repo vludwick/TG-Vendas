@@ -199,16 +199,24 @@
 	
 	function deletapedido(id) {		
 		var idpedido = id;
-		$.post("../funcoes/deletaorcamento.php", {idpedido:idpedido}, function(retorno){
-			$("#res_server").html(retorno);
-		});	  
+		decisao = confirm("Realmente deseja excluir o pedido " + idpedido + "?");
+
+		if (decisao == true){
+			$.post("../funcoes/deletaorcamento.php", {idpedido:idpedido}, function(retorno){
+				$("#res_server").html(retorno);
+			});	
+		}	
 	}
 	
 	function virouvenda(id) {		
 		var idpedido = id;
-		$.post("../funcoes/transformaorcamento.php", {idpedido:idpedido}, function(retorno){
-			$("#res_server").html(retorno);
-		});	  
+		decisao = confirm("Deseja transformar o orçamento " + idpedido + " em venda?");
+
+		if (decisao == true){		
+			$.post("../funcoes/transformaorcamento.php", {idpedido:idpedido}, function(retorno){
+				$("#res_server").html(retorno);
+			});	  
+		}
 	}	
 	
    </script>

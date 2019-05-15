@@ -104,8 +104,8 @@ $(function(){
 		});
 	});  
     
-    $('body').on('click', '#cancela_pedido a', function(){
-        
+    $('body').on('click', '#cancela_pedido a', function(){    
+		alert("ooooooooo");
 		$.ajax({
 			method: 'post',
 			url: 'sys/sys.php',

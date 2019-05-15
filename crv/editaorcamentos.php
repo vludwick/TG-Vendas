@@ -252,36 +252,39 @@
 		
 	$(function(){
 		$('#vendas').submit(function(event){
-			event.preventDefault();
-			var formDados = new FormData($(this)[0]);
-			var resultado;
-			$.ajax({
-				url:'../funcoes/editaorcamento.php',
-				type:'POST',
-				data:formDados,
-				cache:false,
-				contentType:false,
-				processData:false,
-				success:function (data)
-				{
-					//console.log(data);
-                    $(document).ready(function (){	
-                    $.ajax({
-                    method: 'post',
-                    url: 'sys/sys.php',
-                    data: {remove_todos_produtos: 'sim'},
-                    dataType: 'json',
-                    success: function(retorno){                
-                        $('tbody#content_retorno').html(retorno.dados);
-                        $('div#cancela_pedido').html('<a ><i ></i></a>');
-                    }
-                    });
-					}); 
-					$("#res_server").html(data);
-				},
-				dataType:'html'
-			});
-			return false;
+			decisao = confirm("Deseja finalizar a alteração do orçamento ?");
+			if (decisao == true){			
+					event.preventDefault();
+					var formDados = new FormData($(this)[0]);
+					var resultado;
+					$.ajax({
+						url:'../funcoes/editaorcamento.php',
+						type:'POST',
+						data:formDados,
+						cache:false,
+						contentType:false,
+						processData:false,
+						success:function (data)
+						{
+							//console.log(data);
+							$(document).ready(function (){	
+							$.ajax({
+							method: 'post',
+							url: 'sys/sys.php',
+							data: {remove_todos_produtos: 'sim'},
+							dataType: 'json',
+							success: function(retorno){                
+								$('tbody#content_retorno').html(retorno.dados);
+								$('div#cancela_pedido').html('<a ><i ></i></a>');
+							}
+							});
+							}); 
+							$("#res_server").html(data);
+						},
+						dataType:'html'
+					});
+					return false;
+				}
 		});
 	});
 

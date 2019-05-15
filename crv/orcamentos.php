@@ -198,11 +198,7 @@
     });
 
     var cadastro = "venda";
-    
-    
-    
-    
-    
+
     var options = {
     onKeyPress: function (cpf, ev, el, op) {
         var masks = ['000.000.000-000', '00.000.000/0000-00'];
@@ -260,37 +256,40 @@
 		
 	$(function(){
 		$('#vendas').submit(function(event){
-			event.preventDefault();
-			var formDados = new FormData($(this)[0]);
-			var resultado;
-			$.ajax({
-				url:'../funcoes/cadorcamento.php',
-				type:'POST',
-				data:formDados,
-				cache:false,
-				contentType:false,
-				processData:false,
-				success:function (data)
-				{
-					//$("#res_server").html(data);
-					console.log(data);
-					//alert("Pedido cadastrado com sucesso");
-                    $(document).ready(function (){
-                    $.ajax({
-                    method: 'post',
-                    url: 'sys/sys.php',
-                    data: {remove_todos_produtos: 'sim'},
-                    dataType: 'json',
-                    success: function(retorno){                
-                        $('tbody#content_retorno').html(retorno.dados);
-                        $('div#cancela_pedido').html('<a ><i ></i></a>');
-                    }
-                    });
-	}); 
-				},
-				dataType:'html'
-			});
-			return false;
+			decisao = confirm("Deseja finalizar o cadastro do orçamento ?");
+			if (decisao == true){			
+				event.preventDefault();
+				var formDados = new FormData($(this)[0]);
+				var resultado;
+				$.ajax({
+					url:'../funcoes/cadorcamento.php',
+					type:'POST',
+					data:formDados,
+					cache:false,
+					contentType:false,
+					processData:false,
+					success:function (data)
+					{
+						//$("#res_server").html(data);
+						console.log(data);
+						//alert("Pedido cadastrado com sucesso");
+						$(document).ready(function (){
+							$.ajax({
+							method: 'post',
+							url: 'sys/sys.php',
+							data: {remove_todos_produtos: 'sim'},
+							dataType: 'json',
+							success: function(retorno){                
+								$('tbody#content_retorno').html(retorno.dados);
+								$('div#cancela_pedido').html('<a ><i ></i></a>');
+							}
+							});
+						}); 
+					},
+					dataType:'html'
+				});
+				return false;
+			}
 		});
 	});
 	
