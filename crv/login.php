@@ -4,7 +4,9 @@
 <!DOCTYPE html>
 <html>
    <head>
+   <title>CRV Sports</title>
       <?php include '../funcoes/head.php'; ?>
+      <link rel="shortcut icon" href="images/icone.png" >
    </head>
    <body>
       <nav class="navbar navbar-expand-md bg-primary navbar-dark">

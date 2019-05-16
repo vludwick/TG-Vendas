@@ -67,8 +67,7 @@ session_start();
     }
     
 
-
-				                            
+    
 
 	// Carrega seu HTML
 	$dompdf->load_html('
@@ -76,7 +75,7 @@ session_start();
 			<html lang="pt-br">
 				<head>
 					<meta charset="utf-8">
-					<title>Cupom Fiscal</title>
+                    <title>Cupom Fiscal</title>
 					<link href="../crv/css/personalizado.css" rel="stylesheet">
 				</head>
                     <table  width=530>

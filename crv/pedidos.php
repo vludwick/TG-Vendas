@@ -210,7 +210,7 @@
 	
 	function deletapedido(id) {		
 		var idpedido = id;
-		  decisao = confirm("Realmente deseja excluir o pedido " + idpedido + "?");
+		  decisao = confirm("Realmente deseja excluir o orçamento " + idpedido + "?");
 
 		if (decisao == true){
 			$.post("../funcoes/deletaorcamento.php", {idpedido:idpedido}, function(retorno){

@@ -3,6 +3,8 @@
 <html>
 
 <head>
+<title>CRV Sports</title>
+<link rel="shortcut icon" href="../crv/images/icone.png" >
 <?php require_once("head.php"); ?>
 </head>
 
