@@ -54,7 +54,7 @@
             <a class="nav-link" href="pedidos.php"><i class="fa d-inline fa-lg fa-o"></i>Pedidos</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="10Representante.html"><i class="fa d-inline fa-lg fa-o"></i> Faturamento</a>
+            <a class="nav-link" href="faturamento.php"><i class="fa d-inline fa-lg fa-o"></i> Faturamento</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="funcionarios.php"><i class="fa d-inline fa-lg fa-o"></i> Funcionários</a>
