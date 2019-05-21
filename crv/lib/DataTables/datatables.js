@@ -10203,7 +10203,7 @@
 		 *      } );
 		 *    } );
 		 */
-		"aLengthMenu": [ 10, 25, 50, 100 ],
+		"aLengthMenu": [ 12, 9, 6, 3 ],
 	
 	
 		/**
@@ -11207,7 +11207,7 @@
 		 *      } );
 		 *    } )
 		 */
-		"iDisplayLength": 10,
+		"iDisplayLength": 12,
 	
 	
 		/**

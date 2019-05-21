@@ -17,7 +17,7 @@
             {
                 $user = $_SESSION["user_portal"];
 
-                $saudacao = "select nome ";
+                $saudacao = "select * ";
                 $saudacao .= "from funcionario ";
                 $saudacao .= "where id_funcionario = {$user} ";
 
@@ -29,6 +29,7 @@
 
                 $saudacao_login = mysqli_fetch_assoc($saudacao_login);
                 $nome = $saudacao_login["nome"];
+                $tipo = $saudacao_login["tipo"];
                 $nome = explode(" ", $nome);
         ?>
             <div ><a class="btn navbar-btn ml-2 text-white btn-primary"> <?php echo $nome[0] ?> </a><input id="idcli" class="btn navbar-btn ml-2 text-white btn-primary" type="hidden" value="<?php echo $user ?>" ></div>
@@ -53,12 +54,14 @@
           <li class="nav-item">
             <a class="nav-link" href="pedidos.php"><i class="fa d-inline fa-lg fa-o"></i>Pedidos</a>
           </li>
+        <?php if($tipo == 0) { ?>
           <li class="nav-item">
             <a class="nav-link" href="faturamento.php"><i class="fa d-inline fa-lg fa-o"></i> Faturamento</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="funcionarios.php"><i class="fa d-inline fa-lg fa-o"></i> Funcionários</a>
           </li>
+        <?php } ?>
         </ul>
         <a class="btn navbar-btn ml-2 text-white btn-primary" href="../funcoes/sair.php"><i class="fas d-inline fa-lg fa-sign-out-alt"></i> Sair</a>
       </div>

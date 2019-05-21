@@ -173,4 +173,51 @@ session_start();
 		
 		echo json_encode($retorno);
 	}
+
+    if(isset($_POST['Ano']) && $_POST['faturamento'] == 'sim'){
+		include_once "../../funcoes/conexao.php";
+		$Ano = strip_tags($_POST['Ano']);
+
+		$retorno = array();
+		$retorno['dados'] = '';
+		
+        $query=
+            "SELECT 
+                sum(total_pedido)as totalmes, 
+                SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(data_pedido, ' ', 1), '-', 2), '-', -1) AS mes, 
+                SUBSTRING_INDEX(SUBSTRING_INDEX(data_pedido, ' ', 1), '-', -1) AS ano,
+                count(data_pedido) as quantidade
+            from pedido 
+            group by mes, ano";
+        
+            $resultado = mysqli_query($conecta, $query);
+            while($linha = mysqli_fetch_array($resultado)){
+                if(utf8_encode($linha['ano']) == $Ano){
+                    switch ($linha['mes']) {
+                    case 1: $mees = 'Janeiro'; break;
+                    case 2: $mees = 'Fevereiro'; break;
+                    case 3: $mees = 'Mar&ccedilo'; break;
+                    case 4: $mees = 'Abril'; break;
+                    case 5: $mees = 'Maio'; break;
+                    case 6: $mees = 'Junho'; break;
+                    case 7: $mees = 'Julho'; break;
+                    case 8: $mees = 'Agosto'; break;
+                    case 9: $mees = 'Setembro'; break;
+                    case 10: $mees = 'Outubro'; break;
+                    case 11: $mees = 'Novembro'; break;
+                    case 12: $mees = 'Dezembro'; break;
+                }
+                    $retorno['dados'] .= 
+                        'echo <tr id='.$linha["mes"].'><td>'.utf8_encode($mees).'</td>';
+                    $retorno['dados'] .= 
+                        'echo <td>'.utf8_encode($linha["ano"]).'</td>';
+                    $number = number_format($linha["totalmes"], 2, ',', '.');
+                    $retorno['dados'] .= 
+                        'echo <td>'.utf8_encode($number).'</td>';
+                    $retorno['dados'] .= '<td>'.$linha["quantidade"].'</td></tr>';
+                }
+            }
+
+		echo json_encode($retorno);
+    }
 ?>
