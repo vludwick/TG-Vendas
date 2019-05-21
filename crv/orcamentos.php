@@ -256,9 +256,9 @@
 		
 	$(function(){
 		$('#vendas').submit(function(event){
+			event.preventDefault();
 			decisao = confirm("Deseja finalizar o cadastro do orçamento ?");
 			if (decisao == true){			
-				event.preventDefault();
 				var formDados = new FormData($(this)[0]);
 				var resultado;
 				$.ajax({

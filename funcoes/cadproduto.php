@@ -18,9 +18,6 @@ $pk 			= $_POST['pk'];
 $codbarras = date('d/m/Y às H:i:s');
 $codbarras = md5($codbarras);
 
-
-
-
 if($operacao == 'cadastrar')
 {
 

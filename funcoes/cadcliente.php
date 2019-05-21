@@ -72,15 +72,13 @@ if($operacao == 'cadastrar' && $select == '1'){
             $resultado = mysqli_fetch_array($consulta);
 
 			echo '<div class="alert alert-success" role="alert">Cliente Físico cadastrado com sucesso</div>';
-			print_r(array("id"=>$resultado['id_cliente'], "nome"=>$resultado['nome']));
+			print_r(array("id"=>$resultado['id_cliente'], "nome"=>utf8_encode($resultado['nome'])));
         } else{
           
 			echo '<div class="alert alert-danger" role="alert">CPF já cadastrado</div>';
 			print_r(array("erro"=>'erro'));
         }
         
-	
-
 	exit;
 }
 

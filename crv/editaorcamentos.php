@@ -256,9 +256,9 @@ if(isset($_GET["id"])){
 		
 	$(function(){
 		$('#vendas').submit(function(event){
+			event.preventDefault();
 			decisao = confirm("Deseja finalizar a alteração do orçamento ?");
-			if (decisao == true){			
-					event.preventDefault();
+			if (decisao == true){				
 					var formDados = new FormData($(this)[0]);
 					var resultado;
 					$.ajax({

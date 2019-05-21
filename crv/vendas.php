@@ -257,9 +257,9 @@
 		
 	$(function(){
 		$('#vendas').submit(function(event){
+			event.preventDefault();
 			decisao = confirm("Deseja finalizar a venda ?");
-			if (decisao == true){			
-				event.preventDefault();
+			if (decisao == true){							
 				var formDados = new FormData($(this)[0]);
 				var resultado;
 				$.ajax({

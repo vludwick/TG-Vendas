@@ -146,42 +146,38 @@
                 var resptxt = data.slice(inicio_array);
 				$("#res_server").html(resphtml);
                 limparCampos();
-                if(cadastro == "cadastro"){
-                    if(resptxt.indexOf("[erro] => ") == -1){
-                        if(resptxt.indexOf("[pk] => ") == -1){
-                        var inicio_id = resptxt.indexOf("[id] => ") + "[id] => ".length;
-                        var fim_id = resptxt.indexOf("[nome] => ");
-                        var id = resptxt.slice(inicio_id, fim_id);
-                        id = id.trim();
-                        var pk = null;
-                    }
-                    else if(resptxt.indexOf("[id] => ") == -1){
-                        var inicio_pk = resptxt.indexOf("[pk] => ") + "[pk] => ".length;
-                        var fim_pk = resptxt.indexOf("[nome] => ");
-                        var pk = resptxt.slice(inicio_pk, fim_pk);
-                        pk = pk.trim();
-                        var id = null;
-                    }
-                    var inicio_nome = resptxt.indexOf("[nome] => ") + "[nome] => ".length;
-                    var nome = resptxt.slice(inicio_nome, resptxt.trim().length -1);
-                    nome = nome.trim();
-                    if(id != null){
-                        var table = $('#cliente').DataTable();
-                        var row = table.row.add( [id, nome, '<td><i class="fas fa-search" data-toggle="modal" data-target="#cadastroCliente" style="cursor: pointer; color:royalBlue"></td>',
-                        '<td><i class="fas fa-edit" data-toggle="modal" data-target="#cadastroCliente" style="cursor: pointer; color:royalBlue"></td>']).draw().node();
-                        $(row).attr("id", id);
-                    }
-                    else if(pk != null){
-                        $("#"+pk).children().eq(1).html(nome);
-                    }
-                }
-                if(cadastro == "venda"){
-
-                }
-                }
-                
-                
- 
+				if(resphtml.indexOf("danger") == -1){
+					if(cadastro == "cadastro"){
+						if(resptxt.indexOf("[erro] => ") == -1){
+							if(resptxt.indexOf("[pk] => ") == -1){
+							var inicio_id = resptxt.indexOf("[id] => ") + "[id] => ".length;
+							var fim_id = resptxt.indexOf("[nome] => ");
+							var id = resptxt.slice(inicio_id, fim_id);
+							id = id.trim();
+							var pk = null;
+						}
+						else if(resptxt.indexOf("[id] => ") == -1){
+							var inicio_pk = resptxt.indexOf("[pk] => ") + "[pk] => ".length;
+							var fim_pk = resptxt.indexOf("[nome] => ");
+							var pk = resptxt.slice(inicio_pk, fim_pk);
+							pk = pk.trim();
+							var id = null;
+						}
+						var inicio_nome = resptxt.indexOf("[nome] => ") + "[nome] => ".length;
+						var nome = resptxt.slice(inicio_nome, resptxt.trim().length -1);
+						nome = nome.trim();
+						if(id != null){
+							var table = $('#cliente').DataTable();
+							var row = table.row.add( [id, nome, '<td><i class="fas fa-search" data-toggle="modal" data-target="#cadastroCliente" style="cursor: pointer; color:royalBlue"></td>',
+							'<td><i class="fas fa-edit" data-toggle="modal" data-target="#cadastroCliente" style="cursor: pointer; color:royalBlue"></td>']).draw().node();
+							$(row).attr("id", id);
+						}
+						else if(pk != null){
+							$("#"+pk).children().eq(1).html(nome);
+						}
+						}
+					}
+				}
 				},
 			dataType:'html'
 		});

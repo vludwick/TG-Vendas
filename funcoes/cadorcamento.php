@@ -17,17 +17,14 @@ if($_POST['id_cliente'] == '' || $_POST['id_cliente'] == NULL){
 //echo $qtdProdutosPedidos;
 //exit;
 
-// Inserindo os dados na tabela PEDIDO 
-$data = new DateTime();
-$data = $data->format('d-m-Y H:i:s');
 
 $insert = mysqli_query($conecta, "INSERT INTO PEDIDO (DATA_PEDIDO, TOTAL_PEDIDO, ID_CLIENTE, ID_FUNCIONARIO, TIPO)
-VALUES ('$data', '$totalPedido', '$idcliente', '$idfuncionario', '0')");
+VALUES (now(), '$totalPedido', '$idcliente', '$idfuncionario', '0')");
 
 // Buscando o ID do Pedido para usar na tabela Pedido_Produto
-$consulta = mysqli_query($conecta, "SELECT ID_PEDIDO FROM PEDIDO WHERE DATA_PEDIDO ='$data'");
+$consulta = mysqli_query($conecta, "SELECT MAX(ID_PEDIDO) as id_pedido FROM PEDIDO");
 $resultado = mysqli_fetch_array($consulta);
-$idPedido = $resultado['ID_PEDIDO'];
+$idPedido = $resultado['id_pedido'];
 
 // Inserindo os dados de cada produto na tabela pedido_produto
 for($i = 1; $i <= $qtdProdutosPedidos; $i++){
