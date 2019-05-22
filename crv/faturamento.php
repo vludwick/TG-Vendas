@@ -138,7 +138,8 @@
  
         $(document).ready( function (){
             $('#faturamento').DataTable(
-              {"oLanguage": DATATABLE_PTBR}
+              {"oLanguage": DATATABLE_PTBR,
+                "lengthChange": false}
             );
 
         } );
