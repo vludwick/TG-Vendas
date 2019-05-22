@@ -37,7 +37,7 @@
     </thead>
     <tbody>
         <?php
-            $query="select * from cliente;";
+            $query="select * from cliente where id_cliente > 1;";
             $resultado = mysqli_query($conecta, $query);
             while($linha = mysqli_fetch_array($resultado)){
                 echo '<tr id='.$linha['id_cliente'].'><td>'.$linha['id_cliente'].'</td>';

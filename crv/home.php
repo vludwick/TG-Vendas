@@ -22,16 +22,16 @@
   <div class="py-5 text-center text-white opaque-overlay gradient-overlay" style="background-image: url(&quot;https://pingendo.github.io/templates/sections/assets/gallery_architecture_3.jpg&quot;);">
     <div class="container">
       <div class="row">
-        <div class="p-4 col-md-3"> <i class="d-block fa fa-3x fa-shopping-cart"></i>
+        <div class="p-4 col-md-3"> <i style="cursor: pointer;" onclick='realizarVenda()' class="d-block fa fa-3x fa-shopping-cart"></i>
           <h2 style="cursor: pointer;" onclick='realizarVenda()' class="my-3">Realizar Venda</h2>
         </div>
-        <div class="col-md-3 p-4"> <i class="d-block fa fa-3x fa-users"></i>
+        <div class="col-md-3 p-4"> <i style="cursor: pointer;" onclick='clientes()' class="d-block fa fa-3x fa-users"></i>
           <h2 style="cursor: pointer;" onclick='clientes()' class="my-3">Gerenciador de Clientes</h2>
         </div>
-        <div class="col-md-3 p-4"> <i class="d-block fa fa-3x fa-bar-chart"></i>
+        <div class="col-md-3 p-4"> <i style="cursor: pointer;" onclick='rankingProdutos()' class="d-block fa fa-3x fa-bar-chart"></i>
           <h2  style="cursor: pointer;" onclick='rankingProdutos()' class="my-3">Ranking de Produtos</h2>
         </div>
-        <div class="col-md-3 p-4"> <i class="d-block fa fa-3x fa-file"></i>
+        <div class="col-md-3 p-4"> <i style="cursor: pointer;" onclick='pedidos()' class="d-block fa fa-3x fa-file"></i>
           <h2 style="cursor: pointer;" onclick='pedidos()' class="my-3">Consultar Pedidos</h2>
         </div>
       </div>
