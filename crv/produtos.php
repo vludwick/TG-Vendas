@@ -42,23 +42,31 @@
     </thead>
     <tbody>
         <?php
-            $query="select p.id_produto, p.nome, p.descricao, p.preco, sum(pp.quantidade) as quantidade_vendida, sum(pp.valor_total) as total_vendido
-            from produto p 
-            left join 
-            pedido_produto pp
-            on p.id_produto = pp.id_pedido
-            GROUP BY nome";
+            $query="select id_produto, nome, descricao, preco
+            from produto";
             $resultado = mysqli_query($conecta, $query);
             while($linha = mysqli_fetch_array($resultado)){
                 echo '<tr id='.$linha['id_produto'].'><td>'.utf8_encode($linha['nome']).'</td>';
                 echo '<td>'.utf8_encode($linha['descricao']).'</td>';
                 echo '<td>'.$linha['preco'].'</td>';
-                if($linha['quantidade_vendida'] == null and $linha['total_vendido'] == null){
-                  echo '<td>0</td>';
-                  echo '<td>0</td>';
-                }else{
-                  echo '<td>'.$linha['quantidade_vendida'].'</td>';
-                  echo '<td>'.$linha['total_vendido'].'</td>';
+                
+                $idd = $linha['id_produto'];
+                $buscar = $pdo->prepare("select sum(quantidade) as qtdd, sum(valor_total) as totl from pedido_produto produto where id_produto = '$idd' group by id_produto");
+                $buscar->execute();
+                $retorno = array();
+                $retorno['dados'] = '';
+                $retorno['qtd'] = $buscar->rowCount();
+                if($retorno['qtd'] > 0 ){
+                    while($conteudo = $buscar->fetchObject()){
+                    $quanti = $conteudo->qtdd;    
+                    $total = $conteudo->totl;    
+                    echo '<td>'.$quanti.'</td>';
+                    echo '<td>'.$total.'</td>';
+                
+                    }
+                } else {
+                    echo '<td>0</td>';
+                    echo '<td>0</td>';                     
                 }
           ?>
                 <td><i class="fas fa-search" data-toggle="modal" data-target="#cadastroCliente" style="cursor: pointer; color:royalBlue"></td>
