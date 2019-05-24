@@ -24,10 +24,10 @@
                         <h1 class="mb-4">Faça seu Login</h1>
                          <form class="formLogin" action="login.php" method="post">
                             <label>E-mail</label>
-                            <input type="email" name="usuario" class="form-control"  placeholder="Digite seu Email">
+                            <input type="email" name="usuario" class="form-control"  placeholder="Digite seu Email" autocomplete="off">
                              
                             <label>Senha</label>
-                            <input type="password" name="senha" class="form-control" placeholder="Digite sua Senha">
+                            <input type="password" name="senha" class="form-control" placeholder="Digite sua Senha" autocomplete="off">
                              
                             <br>
                             <input type="submit" class="btn btn-secondary" value="Login">

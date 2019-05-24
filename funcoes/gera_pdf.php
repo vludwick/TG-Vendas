@@ -75,7 +75,7 @@ session_start();
 			<html lang="pt-br">
 				<head>
 					<meta charset="utf-8">
-                    <title>Cupom Fiscal</title>
+                    <title>Comprovante de Venda</title>
 					<link href="../crv/css/personalizado.css" rel="stylesheet">
 				</head>
                     <table  width=530>
@@ -84,7 +84,7 @@ session_start();
                         </thead>
                         
                         <tbody>
-                            <tr><th colspan="9" rowspan="2" style="text-align: center;">CUPOM FISCAL</th></tr>
+                            <tr><th colspan="9" rowspan="2" style="text-align: center;">Comprovante de Venda</th></tr>
                             <tr>                                           
                             </tr>
                             <tr>
@@ -156,7 +156,7 @@ session_start();
                         </tbody>
                         <tfoot>
                             <tr>
-                                <td colspan="7" rowspan="2">Valor total da nota:</td>
+                                <td colspan="7" rowspan="2">Valor total do comprovante:</td>
                                 <td colspan="2" rowspan="2" style="text-align: center;font-weight: bold;">R$ '.$totalnota.'</td>
                             </tr>
                         </tfoot>
@@ -181,7 +181,7 @@ session_start();
 	
 	//Exibibir a página
 	$dompdf->stream(
-		"cupom_fiscal.pdf", 
+		"ComprovantedeVenda.pdf", 
 		array(
 			"Attachment" => false //Para realizar o download somente alterar para true
 		)

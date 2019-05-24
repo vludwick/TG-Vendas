@@ -19,22 +19,22 @@
                     <div class="form-row">
                         <div class="form-group col-md-7">
                           <label for="inputEmail3" class="col-sm-2 col-form-label">Nome:</label>
-                          <input class="form-control" id="nome" name="nome" type="text" placeholder="Nome Completo" required>
+                          <input class="form-control" id="nome" name="nome" type="text" placeholder="Nome Completo" required autocomplete="off">
                         </div>
                         <div class="form-group col-md-3">
                             <label for="inputEmail3" id="dinheiro" class="col-sm-2 col-form-label">Preço:</label>
-                            <input type="text" id="preco" name="preco" class="dinheiro form-control"  placeholder="Preço do produto" style="display:inline-block" required>
+                            <input type="text" id="preco" name="preco" class="dinheiro form-control"  placeholder="Preço do produto" style="display:inline-block" required autocomplete="off">
                         </div>
                     </div>
                     
 				   <div  class="form-row">
                         <div class="form-group col-md-4">
                             <label for="inputEmail3" class="col-sm-2 col-form-label">Descrição:</label>
-                            <input class="form-control" id="descricao" name="descricao" type="text" placeholder="Descrição do Produto" required>
+                            <input class="form-control" id="descricao" name="descricao" type="text" placeholder="Descrição do Produto" required autocomplete="off">
                         </div>
                         <div class="form-group col-md-4">
                             <label for="inputEmail3" class="col-sm-10 col-form-label">Quantidade:</label>
-                            <input class="form-control" id="quantidade" name="quantidade" type="number" value="15" placeholder="Quantidade do Produto em Estoque" required>
+                            <input class="form-control" id="quantidade" name="quantidade" type="number" value="15" placeholder="Quantidade do Produto em Estoque" required autocomplete="off">
                         </div>
 					</div>
 					

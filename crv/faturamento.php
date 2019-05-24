@@ -73,7 +73,10 @@
             group by mes, ano";
         
             $resultado = mysqli_query($conecta, $query);
+            $totalano = 0;
+            $vendasAno = 0;
             while($linha = mysqli_fetch_array($resultado)){
+                
                 switch ($linha['mes']) {
                     case 1: $mees = 'Janeiro'; break;
                     case 2: $mees = 'Fevereiro'; break;
@@ -92,13 +95,19 @@
                 echo '<tr id='.$linha['mes'].'><td>'.utf8_encode($mees).'</td>';
                 echo '<td>'.utf8_encode($linha['ano']).'</td>';
                 $number = number_format($linha['totalmes'], 2, ',', '.');
-                echo '<td>'.utf8_encode($number).'</td>';
+                echo '<td>R$ '.utf8_encode($number).'</td>';
                 echo '<td>'.$linha['quantidade'].'</td></tr>';
+                $totalano = $totalano + $linha['totalmes'];
+                $vendasAno = $vendasAno + $linha['quantidade'];
             }
+                
         ?>
                 
             <?php
             }
+            echo '<tr><td colspan="2">Total do ano:</td>';
+            echo '<td>R$ '.number_format($totalano, 2, ',', '.').'</td>';
+            echo '<td>'.$vendasAno.'</td></tr>';
             ?>
     
     </tbody>

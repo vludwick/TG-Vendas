@@ -26,55 +26,55 @@
                     <div class="form-row">
                         <div class="form-group col-md-7">
                           <label for="inputEmail3" class="col-sm-2 col-form-label">*Nome:</label>
-                          <input class="form-control" id="nome" name="nome" type="text" placeholder="Nome Completo" required>
+                          <input class="form-control" id="nome" name="nome" type="text" placeholder="Nome Completo" required autocomplete="off">
                         </div>
                         <div class="form-group col-md-5">
                             <label for="inputEmail3" class="col-sm-4 col-form-label">E-mail:</label>
-                            <input type="email" id="email" name="email" class="form-control"  placeholder="Digite o e-mail">
+                            <input type="email" id="email" name="email" class="form-control"  placeholder="Digite o e-mail" autocomplete="off">
                         </div>
                     </div>
                     
 				   <div  class="form-row">
                         <div id="fisica" class="form-group col-md-4">
                             <label for="inputEmail3" class="col-sm-2 col-form-label">*CPF:</label>
-                            <input class="form-control" id="cpf" name="cpf" type="text" placeholder="CPF - somente os números" required>
+                            <input class="form-control" id="cpf" name="cpf" type="text" placeholder="CPF - somente os números" required autocomplete="off">
                         </div>
                         <div id="fisica1" class="form-group col-md-4">
                             <label for="inputEmail3" class="col-sm-2 col-form-label">*RG:</label>
-                            <input class="form-control" id="rg" name="rg" type="text" placeholder="RG - somente os números">
+                            <input class="form-control" id="rg" name="rg" type="text" placeholder="RG - somente os números" autocomplete="off">
                         </div>
                         <div id="fisica2" class="form-group col-md-4">
                             <label for="inputEmail3" class="col-sm-10 col-form-label">Data de Nascimento:</label>
-                            <input class="form-control" id="datanasc" name="datanasc" type="date" placeholder="Data de Nascimento -somente os números" required>
+                            <input class="form-control" id="datanasc" name="datanasc" type="date" placeholder="Data de Nascimento -somente os números" required autocomplete="off">
                         </div>
                   </div>
                     
 				  <div  class="form-row">
                         <div id="juridica" class="form-group col-md-5">
                             <label for="inputEmail3" class="col-sm-7 col-form-label">*Nome Fantasia:</label>
-                            <input class="form-control" id="nomefantasia" name="nomefantasia" type="text" placeholder="Nome Fantasia">
+                            <input class="form-control" id="nomefantasia" name="nomefantasia" type="text" placeholder="Nome Fantasia" autocomplete="off">
                         </div>
                         <div id="juridica1" class="form-group col-md-4">
                             <label for="inputEmail3" class="col-sm-2 col-form-label">*CNPJ:</label>
-                            <input class="form-control" id="cnpj" name="cnpj" type="text" placeholder="CNPJ - somente os números">
+                            <input class="form-control" id="cnpj" name="cnpj" type="text" placeholder="CNPJ - somente os números" autocomplete="off">
                         </div>
                         <div id="juridica2" class="form-group col-md-3">
                             <label for="inputEmail3" class="col-sm-12 col-form-label">*Inscrição Estadual:</label>
-                            <input class="form-control" id="inscricao" name="inscricao" type="text" placeholder="Insira a Inscrição Estadual">
+                            <input class="form-control" id="inscricao" name="inscricao" type="text" placeholder="Insira a Inscrição Estadual" autocomplete="off">
                         </div>
                   </div> 
 				   
 				  <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="inputEmail3" class="col-sm-2 col-form-label">Rua/Logradouro:</label>
-                            <input class="form-control" id="rua" name="rua" type="text" placeholder="Rua ou Logradouro" required>    </div>
+                            <input class="form-control" id="rua" name="rua" type="text" placeholder="Rua ou Logradouro" required autocomplete="off">    </div>
                         <div class="form-group col-md-2">
                             <label for="inputEmail3" class="col-sm-2 col-form-label">Número:</label>
-                            <input class="form-control" id="numero" onkeypress="return somenteNumeros(event)" name="numero" type="text" placeholder="Número" required>
+                            <input class="form-control" id="numero" onkeypress="return somenteNumeros(event)" name="numero" type="text" placeholder="Número" required autocomplete="off">
                         </div>
                         <div class="form-group col-md-4">
                             <label for="inputEmail3" class="col-sm-2 col-form-label">Cep:</label>
-                            <input class="form-control" id="cep" name="cep" onkeypress="return somenteNumeros(event)" type="text" placeholder="Cep - somente os números" required>
+                            <input class="form-control" id="cep" name="cep" onkeypress="return somenteNumeros(event)" type="text" placeholder="Cep - somente os números" required autocomplete="off">
                        </div>
                   </div> 
 				   
@@ -82,15 +82,15 @@
                   <div class="form-row">
                         <div class="form-group col-md-4">
                             <label for="inputEmail3" class="col-sm-2 col-form-label">Bairro:</label>
-                            <input class="form-control" id="bairro" name="bairro" type="text" placeholder="Bairro" required>
+                            <input class="form-control" id="bairro" name="bairro" type="text" placeholder="Bairro" required autocomplete="off">
                         </div>
                         <div class="form-group col-md-4">
                             <label for="inputEmail3" class="col-sm-2 col-form-label">Cidade:</label>
-                            <input class="form-control" id="cidade" name="cidade" type="text" placeholder="Cidade" required>
+                            <input class="form-control" id="cidade" name="cidade" type="text" placeholder="Cidade" required autocomplete="off">
                         </div>
                         <div class="form-group col-md-4">
                             <label for="inputEmail3" class="col-sm-2 col-form-label">Estado:</label>
-                            <input class="form-control" id="estado" name="estado" type="text" placeholder="Estado" required>
+                            <input class="form-control" id="estado" name="estado" type="text" placeholder="Estado" required autocomplete="off">
                         </div>
                   </div>
 
@@ -98,11 +98,11 @@
                     <div class="form-row">
                         <div class="form-group col-md-5">
                             <label for="inputEmail3" class="col-sm-2 col-form-label">Telefone:</label>
-                            <input class="form-control" id="telefone" name="telefone" type="text" placeholder="(00) 0000-0000  somente os números">
+                            <input class="form-control" id="telefone" name="telefone" type="text" placeholder="(00) 0000-0000  somente os números" autocomplete="off">
                         </div>
                         <div class="form-group col-md-4">
                             <label for="inputEmail3" class="col-sm-2 col-form-label">Celular:</label>
-                            <input class="form-control" id="celular" name="celular" type="text" placeholder="(00) 00000-0000  somente os números">
+                            <input class="form-control" id="celular" name="celular" type="text" placeholder="(00) 00000-0000  somente os números" autocomplete="off">
                         </div>
                     </div>
                     <div id="res_server"></div>

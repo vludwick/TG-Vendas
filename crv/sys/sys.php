@@ -191,6 +191,8 @@ session_start();
             group by mes, ano";
         
             $resultado = mysqli_query($conecta, $query);
+            $totalano = 0;
+            $vendasAno = 0;
             while($linha = mysqli_fetch_array($resultado)){
                 if(utf8_encode($linha['ano']) == $Ano){
                     switch ($linha['mes']) {
@@ -213,10 +215,16 @@ session_start();
                         'echo <td>'.utf8_encode($linha["ano"]).'</td>';
                     $number = number_format($linha["totalmes"], 2, ',', '.');
                     $retorno['dados'] .= 
-                        'echo <td>'.utf8_encode($number).'</td>';
+                        'echo <td>R$ '.utf8_encode($number).'</td>';
                     $retorno['dados'] .= '<td>'.$linha["quantidade"].'</td></tr>';
+                    $totalano = $totalano + $linha['totalmes'];
+                    $vendasAno = $vendasAno + $linha['quantidade'];
                 }
             }
+        
+            $retorno['dados'] .= '<tr><td colspan="2">Total do ano:</td>';
+            $retorno['dados'] .= '<td>R$ '.number_format($totalano, 2, ',', '.').'</td>';
+            $retorno['dados'] .= '<td>'.$vendasAno.'</td></tr>';
 
 		echo json_encode($retorno);
     }
