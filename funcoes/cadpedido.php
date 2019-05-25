@@ -112,10 +112,16 @@ for($i = 1; $i <= $qtdProdutosPedidos; $i++){
 	// Buscando o subtotal deste produto no input.
 	$NameSubTotal = $idProduto.'subtotal';
 	$SubTotalProduto = $_POST[$NameSubTotal];
-    		
 	
 	$insert2 = mysqli_query($conecta, "INSERT INTO PEDIDO_PRODUTO (ID_PEDIDO, ID_PRODUTO, QUANTIDADE, DESCRICAO, PRECO, VALOR_TOTAL)
 	VALUES ('$idPedido', '$idProduto', '$QtdProduto', '$DescricaoProduto', '$precoProduto', '$SubTotalProduto')");
+
+	// Diminuindo a quantidade em estoque do produto
+	$consulta = mysqli_query($conecta, "SELECT quantidade FROM produto where id_produto = '$idProduto'");
+	$resultado = mysqli_fetch_array($consulta);
+	$qtd = $resultado['quantidade'];
+    $novaQtd = $qtd - $QtdProduto;
+	$updateQTD = mysqli_query($conecta, "UPDATE `produto` SET `quantidade`='$novaQtd' WHERE id_produto = '$idProduto'");
     
     $_SESSION['nfprods'] .= '<tr><td colspan="1" style="text-align: center"> '.$idProduto.' </td><td colspan="5"> '.$DescricaoProduto.' </td><td colspan="1" style="text-align: center"> '.$QtdProduto.' </td><td colspan="1" style="text-align: center"> R$ '.$precoProduto.' </td><td colspan="1" style="text-align: center"> R$ '.$SubTotalProduto.' </td></tr>';
 }
