@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 15-Maio-2019 às 02:48
+-- Generation Time: 29-Maio-2019 às 02:54
 -- Versão do servidor: 10.1.37-MariaDB
 -- versão do PHP: 7.3.0
 
@@ -42,7 +42,7 @@ CREATE TABLE `cliente` (
   `celular` varchar(20) DEFAULT NULL,
   `cpf` varchar(15) DEFAULT NULL,
   `rg` varchar(15) DEFAULT NULL,
-  `data_nascimento` date DEFAULT NULL,
+  `data_nascimento` varchar(20) DEFAULT NULL,
   `cnpj` varchar(20) DEFAULT NULL,
   `inscricao_estadual` varchar(30) DEFAULT NULL,
   `nome_fantasia` varchar(50) DEFAULT NULL
@@ -53,18 +53,14 @@ CREATE TABLE `cliente` (
 --
 
 INSERT INTO `cliente` (`id_cliente`, `nome`, `email`, `logradouro`, `numero`, `bairro`, `cidade`, `estado`, `cep`, `telefone`, `celular`, `cpf`, `rg`, `data_nascimento`, `cnpj`, `inscricao_estadual`, `nome_fantasia`) VALUES
-(1, 'Não Registrado', '', '', 0, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(1, 'Maria José', 'maria.jose@gmail.com', 'Rua Dirce Migliorini', 326, 'Jardim Nápoli', 'Sorocaba', 'São Paulo', '18071-426', '1525866324', '15964521865', '764.881.100-63', '22.683.978-3', '1985-06-08', NULL, NULL, NULL),
 (2, 'Clube de Futebol São Bento', 'sao.bento@gmail.com', 'Rua Rúbens Cleto', 253, 'Jardim Los Angeles', 'Sorocaba', 'São Paulo', '18074-050', '1563254114', '15987456521', NULL, NULL, NULL, '68.565.744/0001-97', '668.596.650.607', 'São Bento'),
 (3, 'José João', 'jose.joao@gmail.com.br', 'Rua Faustino Rodrigues Martins', 852, 'Vila Mineirão', 'Sorocaba', 'São Paulo', '18076-500', '1574258413', '15965124585', '682.964.310-41', '12.420.268-8', '1980-12-15', NULL, NULL, NULL),
 (5, 'COCA', '', 'sadasdds', 2626, 'sadassad', 'sadasddsa', 'saddsaads', '511', '', '', NULL, NULL, NULL, '03.093.215/0001-92', '', 'assasaas'),
 (6, 'sadasd', '', 'sdasda', 26, 'sususus', 'sadasd', 'sadads', '2662', '', '', '440.431.288-88', '', '1994-08-21', NULL, NULL, NULL),
 (7, 'sadasd', 'rogerio@gmail.com', 'sdasda', 362, 'Mirante', 'sadasd', 'sadads', '2662', '', '', '440.431.288-18', '', '1994-08-21', NULL, NULL, NULL),
 (8, 'sadasd', 'rogerio@gmail.com', 'sdasda', 33, 'asasasa', 'sadasd', 'sadads', '2662', '', '', '1551515151', '', '1994-08-21', NULL, NULL, NULL),
-(9, 'sadasd', 'rogerio@gmail.com', 'sdasda', 362, 'Mirante', 'sadasd', 'sadads', '2662', '', '', '440.431.288-19', '', '1994-08-21', NULL, NULL, NULL),
-(10, 'agora vai                    ', 'victor@gmail.com', 'avenida', 4563, 'bairosssfwsafga', 'efgaedgadsg', 'agaerg', '18016000', '(21) 5212-1212', '(21) 21212-1212', '460.088.098-66', '', '1111-11-21', NULL, NULL, NULL),
-(11, 'teste', 'victor@gmail.com', 'avenida', 4563, 'bairosssfwsafga', 'efgaedgadsg', 'agaerg', '18016000', '(21) 5212-1212', '', '673.636.369-15', '', '0000-00-00', NULL, NULL, NULL),
-(12, 'agora vai', 'victor@gmail.com', 'avenida', 12121, '212121', 'efgaedgadsg', 'agaerg', '18016000', '(21) 5212-1212', '', '329.969.680-77', '', '0000-00-00', NULL, NULL, NULL),
-(13, 'agora vai', 'victor@gmail.com', 'avenida', 3434343, '3434343', 'efgaedgadsg', 'agaerg', '18016000', '(21) 5212-1212', '(43) 43434-3434', '631.059.800-75', '', '0000-00-00', NULL, NULL, NULL);
+(9, 'sadasd', 'rogerio@gmail.com', 'sdasda', 362, 'Mirante', 'sadasd', 'sadads', '2662', '', '', '440.431.288-19', '', '1994-08-21', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -75,10 +71,10 @@ INSERT INTO `cliente` (`id_cliente`, `nome`, `email`, `logradouro`, `numero`, `b
 CREATE TABLE `funcionario` (
   `id_funcionario` int(11) NOT NULL,
   `nome` varchar(100) CHARACTER SET utf8 NOT NULL,
-  `data_nascimento` date NOT NULL,
+  `data_nascimento` varchar(20) NOT NULL,
   `cpf` varchar(15) CHARACTER SET utf8 NOT NULL,
   `rg` varchar(15) CHARACTER SET utf8 NOT NULL,
-  `data_admissao` date NOT NULL,
+  `data_admissao` varchar(20) NOT NULL,
   `logradouro` varchar(100) CHARACTER SET utf8 NOT NULL,
   `numero` int(11) NOT NULL,
   `bairro` varchar(100) CHARACTER SET utf8 NOT NULL,
@@ -88,7 +84,7 @@ CREATE TABLE `funcionario` (
   `email` varchar(50) NOT NULL,
   `telefone` varchar(20) DEFAULT NULL,
   `celular` varchar(20) DEFAULT NULL,
-  `senha` varchar(30) NOT NULL,
+  `senha` varchar(80) NOT NULL,
   `tipo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -104,35 +100,14 @@ INSERT INTO `funcionario` (`id_funcionario`, `nome`, `data_nascimento`, `cpf`, `
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `nota_fiscal`
---
-
-CREATE TABLE `nota_fiscal` (
-  `id_nota` int(11) NOT NULL,
-  `numero` varchar(30) NOT NULL,
-  `data_emissao` date NOT NULL,
-  `id_pedido` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Extraindo dados da tabela `nota_fiscal`
---
-
-INSERT INTO `nota_fiscal` (`id_nota`, `numero`, `data_emissao`, `id_pedido`) VALUES
-(1, '13468525987463589426', '2019-03-11', 1),
-(2, '85369521647528565235', '2019-03-12', 2);
-
--- --------------------------------------------------------
-
---
 -- Estrutura da tabela `pedido`
 --
 
 CREATE TABLE `pedido` (
   `id_pedido` int(11) NOT NULL,
-  `data_pedido` varchar(100) NOT NULL,
+  `data_pedido` varchar(20) NOT NULL,
   `total_pedido` double NOT NULL,
-  `id_cliente` int(11) DEFAULT '1',
+  `id_cliente` int(11) NOT NULL,
   `id_funcionario` int(11) NOT NULL,
   `tipo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -145,28 +120,7 @@ INSERT INTO `pedido` (`id_pedido`, `data_pedido`, `total_pedido`, `id_cliente`, 
 (1, '2019-03-11', 243.68, 1, 1, 1),
 (2, '2019-03-12', 236.89, 3, 2, 1),
 (3, '2019-03-20', 333.88, 3, 3, 0),
-(4, '2019-03-15', 179.39, 2, 2, 0),
-(5, '0000-00-00', 96.99, 1, 1, 1),
-(6, '0000-00-00', 0, 1, 1, 1),
-(7, '0000-00-00', 96.99, 2, 2, 1),
-(9, '0000-00-00', 96.99, 2, 2, 1),
-(10, '01-05-2019 00:56:21', 96.99, 1, 1, 1),
-(11, '01-05-2019 00:56:39', 0, 1, 1, 1),
-(12, '01-05-2019 00:56:57', 173.48, 1, 1, 1),
-(13, '01-05-2019 00:57:23', 96.99, 1, 1, 1),
-(18, '15-05-2019 00:41:43', 223.18, 9, 1, 1),
-(19, '15-05-2019 00:44:34', 299.67, 0, 1, 1),
-(22, '15-05-2019 01:03:14', 223.18, 0, 1, 1),
-(23, '15-05-2019 01:03:46', 223.18, 9, 1, 1),
-(24, '15-05-2019 01:05:50', 223.18, 1, 1, 1),
-(25, '15-05-2019 01:06:23', 96.99, 1, 1, 1),
-(26, '15-05-2019 01:06:51', 96.99, 9, 1, 1),
-(27, '15-05-2019 01:13:32', 146.69, 9, 1, 1),
-(28, '15-05-2019 01:18:51', 146.69, 11, 1, 1),
-(29, '15-05-2019 01:22:38', 96.99, 0, 1, 0),
-(30, '15-05-2019 01:26:52', 223.18, 1, 1, 0),
-(31, '15-05-2019 01:28:34', 226.68, 1, 1, 1),
-(32, '15-05-2019 01:29:09', 139.9, 9, 1, 1);
+(4, '2019-03-15', 179.39, 2, 2, 0);
 
 -- --------------------------------------------------------
 
@@ -195,41 +149,7 @@ INSERT INTO `pedido_produto` (`id_pedido`, `id_produto`, `quantidade`, `descrica
 (3, 1, 2, NULL, NULL, 193.98),
 (3, 5, 1, NULL, NULL, 139.9),
 (4, 2, 2, NULL, NULL, 99.4),
-(4, 4, 1, NULL, NULL, 79.99),
-(5, 1, 1, NULL, NULL, 96.99),
-(10, 1, 1, NULL, NULL, 96.99),
-(12, 1, 1, NULL, NULL, 96.99),
-(12, 3, 1, NULL, NULL, 76.49),
-(13, 1, 1, NULL, NULL, 96.99),
-(18, 1, 1, 'Par de luvas de boxe.', 96.99, 96.99),
-(18, 2, 1, 'Par de luvas de goleiro.', 49.7, 49.7),
-(18, 3, 1, 'Bola de basquete com medidas oficiais.', 76.49, 76.49),
-(19, 1, 1, 'Par de luvas de boxe.', 96.99, 96.99),
-(19, 2, 1, 'Par de luvas de goleiro.', 49.7, 49.7),
-(19, 3, 2, 'Bola de basquete com medidas oficiais.', 76.49, 152.98),
-(22, 1, 1, 'Par de luvas de boxe.', 96.99, 96.99),
-(22, 2, 1, 'Par de luvas de goleiro.', 49.7, 49.7),
-(22, 3, 1, 'Bola de basquete com medidas oficiais.', 76.49, 76.49),
-(23, 1, 1, 'Par de luvas de boxe.', 96.99, 96.99),
-(23, 2, 1, 'Par de luvas de goleiro.', 49.7, 49.7),
-(23, 3, 1, 'Bola de basquete com medidas oficiais.', 76.49, 76.49),
-(24, 1, 1, 'Par de luvas de boxe.', 96.99, 96.99),
-(24, 2, 1, 'Par de luvas de goleiro.', 49.7, 49.7),
-(24, 3, 1, 'Bola de basquete com medidas oficiais.', 76.49, 76.49),
-(25, 1, 1, 'Par de luvas de boxe.', 96.99, 96.99),
-(26, 1, 1, 'Par de luvas de boxe.', 96.99, 96.99),
-(27, 1, 1, 'Par de luvas de boxe.', 96.99, 96.99),
-(27, 2, 1, 'Par de luvas de goleiro.', 49.7, 49.7),
-(28, 1, 1, 'Par de luvas de boxe.', 96.99, 96.99),
-(28, 2, 1, 'Par de luvas de goleiro.', 49.7, 49.7),
-(29, 1, 1, 'Par de luvas de boxe.', 96.99, 96.99),
-(30, 1, 1, 'Par de luvas de boxe.', 96.99, 96.99),
-(30, 2, 1, 'Par de luvas de goleiro.', 49.7, 49.7),
-(30, 3, 1, 'Bola de basquete com medidas oficiais.', 76.49, 76.49),
-(31, 1, 1, 'Par de luvas de boxe.', 96.99, 96.99),
-(31, 2, 1, 'Par de luvas de goleiro.', 49.7, 49.7),
-(31, 4, 1, 'Bola de Futebol com medidas oficiais.', 79.99, 79.99),
-(32, 5, 1, 'Saco de areia para pratica de artes marciais.', 139.9, 139.9);
+(4, 4, 1, NULL, NULL, 79.99);
 
 -- --------------------------------------------------------
 
@@ -252,28 +172,16 @@ CREATE TABLE `produto` (
 --
 
 INSERT INTO `produto` (`id_produto`, `nome`, `preco`, `descricao`, `codigo_barras`, `quantidade`, `foto`) VALUES
-(1, 'Luvas Boxe', 96.99, 'Par de luvas de boxe.', '13467985213265874125', 15, 'prod1.jpg'),
-(2, 'Luvas Para Goleiro', 49.7, 'Par de luvas de goleiro.', '15478745963265874125', 32, 'prod2.jpg'),
-(3, 'Bola de Basquete', 76.49, 'Bola de basquete com medidas oficiais.', '36525269854712453698', 12, 'prod3.jpg'),
-(4, 'Bola de Futebol', 79.99, 'Bola de Futebol com medidas oficiais.', '54147858472369563214', 6, 'prod4.jpg'),
-(5, 'Saco de Areia', 139.9, 'Saco de areia para pratica de artes marciais.', '21453962795386425963', 26, 'prod5.jpg'),
-(46, 'asaas    ', 18.25, '    ', '5b46bdfe2b653aad8b4f4e15e711d3f5', 2, 'd80aeafb6dfd42243d1b21d19a353844-foto.jpg'),
-(47, 'asdasda', 18.25, 'sad', '7a4406c3acf6dcfb351a1eaca633d555', 1, 'prod47.jpg'),
-(48, 'assadds', 18.25, 'OItenta', '61f1220f07d0ed44b2c71878c6717d04', 1, 'prod48.jpg'),
-(49, 'asaas', 262.62, 'A turma do chaves    ', '32a42c1b0f46b67e202d6de8d8010022', 1, 'prod49.jpg'),
-(50, 'asdsda', 18.25, 'A turma do chaves', '32ec5e8e4ca7fcd7180fb75c5a88053b', 1, 'prod50.jpg'),
-(51, 'bbbbbbbbbb', 18.25, 'A turma do chaves    ', '0cda4d9ebcf2782882e3b402d3913c68', 4, 'prod51.jpg'),
-(52, 'bola', 18.25, 'bola de teste', '3465dd8eef3507807b3c77dd1733c52c', 3, 'prod52.jpg'),
-(53, 'luva de teste', 12.12, 'luva', '00e4dd041e0883f234b9bfb91ba50d21', 2, 'prod53.jpg'),
-(54, 'caraio de teste', 12.12, 'tete', '6c1f8e1c5d6e5c4855145da806552587', 4, 'prod54.jpg'),
-(55, 'merda de teste', 10.01, 'teste', 'a04e5e79fd70c7a673adb3f4401301e9', 4, 'prod55.jpg'),
-(56, 'VICTOR LUDWICK GUEDES DOMINGUES', 18.25, 'A turma do chaves       ', 'ac0e3ea4090dec2a1699e953598d3498', 3, 'prod56.jpg'),
-(57, 'VICTOR LUDWICK GUEDES DOMINGUES', 18.25, 'A turma do chaves    ', '84cc64d580baaf41e8c905c8e349bf7e', 3, 'prod57.jpg'),
-(58, 'VICTOR LUDWICK GUEDES DOMINGUES', 18.25, 'A turma do chaves    ', '6faea6b044066ce1b29761410a9d0f1b', 3, 'prod58.jpg'),
-(59, 'Maria José    ', 18.25, 'A turma do chaves', 'e1b5fbe95489181cad2407f0db37cf60', 3, 'prod59.jpg'),
-(60, 'VICTOR LUDWICK GUEDES DOMINGUES', 18.25, 'A turma do chaves    ', 'bfc806e7184b5018422737ec8807f8e5', 5, 'prod60.jpg'),
-(61, 'teste final', 18.25, 'A turma do chaves    ', 'a4ce2c80500aab397f4bfe696aef5278', 4, 'prod61.jpg'),
-(62, 'agora vai                    ', 12.36, 'cccc                    ', 'a41662c191e21950b9a95ab28bcab0d5', 25, 'c240a9823b3a28bb4be3b704d801b144-foto.jpg');
+(1, 'Luvas Boxe', 96.99, 'Par de luvas de boxe.', '13467985213265874125', 15, ''),
+(2, 'Luvas Para Goleiro', 49.7, 'Par de luvas de goleiro.', '15478745963265874125', 32, ''),
+(3, 'Bola de Basquete', 76.49, 'Bola de basquete com medidas oficiais.', '36525269854712453698', 12, ''),
+(4, 'Bola de Futebol', 79.99, 'Bola de Futebol com medidas oficiais.', '54147858472369563214', 6, ''),
+(5, 'Saco de Areia', 139.9, 'Saco de areia para pratica de artes marciais.', '21453962795386425963', 26, ''),
+(46, 'asaas', 18.25, '', '5b46bdfe2b653aad8b4f4e15e711d3f5', 2, 'Array'),
+(47, 'asdasda', 18.25, 'sad', '7a4406c3acf6dcfb351a1eaca633d555', 1, 'Array'),
+(48, 'assadds', 18.25, 'OItenta', '61f1220f07d0ed44b2c71878c6717d04', 1, 'Array'),
+(49, 'asaas', 262.62, 'A turma do chaves', '32a42c1b0f46b67e202d6de8d8010022', 1, 'bda9b92cfeb81a86cca1d4adc481c3c8-foto.jpg'),
+(50, 'asdsda', 18.25, 'A turma do chaves', '32ec5e8e4ca7fcd7180fb75c5a88053b', 1, '6862d3d221de34cf9aa64db5980216b6-foto.jpg');
 
 --
 -- Indexes for dumped tables
@@ -297,20 +205,12 @@ ALTER TABLE `funcionario`
   ADD UNIQUE KEY `email` (`email`);
 
 --
--- Indexes for table `nota_fiscal`
---
-ALTER TABLE `nota_fiscal`
-  ADD PRIMARY KEY (`id_nota`),
-  ADD UNIQUE KEY `numero` (`numero`),
-  ADD KEY `fk_pedido_nota` (`id_pedido`);
-
---
 -- Indexes for table `pedido`
 --
 ALTER TABLE `pedido`
   ADD PRIMARY KEY (`id_pedido`),
-  ADD KEY `fk_funcionario_pedido` (`id_funcionario`),
-  ADD KEY `id_cliente` (`id_cliente`);
+  ADD KEY `fk_cliente_pedido` (`id_cliente`),
+  ADD KEY `fk_funcionario_pedido` (`id_funcionario`);
 
 --
 -- Indexes for table `pedido_produto`
@@ -334,7 +234,7 @@ ALTER TABLE `produto`
 -- AUTO_INCREMENT for table `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `id_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `funcionario`
@@ -343,32 +243,20 @@ ALTER TABLE `funcionario`
   MODIFY `id_funcionario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `nota_fiscal`
---
-ALTER TABLE `nota_fiscal`
-  MODIFY `id_nota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
 -- AUTO_INCREMENT for table `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `id_pedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id_pedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `produto`
 --
 ALTER TABLE `produto`
-  MODIFY `id_produto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+  MODIFY `id_produto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- Constraints for dumped tables
 --
-
---
--- Limitadores para a tabela `nota_fiscal`
---
-ALTER TABLE `nota_fiscal`
-  ADD CONSTRAINT `fk_pedido_nota` FOREIGN KEY (`id_pedido`) REFERENCES `pedido` (`id_pedido`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
 -- Limitadores para a tabela `pedido`
