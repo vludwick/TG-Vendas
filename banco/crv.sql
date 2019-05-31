@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 29-Maio-2019 às 02:54
+-- Generation Time: 31-Maio-2019 às 02:04
 -- Versão do servidor: 10.1.37-MariaDB
 -- versão do PHP: 7.3.0
 
@@ -53,14 +53,12 @@ CREATE TABLE `cliente` (
 --
 
 INSERT INTO `cliente` (`id_cliente`, `nome`, `email`, `logradouro`, `numero`, `bairro`, `cidade`, `estado`, `cep`, `telefone`, `celular`, `cpf`, `rg`, `data_nascimento`, `cnpj`, `inscricao_estadual`, `nome_fantasia`) VALUES
-(1, 'Maria José', 'maria.jose@gmail.com', 'Rua Dirce Migliorini', 326, 'Jardim Nápoli', 'Sorocaba', 'São Paulo', '18071-426', '1525866324', '15964521865', '764.881.100-63', '22.683.978-3', '1985-06-08', NULL, NULL, NULL),
+(1, 'Não Registrado', '', '', 0, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (2, 'Clube de Futebol São Bento', 'sao.bento@gmail.com', 'Rua Rúbens Cleto', 253, 'Jardim Los Angeles', 'Sorocaba', 'São Paulo', '18074-050', '1563254114', '15987456521', NULL, NULL, NULL, '68.565.744/0001-97', '668.596.650.607', 'São Bento'),
 (3, 'José João', 'jose.joao@gmail.com.br', 'Rua Faustino Rodrigues Martins', 852, 'Vila Mineirão', 'Sorocaba', 'São Paulo', '18076-500', '1574258413', '15965124585', '682.964.310-41', '12.420.268-8', '1980-12-15', NULL, NULL, NULL),
-(5, 'COCA', '', 'sadasdds', 2626, 'sadassad', 'sadasddsa', 'saddsaads', '511', '', '', NULL, NULL, NULL, '03.093.215/0001-92', '', 'assasaas'),
-(6, 'sadasd', '', 'sdasda', 26, 'sususus', 'sadasd', 'sadads', '2662', '', '', '440.431.288-88', '', '1994-08-21', NULL, NULL, NULL),
-(7, 'sadasd', 'rogerio@gmail.com', 'sdasda', 362, 'Mirante', 'sadasd', 'sadads', '2662', '', '', '440.431.288-18', '', '1994-08-21', NULL, NULL, NULL),
-(8, 'sadasd', 'rogerio@gmail.com', 'sdasda', 33, 'asasasa', 'sadasd', 'sadads', '2662', '', '', '1551515151', '', '1994-08-21', NULL, NULL, NULL),
-(9, 'sadasd', 'rogerio@gmail.com', 'sdasda', 362, 'Mirante', 'sadasd', 'sadads', '2662', '', '', '440.431.288-19', '', '1994-08-21', NULL, NULL, NULL);
+(4, 'Fábio Cláudio Bernardo Castro', 'fabioclaudiobernardocastro__fabioclaudiobernardoca', 'Rua Rio de Janeiro', 690, 'Dom Giocondo', 'Rio Branco', 'AC', '69900-309', '(68) 3734-7284', '(68) 99222-1499', '770.596.216-01', '46.632.333-5', '1991-08-16', NULL, NULL, NULL),
+(5, 'Laura Isabella Rocha', 'llauraisabellarocha@mmetalica.com.br', 'Rua 20', 642, 'Cidade Operária', 'São Luís', 'MA', 'Cidade OperÃ¡ria', '(98) 2919-4766', '(98) 99656-9689', '804.255.687-09', '21.359.700-7', '1978-04-10', NULL, NULL, NULL),
+(6, 'Enrico Augusto Danilo Costa', 'enricoaugustodanilocosta_@smalte.com.br', 'Rua B6', 609, 'Residencial Jardim América', 'Gurupi', 'TO', '77427-012', '(63) 3518-2846', '(63) 98839-7425', '372.488.217-30', '20.638.447-6', '1987-05-01', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -84,7 +82,7 @@ CREATE TABLE `funcionario` (
   `email` varchar(50) NOT NULL,
   `telefone` varchar(20) DEFAULT NULL,
   `celular` varchar(20) DEFAULT NULL,
-  `senha` varchar(80) NOT NULL,
+  `senha` varchar(30) NOT NULL,
   `tipo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -107,7 +105,7 @@ CREATE TABLE `pedido` (
   `id_pedido` int(11) NOT NULL,
   `data_pedido` varchar(20) NOT NULL,
   `total_pedido` double NOT NULL,
-  `id_cliente` int(11) NOT NULL,
+  `id_cliente` int(11) DEFAULT '1',
   `id_funcionario` int(11) NOT NULL,
   `tipo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -117,10 +115,14 @@ CREATE TABLE `pedido` (
 --
 
 INSERT INTO `pedido` (`id_pedido`, `data_pedido`, `total_pedido`, `id_cliente`, `id_funcionario`, `tipo`) VALUES
-(1, '2019-03-11', 243.68, 1, 1, 1),
-(2, '2019-03-12', 236.89, 3, 2, 1),
-(3, '2019-03-20', 333.88, 3, 3, 0),
-(4, '2019-03-15', 179.39, 2, 2, 0);
+(1, '2019-05-30 20:58:30', 2476.19, 2, 3, 1),
+(2, '2019-05-30 21:00:01', 336.29, 4, 3, 1),
+(3, '2019-05-30 21:00:43', 596.05, 3, 3, 0),
+(5, '2019-05-30 21:01:31', 695.45, 1, 3, 0),
+(6, '2019-05-30 21:01:52', 449.86, 3, 3, 0),
+(7, '2019-05-30 21:02:04', 412.36, 3, 3, 0),
+(8, '2019-05-30 21:03:31', 452.86, 6, 3, 1),
+(9, '2019-05-30 21:03:51', 216.39, 6, 3, 1);
 
 -- --------------------------------------------------------
 
@@ -142,14 +144,33 @@ CREATE TABLE `pedido_produto` (
 --
 
 INSERT INTO `pedido_produto` (`id_pedido`, `id_produto`, `quantidade`, `descricao`, `preco`, `valor_total`) VALUES
-(1, 1, 2, NULL, NULL, 193.98),
-(1, 2, 1, NULL, NULL, 49.7),
-(2, 1, 1, NULL, NULL, 96.99),
-(2, 5, 1, NULL, NULL, 139.9),
-(3, 1, 2, NULL, NULL, 193.98),
-(3, 5, 1, NULL, NULL, 139.9),
-(4, 2, 2, NULL, NULL, 99.4),
-(4, 4, 1, NULL, NULL, 79.99);
+(1, 3, 1, 'Bola de basquete com medidas oficiais.    ', 76.49, 76.49),
+(1, 4, 30, 'Bola de Futebol com medidas oficiais.    ', 79.99, 2399.7),
+(2, 1, 1, 'Par de luvas de boxe.    ', 96.99, 96.99),
+(2, 2, 2, 'Par de luvas de goleiro.    ', 49.7, 99.4),
+(2, 5, 1, 'Saco de areia para pratica de artes marciais.    ', 139.9, 139.9),
+(3, 1, 1, 'Par de luvas de boxe.    ', 96.99, 96.99),
+(3, 2, 1, 'Par de luvas de goleiro.    ', 49.7, 49.7),
+(3, 3, 3, 'Bola de basquete com medidas oficiais.    ', 76.49, 229.47),
+(3, 4, 1, 'Bola de Futebol com medidas oficiais.    ', 79.99, 79.99),
+(3, 5, 1, 'Saco de areia para pratica de artes marciais.    ', 139.9, 139.9),
+(5, 1, 1, 'Par de luvas de boxe.    ', 96.99, 96.99),
+(5, 2, 3, 'Par de luvas de goleiro.    ', 49.7, 149.1),
+(5, 3, 3, 'Bola de basquete com medidas oficiais.    ', 76.49, 229.47),
+(5, 4, 1, 'Bola de Futebol com medidas oficiais.    ', 79.99, 79.99),
+(5, 5, 1, 'Saco de areia para pratica de artes marciais.    ', 139.9, 139.9),
+(6, 1, 2, 'Par de luvas de boxe.    ', 96.99, 193.98),
+(6, 2, 2, 'Par de luvas de goleiro.    ', 49.7, 99.4),
+(6, 3, 1, 'Bola de basquete com medidas oficiais.    ', 76.49, 76.49),
+(6, 4, 1, 'Bola de Futebol com medidas oficiais.    ', 79.99, 79.99),
+(7, 2, 2, 'Par de luvas de goleiro.    ', 49.7, 99.4),
+(7, 3, 2, 'Bola de basquete com medidas oficiais.    ', 76.49, 152.98),
+(7, 4, 2, 'Bola de Futebol com medidas oficiais.    ', 79.99, 159.98),
+(8, 3, 2, 'Bola de basquete com medidas oficiais.    ', 76.49, 152.98),
+(8, 4, 2, 'Bola de Futebol com medidas oficiais.    ', 79.99, 159.98),
+(8, 5, 1, 'Saco de areia para pratica de artes marciais.    ', 139.9, 139.9),
+(9, 3, 1, 'Bola de basquete com medidas oficiais.    ', 76.49, 76.49),
+(9, 5, 1, 'Saco de areia para pratica de artes marciais.    ', 139.9, 139.9);
 
 -- --------------------------------------------------------
 
@@ -172,16 +193,11 @@ CREATE TABLE `produto` (
 --
 
 INSERT INTO `produto` (`id_produto`, `nome`, `preco`, `descricao`, `codigo_barras`, `quantidade`, `foto`) VALUES
-(1, 'Luvas Boxe', 96.99, 'Par de luvas de boxe.', '13467985213265874125', 15, ''),
-(2, 'Luvas Para Goleiro', 49.7, 'Par de luvas de goleiro.', '15478745963265874125', 32, ''),
-(3, 'Bola de Basquete', 76.49, 'Bola de basquete com medidas oficiais.', '36525269854712453698', 12, ''),
-(4, 'Bola de Futebol', 79.99, 'Bola de Futebol com medidas oficiais.', '54147858472369563214', 6, ''),
-(5, 'Saco de Areia', 139.9, 'Saco de areia para pratica de artes marciais.', '21453962795386425963', 26, ''),
-(46, 'asaas', 18.25, '', '5b46bdfe2b653aad8b4f4e15e711d3f5', 2, 'Array'),
-(47, 'asdasda', 18.25, 'sad', '7a4406c3acf6dcfb351a1eaca633d555', 1, 'Array'),
-(48, 'assadds', 18.25, 'OItenta', '61f1220f07d0ed44b2c71878c6717d04', 1, 'Array'),
-(49, 'asaas', 262.62, 'A turma do chaves', '32a42c1b0f46b67e202d6de8d8010022', 1, 'bda9b92cfeb81a86cca1d4adc481c3c8-foto.jpg'),
-(50, 'asdsda', 18.25, 'A turma do chaves', '32ec5e8e4ca7fcd7180fb75c5a88053b', 1, '6862d3d221de34cf9aa64db5980216b6-foto.jpg');
+(1, 'Luvas Boxe    ', 96.99, 'Par de luvas de boxe.    ', '13467985213265874125', 14, 'a674d6a6228c8e1a667f4497b3b1f05d-foto.jpg'),
+(2, 'Luvas Para Goleiro    ', 49.7, 'Par de luvas de goleiro.    ', '15478745963265874125', 30, '24b72f998eb8b22dfc3cc2e20725c3c4-foto.png'),
+(3, 'Bola de Basquete    ', 76.49, 'Bola de basquete com medidas oficiais.    ', '36525269854712453698', 8, 'b73e984d11b1baa6644819680b13926e-foto.jpg'),
+(4, 'Bola de Futebol    ', 79.99, 'Bola de Futebol com medidas oficiais.    ', '54147858472369563214', -26, 'b775e08b18df1bb59f53bd129a39fb23-foto.jpg'),
+(5, 'Saco de Pancada', 139.9, 'Saco de areia para pratica de artes marciais.    ', '21453962795386425963', 23, '59442ba0c85d96cb7c3fbd86adb096e2-foto.jpg');
 
 --
 -- Indexes for dumped tables
@@ -209,8 +225,8 @@ ALTER TABLE `funcionario`
 --
 ALTER TABLE `pedido`
   ADD PRIMARY KEY (`id_pedido`),
-  ADD KEY `fk_cliente_pedido` (`id_cliente`),
-  ADD KEY `fk_funcionario_pedido` (`id_funcionario`);
+  ADD KEY `fk_funcionario_pedido` (`id_funcionario`),
+  ADD KEY `id_cliente` (`id_cliente`);
 
 --
 -- Indexes for table `pedido_produto`
@@ -234,7 +250,7 @@ ALTER TABLE `produto`
 -- AUTO_INCREMENT for table `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `id_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `funcionario`
@@ -246,31 +262,13 @@ ALTER TABLE `funcionario`
 -- AUTO_INCREMENT for table `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `id_pedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_pedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `produto`
 --
 ALTER TABLE `produto`
-  MODIFY `id_produto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
-
---
--- Constraints for dumped tables
---
-
---
--- Limitadores para a tabela `pedido`
---
-ALTER TABLE `pedido`
-  ADD CONSTRAINT `fk_cliente_pedido` FOREIGN KEY (`id_cliente`) REFERENCES `cliente` (`id_cliente`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_funcionario_pedido` FOREIGN KEY (`id_funcionario`) REFERENCES `funcionario` (`id_funcionario`) ON DELETE NO ACTION ON UPDATE CASCADE;
-
---
--- Limitadores para a tabela `pedido_produto`
---
-ALTER TABLE `pedido_produto`
-  ADD CONSTRAINT `fk_pedido_pedido_produto` FOREIGN KEY (`id_pedido`) REFERENCES `pedido` (`id_pedido`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_produto_pedido_produto` FOREIGN KEY (`id_produto`) REFERENCES `produto` (`id_produto`) ON DELETE NO ACTION ON UPDATE CASCADE;
+  MODIFY `id_produto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
