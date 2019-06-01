@@ -48,7 +48,7 @@
             while($linha = mysqli_fetch_array($resultado)){
                 echo '<tr id='.$linha['id_produto'].'><td>'.utf8_encode($linha['nome']).'</td>';
                 echo '<td>'.utf8_encode($linha['descricao']).'</td>';
-                echo '<td>'.$linha['preco'].'</td>';
+                echo '<td>'.number_format($linha['preco'], 2, ',', '.').'</td>';
                 
                 $idd = $linha['id_produto'];
                 $buscar = $pdo->prepare("select sum(quantidade) as qtdd, sum(valor_total) as totl from pedido_produto produto where id_produto = '$idd' group by id_produto");
@@ -61,7 +61,7 @@
                     $quanti = $conteudo->qtdd;    
                     $total = $conteudo->totl;    
                     echo '<td>'.$quanti.'</td>';
-                    echo '<td>'.$total.'</td>';
+                    echo '<td>'.number_format($total, 2, ',', '.').'</td>';
                 
                     }
                 } else {
