@@ -8,16 +8,14 @@ $id						= $_POST["id"];
 $arrayIDS 				= $_SESSION["ids"];
 $qtdProdutosPedidos 	= $_SESSION["qtdProdutosPedidos"];
 $totalPedido  			= $_POST['total'];
-$idcliente 				= $_POST['id_cliente'];
+$idcliente 				= $_SESSION['idcliente'];
 $idfuncionario 			= $_POST["idfuncionario"];
-$_SESSION["idcliente"] = '';
 $_SESSION["totalnota"] = $_POST['total'];
-if($_POST['id_cliente'] != '' && $_POST['id_cliente'] != NULL){
-    $_SESSION["idcliente"] = $_POST['id_cliente'];
-}
-else{
+
+if($_SESSION['idcliente'] == '' || $_SESSION['idcliente'] == NULL){
 	$idcliente = "1";
 }
+
 $_SESSION["idfuncionario"] = $_POST['idfuncionario'];
 
 

@@ -4,12 +4,12 @@ session_start();
 
 $arrayIDS = array();
 $arrayIDS 				= $_SESSION["ids"];
+$idcliente 				= $_SESSION['idcliente'];
 $qtdProdutosPedidos 	= $_SESSION["qtdProdutosPedidos"];
 $totalPedido  			= $_POST['total'];
-$idcliente 				= $_POST['id_cliente'];
 $idfuncionario 			= $_POST["idfuncionario"];
 
-if($_POST['id_cliente'] == '' || $_POST['id_cliente'] == NULL){
+if($_SESSION['idcliente'] == '' || $_SESSION['idcliente'] == NULL){
 	$idcliente = "1";
 }
 
