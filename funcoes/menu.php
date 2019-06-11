@@ -8,7 +8,7 @@
 <?php require_once("head.php"); ?>
 </head>
 
-<body>
+<body style="overflow-x:hidden;">
   <nav class="navbar navbar-expand-md bg-primary navbar-dark">
     <div class="container">
       <a class="navbar-brand" href="home.php"><i class="fab d-inline fa-lg fa-empire"></i><b> CRV SPORTS</b></a>

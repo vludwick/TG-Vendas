@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 02-Jun-2019 às 21:34
+-- Generation Time: 31-Maio-2019 às 02:04
 -- Versão do servidor: 10.1.37-MariaDB
 -- versão do PHP: 7.3.0
 
@@ -34,7 +34,7 @@ CREATE TABLE `cliente` (
   `email` varchar(50) NOT NULL,
   `logradouro` varchar(100) NOT NULL,
   `numero` int(11) NOT NULL,
-  `bairro` varchar(100) NOT NULL,
+  `bairro` varchar(50) NOT NULL,
   `cidade` varchar(50) NOT NULL,
   `estado` varchar(50) NOT NULL,
   `cep` varchar(20) NOT NULL,
@@ -182,7 +182,7 @@ CREATE TABLE `produto` (
   `id_produto` int(11) NOT NULL,
   `nome` varchar(50) NOT NULL,
   `preco` double NOT NULL,
-  `descricao` varchar(200) DEFAULT NULL,
+  `descricao` varchar(120) DEFAULT NULL,
   `codigo_barras` varchar(50) NOT NULL,
   `quantidade` int(11) NOT NULL,
   `foto` varchar(200) NOT NULL

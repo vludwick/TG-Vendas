@@ -38,7 +38,7 @@
             </div>
             <div class="col-md-4 offset-md-0">
                 <div class="row my-1">
-                    <input  style="margin-left: 50px; margin-top: -40px" class="form-control cpfOuCnpj" type="form-control" id="buscacliente" name="buscacliente" placeholder="CPF ou CNPJ" autocomplete="off">
+                    <input  style="margin-left: 50px; margin-top: -40px" class="form-control cpfOuCnpj" type="form-control" id="buscacliente" name="buscacliente" placeholder="CPF ou CNPJ do Cliente" autocomplete="off">
                 </div>
             </div> 
         </div>
@@ -97,7 +97,7 @@
         <form id="vendas" action="" method="post" enctype="multipart/form-data">
         <div style="" class="row">                    
             <div id="resultado_busca4" class="col-md-6">
-                <input  type="form-control" class="nomecliente form-control" name="idcliente" id="nomecliente"  required disabled>
+                <input  type="form-control" class="form-control" name="idcliente" id=""  required disabled>
             </div>
             <div  class="col-md-2">
                 <input  type="hidden" class="form-control"  >
@@ -161,7 +161,8 @@
                         // Input com o total do pedido e com a quantidade de produtos pedidos
                         echo '<input type="hidden" id="" name="total" value="'.$total.'">';
                         echo '<input type="hidden" id="" name="qtdProdutosPedidos" value="'.$qtdProdutosPedidos.'">';
-
+						echo '<input type="hidden" id="" name="codcli" value="1">';
+						echo '<input type="hidden" id="" name="codfun" value="2">';
                         // Criando uma sessão com a array que tem os IDS dos produtos que estao nesse pedido
 
                     ?>
@@ -169,7 +170,11 @@
                     <div id="res_server"></div>
                 </tbody>
             </table>
-
+           
+            
+                
+           
+            
         </form> 
     </div>
 </div>
@@ -274,12 +279,7 @@
 							url: 'sys/sys.php',
 							data: {remove_todos_produtos: 'sim'},
 							dataType: 'json',
-							success: function(retorno){		
-								$('#buscacliente').val('');												
-								$('.nomecliente').removeAttr("disabled");
-								$('.nomecliente').val('');
-								$('.nomecliente').attr("disabled", "true");
-
+							success: function(retorno){                
 								$('tbody#content_retorno').html(retorno.dados);
 								$('div#cancela_pedido').html('<a ><i ></i></a>');
 							}
@@ -299,7 +299,7 @@
 		url: 'sys/sys.php',
 		data: {remove_todos_produtos: 'sim'},
 		dataType: 'json',
-		success: function(retorno){
+		success: function(retorno){                
 			$('tbody#content_retorno').html(retorno.dados);
 			$('div#cancela_pedido').html('<a ><i ></i></a>');
 		}

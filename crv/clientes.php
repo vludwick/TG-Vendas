@@ -19,7 +19,7 @@
          </div>
          <div class="row">
             <div class="col-md-4 offset-md-10">
-               <div class="row my-5">
+              <div class="row" style="margin-bottom:20px;">
                   <button type="button" id="cadastrar" class="btn btn-primary" data-toggle="modal" data-target="#cadastroCliente">
                   Cadastrar cliente
                   </button>
