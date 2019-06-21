@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 31-Maio-2019 às 02:04
--- Versão do servidor: 10.1.37-MariaDB
--- versão do PHP: 7.3.0
+-- Generation Time: 21-Jun-2019 às 19:53
+-- Versão do servidor: 10.1.38-MariaDB
+-- versão do PHP: 7.3.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -58,7 +58,8 @@ INSERT INTO `cliente` (`id_cliente`, `nome`, `email`, `logradouro`, `numero`, `b
 (3, 'José João', 'jose.joao@gmail.com.br', 'Rua Faustino Rodrigues Martins', 852, 'Vila Mineirão', 'Sorocaba', 'São Paulo', '18076-500', '1574258413', '15965124585', '682.964.310-41', '12.420.268-8', '1980-12-15', NULL, NULL, NULL),
 (4, 'Fábio Cláudio Bernardo Castro', 'fabioclaudiobernardocastro__fabioclaudiobernardoca', 'Rua Rio de Janeiro', 690, 'Dom Giocondo', 'Rio Branco', 'AC', '69900-309', '(68) 3734-7284', '(68) 99222-1499', '770.596.216-01', '46.632.333-5', '1991-08-16', NULL, NULL, NULL),
 (5, 'Laura Isabella Rocha', 'llauraisabellarocha@mmetalica.com.br', 'Rua 20', 642, 'Cidade Operária', 'São Luís', 'MA', 'Cidade OperÃ¡ria', '(98) 2919-4766', '(98) 99656-9689', '804.255.687-09', '21.359.700-7', '1978-04-10', NULL, NULL, NULL),
-(6, 'Enrico Augusto Danilo Costa', 'enricoaugustodanilocosta_@smalte.com.br', 'Rua B6', 609, 'Residencial Jardim América', 'Gurupi', 'TO', '77427-012', '(63) 3518-2846', '(63) 98839-7425', '372.488.217-30', '20.638.447-6', '1987-05-01', NULL, NULL, NULL);
+(6, 'Enrico Augusto Danilo Costa', 'enricoaugustodanilocosta_@smalte.com.br', 'Rua B6', 609, 'Residencial Jardim América', 'Gurupi', 'TO', '77427-012', '(63) 3518-2846', '(63) 98839-7425', '372.488.217-30', '20.638.447-6', '1987-05-01', NULL, NULL, NULL),
+(7, 'Alfredo dos Santos', 'alfred@hotmail.com', 'Jardim Versalles', 300, 'Bairro dos Morros', 'Votorantim', 'SP', '18111225', '(15) 3023-0305', '(15) 99891-6564', '440.431.288-19', '', '1994-08-21', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -115,14 +116,16 @@ CREATE TABLE `pedido` (
 --
 
 INSERT INTO `pedido` (`id_pedido`, `data_pedido`, `total_pedido`, `id_cliente`, `id_funcionario`, `tipo`) VALUES
-(1, '2019-05-30 20:58:30', 2476.19, 2, 3, 1),
+(1, '2019-05-29 20:58:30', 2476.19, 2, 3, 1),
 (2, '2019-05-30 21:00:01', 336.29, 4, 3, 1),
 (3, '2019-05-30 21:00:43', 596.05, 3, 3, 0),
 (5, '2019-05-30 21:01:31', 695.45, 1, 3, 0),
 (6, '2019-05-30 21:01:52', 449.86, 3, 3, 0),
 (7, '2019-05-30 21:02:04', 412.36, 3, 3, 0),
 (8, '2019-05-30 21:03:31', 452.86, 6, 3, 1),
-(9, '2019-05-30 21:03:51', 216.39, 6, 3, 1);
+(9, '2019-05-30 21:03:51', 216.39, 6, 3, 1),
+(15, '2019-06-21 14:46:40', 267.1, 1, 3, 1),
+(16, '2019-06-21 14:50:40', 297.8, 7, 3, 1);
 
 -- --------------------------------------------------------
 
@@ -170,7 +173,19 @@ INSERT INTO `pedido_produto` (`id_pedido`, `id_produto`, `quantidade`, `descrica
 (8, 4, 2, 'Bola de Futebol com medidas oficiais.    ', 79.99, 159.98),
 (8, 5, 1, 'Saco de areia para pratica de artes marciais.    ', 139.9, 139.9),
 (9, 3, 1, 'Bola de basquete com medidas oficiais.    ', 76.49, 76.49),
-(9, 5, 1, 'Saco de areia para pratica de artes marciais.    ', 139.9, 139.9);
+(9, 5, 1, 'Saco de areia para pratica de artes marciais.    ', 139.9, 139.9),
+(15, 9, 1, 'Tornozeleira Preta - Rudel - Preto', 33, 33),
+(15, 11, 1, 'Joelheira Preta - Rudel - Preto', 35.2, 35.2),
+(15, 13, 1, 'Regata Rudel Abrigo Boxer Preto', 68.9, 68.9),
+(15, 15, 1, 'Cinta Rudel Modeladora Waist Fit', 100, 100),
+(15, 16, 1, 'Bandagem Elastica Rudel 50mm 3 Metros Rudel Azul', 30, 30),
+(16, 8, 1, 'Cotoveleira Preta - Rudel - Preto', 19.8, 19.8),
+(16, 9, 2, 'Tornozeleira Preta - Rudel - Preto', 33, 66),
+(16, 10, 1, 'Cinto Fitness Waist Bag Amarelo - Rudel - Amarelo', 43.9, 43.9),
+(16, 11, 1, 'Joelheira Preta - Rudel - Preto', 35.2, 35.2),
+(16, 13, 1, 'Regata Rudel Abrigo Boxer Preto', 68.9, 68.9),
+(16, 14, 1, 'Luva Rudel KO Rosa', 34, 34),
+(16, 16, 1, 'Bandagem Elastica Rudel 50mm 3 Metros Rudel Azul', 30, 30);
 
 -- --------------------------------------------------------
 
@@ -193,11 +208,21 @@ CREATE TABLE `produto` (
 --
 
 INSERT INTO `produto` (`id_produto`, `nome`, `preco`, `descricao`, `codigo_barras`, `quantidade`, `foto`) VALUES
-(1, 'Luvas Boxe    ', 96.99, 'Par de luvas de boxe.    ', '13467985213265874125', 14, 'a674d6a6228c8e1a667f4497b3b1f05d-foto.jpg'),
-(2, 'Luvas Para Goleiro    ', 49.7, 'Par de luvas de goleiro.    ', '15478745963265874125', 30, '24b72f998eb8b22dfc3cc2e20725c3c4-foto.png'),
-(3, 'Bola de Basquete    ', 76.49, 'Bola de basquete com medidas oficiais.    ', '36525269854712453698', 8, 'b73e984d11b1baa6644819680b13926e-foto.jpg'),
-(4, 'Bola de Futebol    ', 79.99, 'Bola de Futebol com medidas oficiais.    ', '54147858472369563214', -26, 'b775e08b18df1bb59f53bd129a39fb23-foto.jpg'),
-(5, 'Saco de Pancada', 139.9, 'Saco de areia para pratica de artes marciais.    ', '21453962795386425963', 23, '59442ba0c85d96cb7c3fbd86adb096e2-foto.jpg');
+(1, 'Luvas Boxe    ', 96.99, 'Par de luvas de boxe.    ', '13467985213265874125', 12, 'a674d6a6228c8e1a667f4497b3b1f05d-foto.jpg'),
+(2, 'Luvas Para Goleiro    ', 49.7, 'Par de luvas de goleiro.    ', '15478745963265874125', 29, '24b72f998eb8b22dfc3cc2e20725c3c4-foto.png'),
+(3, 'Bola de Basquete', 76.49, 'Bola de basquete com medidas oficiais.        ', '36525269854712453698', 7, 'b73e984d11b1baa6644819680b13926e-foto.jpg'),
+(4, 'Bola de Futebol    ', 79.99, 'Bola de Futebol com medidas oficiais.    ', '54147858472369563214', -27, 'b775e08b18df1bb59f53bd129a39fb23-foto.jpg'),
+(5, 'Saco de Pancada', 139.9, 'Saco de areia para pratica de artes marciais.    ', '21453962795386425963', 22, '59442ba0c85d96cb7c3fbd86adb096e2-foto.jpg'),
+(6, 'Bermuda Masculina', 89.9, 'Bermuda Masculina Moletinho - Rudel Sports - Preto', 'edf5452222584923182d41ee5de25203', 16, '0e0fda042ad8fcd761586379b0b23008-foto.jpg'),
+(7, 'Luvas Rubber Ii Evolution', 39.6, 'Luvas Rubber Ii Evolution Preta - Rudel - G - Preto', 'bde987f3a7880b3db60e7060b57e5fc2', 7, '1adcc081956beca62b9a8a2bedfc355a-foto.jpg'),
+(8, 'Cotoveleira Preta', 19.8, 'Cotoveleira Preta - Rudel - Preto', 'b40271b32d3c98384242fe1cadf27449', 24, '821a48a656c693e6f5159a5e61cfaf3f-foto.jpg'),
+(9, 'Tornozeleira Preta', 33, 'Tornozeleira Preta - Rudel - Preto', 'a09bfec5faf926305be45f4bccb400d7', 17, 'a4cbefc61deeb9625308adeb2278d7b8-foto.jpg'),
+(10, 'Cinto Fitness Waist Bag', 43.9, 'Cinto Fitness Waist Bag Amarelo - Rudel - Amarelo', '78b56db3196d0c35787ca5d3545ae933', 17, '1f4093a218c746901f7a92b59d297936-foto.jpg'),
+(11, 'Joelheira Preta', 35.2, 'Joelheira Preta - Rudel - Preto', 'c205c78f1128fd4291b8854a8cea18f7', 29, '8fa93bebab1ac510734e9bc51cc38746-foto.jpg'),
+(13, 'Regata Rudel', 68.9, 'Regata Rudel Abrigo Boxer Preto', 'ffd3c4f350d81cfe836b1abfff523cc9', 12, 'c0818977c6c0532d67e90aac76171d6b-foto.jpg'),
+(14, 'Luva Rudel', 34, 'Luva Rudel KO Rosa', '61da726b4272c46b70620126d79a093b', 4, '3e5051579d1f9b5f5393b211fbd1711f-foto.jpg'),
+(15, 'Cinta Rudel Modeladora', 100, 'Cinta Rudel Modeladora Waist Fit', 'ac02eef73a69c73a43d0559d574ad0bd', 10, 'dca93d4b7bf0f3c283dc548d6c335a65-foto.jpg'),
+(16, 'Bandagem Elastica Azul', 30, 'Bandagem Elastica Rudel 50mm 3 Metros Rudel Azul', '97d007e3d5a700153bec7d9ce12c5276', 22, '308990fccd8cecc1174e24e48ef40bbd-foto.jpg');
 
 --
 -- Indexes for dumped tables
@@ -250,7 +275,7 @@ ALTER TABLE `produto`
 -- AUTO_INCREMENT for table `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `id_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `funcionario`
@@ -262,13 +287,13 @@ ALTER TABLE `funcionario`
 -- AUTO_INCREMENT for table `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `id_pedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_pedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `produto`
 --
 ALTER TABLE `produto`
-  MODIFY `id_produto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_produto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

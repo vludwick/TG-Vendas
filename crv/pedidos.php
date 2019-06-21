@@ -38,7 +38,10 @@
                   $resultado = mysqli_query($conecta, $query);
                   while($linha = mysqli_fetch_array($resultado)){
 					echo '<tr id='.$linha['id_pedido'].'><td>'.$linha['id_pedido'].'</td>';
-					echo '<td>'.$linha['data_pedido'].'</td>';
+                      $dt    = explode(' ', $linha['data_pedido']);
+                      $dt1    = explode('-', $dt[0]);
+                      $datacerta = $dt1[2] . '-' . $dt1[1] . '-' . $dt1[0];                      
+					echo '<td>'.$datacerta.'</td>';
 					echo '<td>'.$linha['total_pedido'].'</td>';
 					echo '<td>'.utf8_encode($linha['nome_cliente']).'</td>';
 					echo '<td>'.utf8_encode($linha['nome_funcionario']).'</td>';
@@ -87,13 +90,16 @@
                   $resultado = mysqli_query($conecta, $query);
                   while($linha = mysqli_fetch_array($resultado)){
 					echo '<tr id='.$linha['id_pedido'].'><td>'.$linha['id_pedido'].'</td>';
-					echo '<td>'.$linha['data_pedido'].'</td>';
+                      $dt    = explode(' ', $linha['data_pedido']);
+                      $dt1    = explode('-', $dt[0]);
+                      $datacerta = $dt1[2] . '-' . $dt1[1] . '-' . $dt1[0];  
+					echo '<td>'.$datacerta.'</td>';
 					echo '<td>'.$linha['total_pedido'].'</td>';
 					echo '<td>'.utf8_encode($linha['nome_cliente']).'</td>';
 					echo '<td>'.utf8_encode($linha['nome_funcionario']).'</td>';
 					$idpedido = $linha['id_pedido'];
                   ?>
-               <td><i class="fas fa-search" data-toggle="modal" data-target="#consultapedido" style="cursor: pointer; color:royalBlue"></td>
+                <td><i class="fas fa-search" data-toggle="modal" data-target="#consultapedido" style="cursor: pointer; color:royalBlue"></td>
                <td><a href="editaorcamentos.php?id=<?php echo $linha['id_pedido'] ?>"> <i class="fas fa-edit" style="cursor: pointer; color:royalBlue"></a></td>
                <td><i class="fas fa-trash-alt" style="cursor: pointer; color:royalBlue" onclick="deletapedido(<?php echo $idpedido; ?>)"></td>
                    <td><i class="fas fa-hand-holding-usd" style="cursor: pointer; color:royalBlue" onclick="virouvenda(<?php echo $idpedido; ?>)"></td>

@@ -48,7 +48,7 @@
 				</div>
 				<div class="modal-footer">
                     <div id="btncupom" nome="btncupom">
-                        <a href="editaorcamentos.php"> <i class="fas fa-edit" style="cursor: pointer; color:royalBlue">Cupom fiscal</i></a>
+                        <a href="editaorcamentos.php"> <i class="fas fa-edit" style="cursor: pointer; color:royalBlue">Comprovante</i></a>
                     </div>    
 				   <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
                 </div>

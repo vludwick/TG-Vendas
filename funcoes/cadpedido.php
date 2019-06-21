@@ -61,7 +61,7 @@ if($acao == "read"){
 	}
     if($tipo == 1){
         $tipoconsulta = 'Consulta de pedido';
-        $btncupom = '<a class="btn btn-primary" style="cursor: pointer; color:white" href="../funcoes/cupom2.php?id1='.$id.'" target="_blank"> Cupom fiscal</a>';
+        $btncupom = '<a class="btn btn-primary" style="cursor: pointer; color:white" href="../funcoes/cupom2.php?id1='.$id.'" target="_blank"> Comprovante de venda</a>';
     }else
     {
         $tipoconsulta = 'Consulta de orçamento';

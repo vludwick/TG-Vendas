@@ -27,10 +27,11 @@
             $query=
             "SELECT 
                 sum(total_pedido)as totalmes, 
-                SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(data_pedido, ' ', 1), '-', 2), '-', -1) AS mes, 
-                SUBSTRING_INDEX(SUBSTRING_INDEX(data_pedido, ' ', 1), '-', -1) AS ano,
+                SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(data_pedido, ' ', 1), '-', -2), '-', 1) AS mes, 
+                SUBSTRING_INDEX(SUBSTRING_INDEX(data_pedido, ' ', 1), '-', 1) AS ano,
                 count(data_pedido) as quantidade
             from pedido 
+            where tipo = 1
             group by ano";
         
             $resultado = mysqli_query($conecta, $query);
@@ -66,10 +67,12 @@
             $query=
             "SELECT 
                 sum(total_pedido)as totalmes, 
-                SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(data_pedido, ' ', 1), '-', 2), '-', -1) AS mes, 
-                SUBSTRING_INDEX(SUBSTRING_INDEX(data_pedido, ' ', 1), '-', -1) AS ano,
+                SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(data_pedido, ' ', 1), '-', -2), '-', 1) AS mes, 
+                SUBSTRING_INDEX(SUBSTRING_INDEX(data_pedido, ' ', 1), '-', 1) AS ano,
                 count(data_pedido) as quantidade
+                
             from pedido 
+            where tipo = 1
             group by mes, ano";
         
             $resultado = mysqli_query($conecta, $query);
