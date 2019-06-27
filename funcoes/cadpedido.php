@@ -84,9 +84,6 @@ if($acao == "read"){
 	exit;
 }
 
-$krr    = explode(' ', $data);
-$_SESSION["datanf"] = $krr[0];
-$_SESSION['nfprods'] = '';
 // Inserindo os dados na tabela PEDIDO 
 $insert = mysqli_query($conecta, "INSERT INTO PEDIDO (DATA_PEDIDO, TOTAL_PEDIDO, ID_CLIENTE, ID_FUNCIONARIO, TIPO)
 VALUES (now(), '$totalPedido', '$idcliente', '$idfuncionario', '1')");
@@ -95,6 +92,15 @@ VALUES (now(), '$totalPedido', '$idcliente', '$idfuncionario', '1')");
 $consulta = mysqli_query($conecta, "SELECT MAX(ID_PEDIDO) as id_pedido FROM PEDIDO");
 $resultado = mysqli_fetch_array($consulta);
 $idPedido = $resultado['id_pedido'];
+
+// Buscando a data que foi gravado o pedido e salvando em uma sessão
+$busca = mysqli_query($conecta, "SELECT data_pedido from PEDIDO where id_pedido = '$idPedido'");
+$result = mysqli_fetch_array($busca);
+$data = $result['data_pedido'];
+$krr = explode(' ', $data);
+$_SESSION["datanf"] = $krr[0];
+$_SESSION['nfprods'] = '';
+
 
 // Inserindo os dados de cada produto na tabela pedido_produto
 for($i = 1; $i <= $qtdProdutosPedidos; $i++){
